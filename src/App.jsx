@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { track } from "@vercel/analytics/react";
 import { EventDemo } from "./components/EventDemo.jsx";
 import { Icon } from "./components/Icon.jsx";
 import { OpsDemo } from "./components/OpsDemo.jsx";
@@ -44,6 +45,10 @@ const profileLinks = [
   ["作品を見る", "#portfolio-projects"],
 ];
 
+function trackPortfolioAction(action, label) {
+  track("Portfolio Action", { action, label });
+}
+
 export default function App() {
   const [activeDemo, setActiveDemo] = useState("event");
   const [opsRunCount, setOpsRunCount] = useState(1);
@@ -71,7 +76,13 @@ export default function App() {
         </div>
         <nav className="top-actions" aria-label="Project links">
           {projects.map((project) => (
-            <a href={project.link} target="_blank" rel="noreferrer" key={project.id}>
+            <a
+              href={project.link}
+              target="_blank"
+              rel="noreferrer"
+              key={project.id}
+              onClick={() => trackPortfolioAction("top_project_open", project.id)}
+            >
               <span>{project.title}</span>
               <Icon>↗</Icon>
             </a>
@@ -88,11 +99,17 @@ export default function App() {
             何を作ったのか、どの業務をどこまで自動化したのかが分かる一覧にしました。
           </p>
           <div className="intro-actions">
-            <a href="#portfolio-projects">
+            <a href="#portfolio-projects" onClick={() => trackPortfolioAction("intro_scroll", "portfolio-projects")}>
               <Icon>{">"}</Icon>
               作品一覧
             </a>
-            <button type="button" onClick={() => selectDemo("event")}>
+            <button
+              type="button"
+              onClick={() => {
+                trackPortfolioAction("intro_demo_open", "event");
+                selectDemo("event");
+              }}
+            >
               <Icon>K</Icon>
               実務制作ツール
             </button>
@@ -113,7 +130,13 @@ export default function App() {
           </div>
           <div className="snapshot-projects">
             {projects.map((project) => (
-              <a href={project.link} target="_blank" rel="noreferrer" key={project.id}>
+              <a
+                href={project.link}
+                target="_blank"
+                rel="noreferrer"
+                key={project.id}
+                onClick={() => trackPortfolioAction("snapshot_project_open", project.id)}
+              >
                 <span className={`snapshot-project-icon snapshot-project-icon--${project.accent}`}>{project.icon}</span>
                 <div>
                   <strong>{project.title}</strong>
@@ -190,7 +213,13 @@ export default function App() {
           </p>
           <div className="profile-links">
             {profileLinks.map(([label, href]) => (
-              <a href={href} target={href.startsWith("http") ? "_blank" : undefined} rel={href.startsWith("http") ? "noreferrer" : undefined} key={label}>
+              <a
+                href={href}
+                target={href.startsWith("http") ? "_blank" : undefined}
+                rel={href.startsWith("http") ? "noreferrer" : undefined}
+                key={label}
+                onClick={() => trackPortfolioAction("profile_link_open", label)}
+              >
                 <Icon>{href.startsWith("http") ? "↗" : ">"}</Icon>
                 {label}
               </a>
@@ -206,11 +235,25 @@ export default function App() {
             <h2>{demoTitle}</h2>
           </div>
           <div className="demo-tabs" role="tablist" aria-label="Demo selector">
-            <button type="button" className={activeDemo === "ops" ? "is-active" : ""} onClick={() => setActiveDemo("ops")}>
+            <button
+              type="button"
+              className={activeDemo === "ops" ? "is-active" : ""}
+              onClick={() => {
+                trackPortfolioAction("demo_tab_open", "ops");
+                setActiveDemo("ops");
+              }}
+            >
               <Icon>RA</Icon>
               自動化フロー
             </button>
-            <button type="button" className={activeDemo === "event" ? "is-active" : ""} onClick={() => setActiveDemo("event")}>
+            <button
+              type="button"
+              className={activeDemo === "event" ? "is-active" : ""}
+              onClick={() => {
+                trackPortfolioAction("demo_tab_open", "event");
+                setActiveDemo("event");
+              }}
+            >
               <Icon>EV</Icon>
               ボード操作
             </button>
@@ -230,7 +273,13 @@ export default function App() {
         </div>
         <div className="launch-links">
           {projects.map((project) => (
-            <a href={project.link} target="_blank" rel="noreferrer" key={project.id}>
+            <a
+              href={project.link}
+              target="_blank"
+              rel="noreferrer"
+              key={project.id}
+              onClick={() => trackPortfolioAction("launch_project_open", project.id)}
+            >
               <Icon>↗</Icon>
               <span>{project.title}</span>
             </a>

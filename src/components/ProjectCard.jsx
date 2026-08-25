@@ -1,9 +1,14 @@
+import { track } from "@vercel/analytics/react";
 import { jobTrend } from "../data/projects.js";
 import { Icon } from "./Icon.jsx";
 
 export function ProjectCard({ project, activeDemo, onSelectDemo }) {
   const activeClass =
     project.demo === activeDemo || (project.id === "integrated" && activeDemo === "event") ? " is-active" : "";
+
+  function trackProjectAction(action) {
+    track("Portfolio Project Action", { action, project: project.id });
+  }
 
   return (
     <article className={`project-card project-card--${project.accent}${activeClass}`}>
@@ -48,17 +53,23 @@ export function ProjectCard({ project, activeDemo, onSelectDemo }) {
         ) : null}
         <div className="card-actions">
           {project.demo ? (
-            <button type="button" onClick={() => onSelectDemo(project.demo)}>
+            <button
+              type="button"
+              onClick={() => {
+                trackProjectAction("demo_preview");
+                onSelectDemo(project.demo);
+              }}
+            >
               <Icon>{">"}</Icon>
               動きを見る
             </button>
           ) : null}
-          <a href={project.link} target="_blank" rel="noreferrer">
+          <a href={project.link} target="_blank" rel="noreferrer" onClick={() => trackProjectAction("open_site")}>
             <Icon>↗</Icon>
             {project.linkLabel || "開く"}
           </a>
           {project.repo ? (
-            <a href={project.repo} target="_blank" rel="noreferrer">
+            <a href={project.repo} target="_blank" rel="noreferrer" onClick={() => trackProjectAction("open_github")}>
               <Icon>GH</Icon>
               GitHub
             </a>
