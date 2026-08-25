@@ -2,6 +2,11 @@
 
 公開中の個人開発プロダクトと、実務で作成した業務ツールの公開用デモを一覧で見せるReact/Viteポートフォリオハブです。
 
+## 公開URL
+
+- フロント: https://portfolio-index-ten.vercel.app/
+- GitHub: https://github.com/shohei9278/portfolio-index
+
 ## 掲載プロジェクト
 
 - AI Job Dashboard
@@ -13,7 +18,9 @@
   - GitHub: https://github.com/shohei9278/techscope-ai
   - ローカルソース: `/Users/shoheinakahara/Dropbox/Mac/Desktop/案件/_repo/techscope-ai`
 - 添付PDFから定型バナーを自動生成
-  - 公開用デモ: http://127.0.0.1:5182/
+  - フロント: https://event-operations-demo.vercel.app/
+  - バックエンド: https://event-operations-demo.onrender.com/
+  - GitHub: https://github.com/shohei9278/event-operations-demo
   - ローカルソース: `/Users/shoheinakahara/Dropbox/Mac/Desktop/案件/_repo/event-operations-demo`
   - 内容: 添付PDFを解析し、決まったバナーフォーマットへ日時、形式、講演タイトル、登壇者を自動で流し込む流れを再現
 

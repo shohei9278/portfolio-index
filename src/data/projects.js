@@ -1,5 +1,9 @@
 export const links = {
-  event: "http://127.0.0.1:5182/",
+  portfolio: "https://portfolio-index-ten.vercel.app/",
+  portfolioRepo: "https://github.com/shohei9278/portfolio-index",
+  event: "https://event-operations-demo.vercel.app/",
+  eventApi: "https://event-operations-demo.onrender.com/",
+  eventRepo: "https://github.com/shohei9278/event-operations-demo",
   jobs: "https://ai-job-dashboard-plum.vercel.app/",
   jobsRepo: "https://github.com/shohei9278/ai-job-dashboard",
   techscope: "https://techscope-ai.vercel.app/",
@@ -74,12 +78,14 @@ export const projects = [
     demo: "ops",
     link: links.event,
     linkLabel: "デモを開く",
+    repo: links.eventRepo,
     sourcePath: "/Users/shoheinakahara/Dropbox/Mac/Desktop/案件/_repo/event-operations-demo",
     readmeTitle: "自動化したルーチンワーク",
     readmePoints: [
       "依頼メールの件名と添付PDFから、バナー制作案件を自動で起票。",
       "PDF内の日時、形式、演題、登壇者を抽出し、定型バナーの各枠へ流し込み。",
       "必要に応じて編集画面で微調整し、生成PNGと入稿データをZIP化。",
+      `API: ${links.eventApi}`,
     ],
     architecture: "React / FastAPI / SQLite / PDF preview / fixed-format banner / PNG + ZIP export",
     metrics: [
