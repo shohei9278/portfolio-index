@@ -115,6 +115,7 @@ a {
 .section-heading h2,
 .project-section__heading h2,
 .review-guide__heading h2,
+.profile-strip h2,
 .launch-strip h2 {
   margin: 0;
   color: #111827;
@@ -144,6 +145,7 @@ a {
 .demo-panel-head button,
 .output-row button,
 .output-row a,
+.profile-links a,
 .filter-group button {
   min-height: 40px;
   display: inline-flex;
@@ -179,6 +181,7 @@ a {
 .demo-panel-head button:hover,
 .output-row button:hover,
 .output-row a:hover,
+.profile-links a:hover,
 .filter-group button:hover {
   transform: translateY(-1px);
   border-color: #aab3c2;
@@ -469,6 +472,50 @@ a {
   font-size: 13px;
   font-weight: 750;
   line-height: 1.7;
+}
+
+.profile-strip {
+  display: grid;
+  grid-template-columns: minmax(0, 0.92fr) minmax(0, 1.08fr);
+  gap: 24px;
+  align-items: center;
+  margin-top: 18px;
+  padding: 22px;
+  border: 1px solid #dce1e8;
+  border-radius: 8px;
+  background:
+    linear-gradient(135deg, rgba(20, 184, 166, 0.08), rgba(59, 130, 246, 0.06)),
+    #ffffff;
+}
+
+.profile-strip h2 {
+  max-width: 620px;
+  font-size: 24px;
+  line-height: 1.35;
+}
+
+.profile-strip__body {
+  display: grid;
+  gap: 14px;
+}
+
+.profile-strip__body p {
+  margin: 0;
+  color: #445066;
+  font-size: 14px;
+  font-weight: 760;
+  line-height: 1.75;
+}
+
+.profile-links {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.profile-links a {
+  padding: 0 14px;
+  background: rgba(255, 255, 255, 0.72);
 }
 
 .project-grid {
@@ -1375,6 +1422,7 @@ a {
 
 @media (max-width: 1120px) {
   .intro-grid,
+  .profile-strip,
   .ops-demo {
     grid-template-columns: 1fr;
   }
@@ -1407,12 +1455,14 @@ a {
   .top-actions,
   .launch-links,
   .demo-tabs,
+  .profile-links,
   .filter-group {
     justify-content: flex-start;
   }
 
   .top-actions a,
   .launch-links a,
+  .profile-links a,
   .demo-tabs button,
   .intro-actions a,
   .intro-actions button {
@@ -1423,6 +1473,7 @@ a {
   .system-snapshot,
   .demo-section,
   .review-guide,
+  .profile-strip,
   .launch-strip {
     padding: 18px;
   }
@@ -1430,6 +1481,10 @@ a {
   .intro-copy h2 {
     font-size: 30px;
     line-height: 1.18;
+  }
+
+  .profile-strip h2 {
+    font-size: 22px;
   }
 
   .project-grid {

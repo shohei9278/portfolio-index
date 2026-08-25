@@ -39,6 +39,11 @@ const reviewGuide = [
   },
 ];
 
+const profileLinks = [
+  ["GitHub", "https://github.com/shohei9278"],
+  ["作品を見る", "#portfolio-projects"],
+];
+
 export default function App() {
   const [activeDemo, setActiveDemo] = useState("event");
   const [opsRunCount, setOpsRunCount] = useState(1);
@@ -126,11 +131,11 @@ export default function App() {
         </div>
       </section>
 
-      <section className="review-guide" aria-label="採用担当者向けの見どころ">
+      <section className="review-guide" aria-label="見てほしいポイント">
         <div className="review-guide__heading">
           <div>
-            <p className="eyebrow">For Reviewers</p>
-            <h2>採用担当者に見てほしいポイント</h2>
+            <p className="eyebrow">Review Points</p>
+            <h2>見てほしいポイント</h2>
           </div>
           <p>公開URLだけで動作確認できるものと、GitHubで実装範囲を確認できるものを整理しています。</p>
         </div>
@@ -172,6 +177,27 @@ export default function App() {
           );
         })}
       </div>
+
+      <section className="profile-strip" aria-label="About">
+        <div>
+          <p className="eyebrow">About</p>
+          <h2>業務の流れを理解して、使える形まで作ることを重視しています。</h2>
+        </div>
+        <div className="profile-strip__body">
+          <p>
+            Reactの画面設計、API連携、データ保存、PDFや画像生成まわりの自動化を組み合わせて、
+            手作業で繰り返していた業務をデモとして見える形にしています。
+          </p>
+          <div className="profile-links">
+            {profileLinks.map(([label, href]) => (
+              <a href={href} target={href.startsWith("http") ? "_blank" : undefined} rel={href.startsWith("http") ? "noreferrer" : undefined} key={label}>
+                <Icon>{href.startsWith("http") ? "↗" : ">"}</Icon>
+                {label}
+              </a>
+            ))}
+          </div>
+        </div>
+      </section>
 
       <section className="demo-section" aria-label="Interactive demo">
         <div className="section-heading">
