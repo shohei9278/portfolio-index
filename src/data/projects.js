@@ -82,7 +82,8 @@ export const projects = [
       "依頼メールの件名と添付PDFから、バナー制作案件を自動で起票。",
       "PDF内の日時、形式、演題、登壇者を抽出し、定型バナーの各枠へ流し込み。",
       "必要に応じて編集画面で微調整し、生成PNGと入稿データをZIP化。",
-      `API: ${links.eventApi}`,
+      "会社名、実メール、個人名は使わず、匿名サンプルPDFで実務に近い流れを再現。",
+      `Backend API: ${links.eventApi}`,
     ],
     architecture: "React / FastAPI / SQLite / PDF preview / fixed-format banner / PNG + ZIP export",
     metrics: [

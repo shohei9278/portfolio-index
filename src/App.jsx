@@ -21,6 +21,24 @@ const projectGroups = [
   },
 ];
 
+const reviewGuide = [
+  {
+    badge: "5 min",
+    title: "まず見る順番",
+    body: "AI Job Dashboard、TechScope AIで個人開発の設計を確認し、実務制作ツールのデモで業務自動化の実装範囲を確認できます。",
+  },
+  {
+    badge: "WORK",
+    title: "実務ツールの見どころ",
+    body: "依頼メール、添付PDF、案件ボード、PDF解析、定型バナー生成、納品ZIPまでの一連の流れを動く画面で見せています。",
+  },
+  {
+    badge: "SAFE",
+    title: "公開用の配慮",
+    body: "会社名、実メール、個人名、ローカルパスは掲載せず、サンプルPDFと匿名データで処理の流れだけ確認できる構成です。",
+  },
+];
+
 export default function App() {
   const [activeDemo, setActiveDemo] = useState("event");
   const [opsRunCount, setOpsRunCount] = useState(1);
@@ -105,6 +123,25 @@ export default function App() {
             <span><i className="check">1</i> 実務制作ツールのポートフォリオ版</span>
             <span><i className="check">GH</i> 各カードからGitHubも確認可能</span>
           </div>
+        </div>
+      </section>
+
+      <section className="review-guide" aria-label="採用担当者向けの見どころ">
+        <div className="review-guide__heading">
+          <div>
+            <p className="eyebrow">For Reviewers</p>
+            <h2>採用担当者に見てほしいポイント</h2>
+          </div>
+          <p>公開URLだけで動作確認できるものと、GitHubで実装範囲を確認できるものを整理しています。</p>
+        </div>
+        <div className="review-guide__cards">
+          {reviewGuide.map((item) => (
+            <article className="review-guide__card" key={item.title}>
+              <span>{item.badge}</span>
+              <h3>{item.title}</h3>
+              <p>{item.body}</p>
+            </article>
+          ))}
         </div>
       </section>
 
