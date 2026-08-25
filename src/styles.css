@@ -287,33 +287,81 @@ a {
   font-weight: 800;
 }
 
-.snapshot-bars {
+.snapshot-projects {
   display: grid;
-  gap: 11px;
+  gap: 10px;
 }
 
-.snapshot-bars i {
-  height: 42px;
-  position: relative;
-  overflow: hidden;
+.snapshot-projects a {
+  min-width: 0;
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 10px;
+  padding: 12px;
+  border: 1px solid #e3e7ee;
   border-radius: 8px;
-  background: #eef2f6;
+  background: #fbfcfe;
+  color: #17202f;
+  text-decoration: none;
+  transition:
+    transform 0.16s ease,
+    border-color 0.16s ease,
+    box-shadow 0.16s ease;
 }
 
-.snapshot-bars i::before {
-  content: "";
-  position: absolute;
-  inset: 0 auto 0 0;
-  width: var(--value);
-  background: linear-gradient(90deg, #ff745f, #14b8a6);
+.snapshot-projects a:hover {
+  transform: translateY(-1px);
+  border-color: #aab3c2;
+  box-shadow: 0 10px 22px rgba(23, 32, 47, 0.08);
 }
 
-.snapshot-bars i:nth-child(2)::before {
-  background: linear-gradient(90deg, #3b82f6, #8b5cf6);
+.snapshot-project-icon {
+  width: 34px;
+  height: 34px;
+  display: grid;
+  place-items: center;
+  border-radius: 8px;
+  background: #e8eef8;
+  color: #17202f;
+  font-size: 12px;
+  font-weight: 950;
 }
 
-.snapshot-bars i:nth-child(3)::before {
-  background: linear-gradient(90deg, #f59e0b, #ef4444);
+.snapshot-project-icon--blue {
+  background: #dbeafe;
+  color: #1d4ed8;
+}
+
+.snapshot-project-icon--green {
+  background: #dcfce7;
+  color: #166534;
+}
+
+.snapshot-project-icon--coral {
+  background: #ffedd5;
+  color: #c2410c;
+}
+
+.snapshot-projects strong,
+.snapshot-projects small {
+  display: block;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.snapshot-projects strong {
+  font-size: 14px;
+  font-weight: 900;
+}
+
+.snapshot-projects small {
+  margin-top: 3px;
+  color: #647083;
+  font-size: 12px;
+  font-weight: 750;
 }
 
 .snapshot-list {
@@ -578,33 +626,6 @@ a {
   font-size: 11px;
   font-weight: 850;
   line-height: 1.5;
-}
-
-.source-line {
-  min-height: 38px;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  padding: 9px 10px;
-  border: 1px solid #e3e7ee;
-  border-radius: 8px;
-  background: #f9fafb;
-  color: #647083;
-  font-family:
-    "SFMono-Regular",
-    Consolas,
-    "Liberation Mono",
-    monospace;
-  font-size: 11px;
-  font-weight: 750;
-  line-height: 1.35;
-}
-
-.source-line span {
-  min-width: 0;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
 }
 
 .card-actions button,

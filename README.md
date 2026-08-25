@@ -12,16 +12,13 @@
 - AI Job Dashboard
   - 公開URL: https://ai-job-dashboard-plum.vercel.app/
   - GitHub: https://github.com/shohei9278/ai-job-dashboard
-  - ローカルソース: `/Users/shoheinakahara/Dropbox/Mac/Desktop/案件/_repo/ai-job-dashboard`
 - TechScope AI
   - 公開URL: https://techscope-ai.vercel.app/
   - GitHub: https://github.com/shohei9278/techscope-ai
-  - ローカルソース: `/Users/shoheinakahara/Dropbox/Mac/Desktop/案件/_repo/techscope-ai`
 - 添付PDFから定型バナーを自動生成
   - フロント: https://event-operations-demo.vercel.app/
   - バックエンド: https://event-operations-demo.onrender.com/
   - GitHub: https://github.com/shohei9278/event-operations-demo
-  - ローカルソース: `/Users/shoheinakahara/Dropbox/Mac/Desktop/案件/_repo/event-operations-demo`
   - 内容: 添付PDFを解析し、決まったバナーフォーマットへ日時、形式、講演タイトル、登壇者を自動で流し込む流れを再現
 
 ## 起動

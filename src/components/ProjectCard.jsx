@@ -46,10 +46,6 @@ export function ProjectCard({ project, activeDemo, onSelectDemo }) {
             {project.architecture ? <p>{project.architecture}</p> : null}
           </div>
         ) : null}
-        <div className="source-line">
-          <Icon>SRC</Icon>
-          <span>{project.sourcePath}</span>
-        </div>
         <div className="card-actions">
           {project.demo ? (
             <button type="button" onClick={() => onSelectDemo(project.demo)}>

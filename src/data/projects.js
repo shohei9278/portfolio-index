@@ -24,7 +24,6 @@ export const projects = [
     link: links.jobs,
     linkLabel: "公開サイト",
     repo: links.jobsRepo,
-    sourcePath: "/Users/shoheinakahara/Dropbox/Mac/Desktop/案件/_repo/ai-job-dashboard",
     readmeTitle: "README要約",
     readmePoints: [
       "求人情報を自動収集し、AIで要約、スキル抽出、市場分析コメントを生成。",
@@ -51,7 +50,6 @@ export const projects = [
     link: links.techscope,
     linkLabel: "公開サイト",
     repo: links.techscopeRepo,
-    sourcePath: "/Users/shoheinakahara/Dropbox/Mac/Desktop/案件/_repo/techscope-ai",
     readmeTitle: "README要約",
     readmePoints: [
       "学習、記録、スキル抽出、記事推薦、日報作成をAIでつなぐ自己学習ループ。",
@@ -79,7 +77,6 @@ export const projects = [
     link: links.event,
     linkLabel: "デモを開く",
     repo: links.eventRepo,
-    sourcePath: "/Users/shoheinakahara/Dropbox/Mac/Desktop/案件/_repo/event-operations-demo",
     readmeTitle: "自動化したルーチンワーク",
     readmePoints: [
       "依頼メールの件名と添付PDFから、バナー制作案件を自動で起票。",

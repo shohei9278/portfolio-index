@@ -78,25 +78,32 @@ export default function App() {
 
         <div className="system-snapshot" aria-label="Portfolio summary">
           <div className="snapshot-header">
-            <span>project map</span>
+            <span>掲載内容</span>
             <strong>{projects.length} projects</strong>
           </div>
           <div className="snapshot-route">
-            <span>Portfolio</span>
+            <span>公開URL</span>
             <Icon>{">"}</Icon>
-            <span>Business Tool</span>
+            <span>GitHub</span>
             <Icon>{">"}</Icon>
-            <span>Launch</span>
+            <span>動くデモ</span>
           </div>
-          <div className="snapshot-bars">
-            <i style={{ "--value": "72%" }} />
-            <i style={{ "--value": "88%" }} />
-            <i style={{ "--value": "56%" }} />
+          <div className="snapshot-projects">
+            {projects.map((project) => (
+              <a href={project.link} target="_blank" rel="noreferrer" key={project.id}>
+                <span className={`snapshot-project-icon snapshot-project-icon--${project.accent}`}>{project.icon}</span>
+                <div>
+                  <strong>{project.title}</strong>
+                  <small>{project.group === "work-demo" ? "業務ツールの公開用デモ" : "公開中の個人プロダクト"}</small>
+                </div>
+                <Icon>↗</Icon>
+              </a>
+            ))}
           </div>
           <div className="snapshot-list">
-            <span><i className="check">2</i> 公開中の個人プロダクト</span>
-            <span><i className="check">1</i> 実務制作ツールの公開用デモ</span>
-            <span><i className="check">OK</i> 公開URLとローカルソースを整理</span>
+            <span><i className="check">2</i> 個人開発プロダクト</span>
+            <span><i className="check">1</i> 実務制作ツールのポートフォリオ版</span>
+            <span><i className="check">GH</i> 各カードからGitHubも確認可能</span>
           </div>
         </div>
       </section>
