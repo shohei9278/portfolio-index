@@ -173,6 +173,17 @@ export default function App() {
         </div>
       </section>
 
+      <section className="hosting-notice" aria-label="初回表示について">
+        <Icon>i</Icon>
+        <div>
+          <strong>初回表示に時間がかかる場合があります</strong>
+          <p>
+            AI Job Dashboard、TechScope AIなどは無料ホスティング環境を利用しているため、
+            バックエンドがスリープ中の場合は初回表示や一部機能の応答に少し時間がかかることがあります。
+          </p>
+        </div>
+      </section>
+
       <div className="project-sections" id="portfolio-projects">
         {projectGroups.map((group) => {
           const groupProjects = projects.filter((project) => project.group === group.id);

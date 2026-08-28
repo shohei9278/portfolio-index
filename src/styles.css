@@ -474,6 +474,41 @@ a {
   line-height: 1.7;
 }
 
+.hosting-notice {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  margin-bottom: 18px;
+  padding: 14px 16px;
+  border: 1px solid #fed7aa;
+  border-radius: 8px;
+  background: #fff7ed;
+  color: #7c2d12;
+}
+
+.hosting-notice .inline-icon {
+  flex: 0 0 auto;
+  margin-top: 2px;
+  background: #ffedd5;
+  color: #c2410c;
+}
+
+.hosting-notice strong {
+  display: block;
+  color: #7c2d12;
+  font-size: 13px;
+  font-weight: 950;
+  line-height: 1.45;
+}
+
+.hosting-notice p {
+  margin: 4px 0 0;
+  color: #9a3412;
+  font-size: 12px;
+  font-weight: 760;
+  line-height: 1.65;
+}
+
 .profile-strip {
   display: grid;
   grid-template-columns: minmax(0, 0.92fr) minmax(0, 1.08fr);
