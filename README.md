@@ -11,6 +11,7 @@
 
 - AI Job Dashboard
   - 公開URL: https://ai-job-dashboard-plum.vercel.app/
+  - 構成: Vercel（フロントエンド）/ GCP Cloud Run（API）/ Cloud Run Jobs（分析・収集）/ Cloud Scheduler / Supabase PostgreSQL
   - GitHub: https://github.com/shohei9278/ai-job-dashboard
 - TechScope AI
   - 公開URL: https://techscope-ai.vercel.app/
@@ -23,14 +24,14 @@
 
 ## 見てほしいポイント
 
-- AI Job Dashboard: データ収集、分析、AIコメント、ダッシュボードUIを含むフルスタック構成
+- AI Job Dashboard: データ収集、分析、AIコメント、ダッシュボードUIを含むフルスタック構成。GCP Cloud Run、Cloud Run Jobs、Cloud Scheduler、Artifact Registry、Secret Managerを利用しています。
 - TechScope AI: 学習ログ、記事推薦、日報ドラフト生成をつなぐAI活用プロダクト
 - 添付PDFから定型バナーを自動生成: 実務で作成したツールを匿名サンプル化し、メール起票から納品ZIP作成までの流れを再現
 - 各カードから公開URLとGitHubを確認できるため、画面の動きと実装内容をセットで見られます。
 
 ## 初回表示について
 
-AI Job Dashboard、TechScope AIなどは無料ホスティング環境を利用しているため、バックエンドがスリープ中の場合は初回表示や一部機能の応答に少し時間がかかることがあります。
+AI Job DashboardはVercelのフロントエンドから、GCP Cloud Run上のAPIへ接続しています。Cloud Runはアクセス状況に応じて起動するため、初回表示や一部機能の応答に少し時間がかかることがあります。
 
 ## About
 

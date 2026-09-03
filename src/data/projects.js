@@ -18,7 +18,7 @@ export const projects = [
     subtitle: "求人分析ダッシュボード",
     summary:
       "求人データを収集し、スキルトレンド、件数推移、個人分析、AIコメントまでまとめて可視化するフルスタックアプリ。",
-    stack: ["React", "NestJS", "Prisma", "Python", "Supabase"],
+    stack: ["React", "NestJS", "Prisma", "Python", "GCP", "Supabase"],
     accent: "blue",
     icon: "AI",
     link: links.jobs,
@@ -30,7 +30,8 @@ export const projects = [
       "求人数推移、スキルトレンド、地域別分析をダッシュボードで可視化。",
       "スキルマッチ、ギャップ分析、年収シミュレーションなど個人分析も搭載。",
     ],
-    architecture: "React / Vite / NestJS / Prisma / Supabase / Python",
+    architecture:
+      "React / Vite / NestJS / Prisma / Supabase PostgreSQL / Cloud Run / Cloud Run Jobs / Cloud Scheduler",
     metrics: [
       ["Skill", "match"],
       ["Trend", "chart"],
