@@ -849,7 +849,7 @@ button {
   display: grid;
   grid-template-rows: auto minmax(0, 1fr);
   gap: 14px;
-  height: 430px;
+  min-height: 450px;
   padding: 20px;
 }
 
@@ -878,7 +878,7 @@ button {
   justify-content: flex-end;
   gap: 12px;
   overflow: hidden;
-  min-height: 0;
+  height: 360px;
 }
 
 .voice {
