@@ -96,6 +96,7 @@ export const cases = [
       "「AIが作った」で終わらせないために、人が何を見つけ、何を決め、AIが何をしたかを分けて公開しています。",
     ],
     showFlow: true,
+    showFeatures: true,
     decisions: [
       {
         title: "アイデア出しを3社の競争にした",

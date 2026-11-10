@@ -1,4 +1,5 @@
 import { CodeTerminal } from "../components/CodeTerminal.jsx";
+import { LabFeatures } from "../components/LabFeatures.jsx";
 import { LabStats } from "../components/LabPanels.jsx";
 import { BrowserFrame, BuildBadge, CaseVisual, Reveal } from "../components/Visuals.jsx";
 import { cases, featuredCase, personalCases, profile, workCases } from "../data/cases.js";
@@ -117,6 +118,10 @@ export function HomePage() {
           <Reveal className="featured__summary">
             <Summary summary={featuredCase.summary} />
           </Reveal>
+          <div className="featured__features">
+            <h4>AIの社員がしていること</h4>
+            <LabFeatures />
+          </div>
           <Reveal className="featured__stats">
             <LabStats />
           </Reveal>
