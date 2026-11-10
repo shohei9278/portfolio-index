@@ -104,6 +104,11 @@ export function LearningLoop() {
   );
 }
 
+export function BuildBadge({ build }) {
+  if (!build) return null;
+  return <span className={`build-badge build-badge--${build.kind}`}>{build.label}</span>;
+}
+
 export function CaseVisual({ item, eager = false }) {
   if (item.figure === "learning-loop") return <LearningLoop />;
   return <BrowserFrame image={item.image} eager={eager} />;

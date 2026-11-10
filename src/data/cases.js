@@ -45,6 +45,12 @@ export const cases = [
     slug: "ai-product-lab",
     category: "personal",
     tone: "ink",
+    build: {
+      kind: "ai",
+      label: "AIが実装・自分はレビュー",
+      detail:
+        "コードはなるべくAIに生成させ、自分はコードレビュー、問題の発見、方針決定、動作確認に回っています。原因調査や修正にもAIを使っています。",
+    },
     image: {
       src: "/works/ai-product-lab.jpg",
       alt: "AI Product Lab のダッシュボード。人の確認待ちの案件と、公開数や処理数の数字が並んでいる画面",
@@ -61,10 +67,10 @@ export const cases = [
     lead: "Claude・GPT・Gemini の3社のAIを社員にして、アイデア出し、採点、制作、公開、SNS集客、続ける・撤退の判断までを任せています。人は社長の立場で確認します。",
     summary: {
       problem: "AIに運営を任せると、どこまで動き、どこで人が必要になるのか。",
-      decision: "人の仕事を問題の発見、方針決定、動作確認に絞り、人とAIの役割を公開で記録する。",
+      decision: "人の仕事をコードレビュー、問題の発見、方針決定、動作確認に絞り、人とAIの役割を公開で記録する。",
       result: "公開13件。登録・利用はまだ2件で、集客が課題です。",
     },
-    role: "企画、方針決定、動作確認。コード生成は主に Claude Code を使い、原因調査や修正にもAIを使っています。",
+    role: "企画、方針決定、コードレビュー、動作確認。コード生成は主に Claude Code を使い、原因調査や修正にもAIを使っています。",
     period: "運用中",
     stack: ["Next.js", "TypeScript", "SQLite", "Supabase", "GitHub Actions", "Railway", "Vercel"],
     links: [
@@ -148,6 +154,11 @@ export const cases = [
     slug: "ai-job-dashboard",
     category: "personal",
     tone: "blue",
+    build: {
+      kind: "hand",
+      label: "自分で実装",
+      detail: "AIに任せる実験の AI Product Lab とは違い、コードはなるべく自分で書いています。",
+    },
     image: {
       src: "/works/ai-job-dashboard.jpg",
       alt: "AI Job Dashboard の画面。総求人数、平均年収、新着求人件数の推移のグラフが並んでいる",
@@ -221,6 +232,11 @@ export const cases = [
     slug: "techscope-ai",
     category: "personal",
     tone: "green",
+    build: {
+      kind: "hand",
+      label: "自分で実装",
+      detail: "AIに任せる実験の AI Product Lab とは違い、コードはなるべく自分で書いています。",
+    },
     figure: "learning-loop",
     title: "TechScope AI",
     kicker: "AI学習支援アプリ",

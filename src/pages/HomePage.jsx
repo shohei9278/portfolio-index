@@ -1,6 +1,6 @@
 import { CodeTerminal } from "../components/CodeTerminal.jsx";
 import { LabStats } from "../components/LabPanels.jsx";
-import { BrowserFrame, CaseVisual, Reveal } from "../components/Visuals.jsx";
+import { BrowserFrame, BuildBadge, CaseVisual, Reveal } from "../components/Visuals.jsx";
 import { cases, featuredCase, personalCases, profile, workCases } from "../data/cases.js";
 import { Link } from "../router.jsx";
 
@@ -56,7 +56,7 @@ export function HomePage() {
             <h1>作って終わりにせず、動かした結果まで見ています。</h1>
             <p className="hero__lead">
               個人開発と業務ツールの開発で、何を課題と考え、何を判断し、どうなったかをまとめました。
-              コード生成にはAIも使い、うまくいっていない結果もそのまま載せています。
+              AIにコードを任せた作品と、自分で書いた作品があり、うまくいっていない結果もそのまま載せています。
             </p>
             <a href="#personal-title" className="button button--light">
               作品を見る
@@ -87,7 +87,7 @@ export function HomePage() {
 
       <section className="wrap section" aria-labelledby="personal-title">
         <SectionHead english="./personal" title="個人開発" id="personal-title">
-          自分で課題を決めて、作って公開しているものです。
+          自分で課題を決めて、作って公開しているものです。AI Product Lab はAIにコードを書かせて自分はレビューに回る実験、ほかの2つはなるべく自分でコードを書いたものです。
         </SectionHead>
       </section>
 
@@ -98,6 +98,9 @@ export function HomePage() {
               <span>{caseNumber(featuredCase)}</span>いちばん見てほしいもの
             </p>
             <h3 id="featured-title">{featuredCase.title}</h3>
+            <p className="featured__build">
+              <BuildBadge build={featuredCase.build} />
+            </p>
             <p>{featuredCase.lead}</p>
             <ul className="agents" aria-label="社員のAI">
               <li>claude</li>
@@ -131,6 +134,7 @@ export function HomePage() {
                 <p className="work-card__meta">
                   <span>{caseNumber(item)}</span>
                   {item.kicker}
+                  <BuildBadge build={item.build} />
                 </p>
                 <h3>{item.title}</h3>
                 <Summary summary={item.summary} />

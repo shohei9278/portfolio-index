@@ -770,10 +770,67 @@ button {
   padding-top: 20px;
 }
 
+.build-badge {
+  display: inline-block;
+  padding: 1px 10px;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 1.7;
+}
+
+.build-badge--ai {
+  background: var(--accent);
+  color: var(--ink);
+}
+
+.build-badge--hand {
+  border-color: var(--human);
+  background: var(--human-soft);
+  color: var(--human);
+}
+
+.featured__copy > .featured__build {
+  margin-top: 12px;
+  opacity: 1;
+}
+
+.build-note {
+  display: grid;
+  grid-template-columns: 7em minmax(0, 1fr);
+  gap: 12px;
+  align-items: start;
+  margin-bottom: 24px;
+  padding: 16px 18px;
+  border-radius: 8px;
+  background: var(--surface);
+}
+
+.build-note__title {
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.9;
+}
+
+.build-note > div {
+  display: grid;
+  justify-items: start;
+  gap: 6px;
+  font-size: 15px;
+  line-height: 1.75;
+}
+
+.build-note .build-badge--ai {
+  background: var(--ai-soft);
+  color: var(--ai);
+}
+
 .work-card__meta {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
-  gap: 12px;
+  gap: 4px 12px;
   color: var(--muted);
   font-size: 13px;
 }
@@ -1574,6 +1631,11 @@ button {
 
   .contact {
     grid-template-columns: minmax(0, 1fr);
+  }
+
+  .build-note {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 2px;
   }
 
   .contact__credit {

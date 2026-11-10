@@ -1,7 +1,7 @@
 import { DemoPreview } from "../components/DemoPreview.jsx";
 import { ExternalLink } from "../components/ExternalLink.jsx";
 import { LabFlow, LabStats } from "../components/LabPanels.jsx";
-import { BrowserFrame, CaseVisual, Reveal } from "../components/Visuals.jsx";
+import { BrowserFrame, BuildBadge, CaseVisual, Reveal } from "../components/Visuals.jsx";
 import { CATEGORY_LABELS, cases } from "../data/cases.js";
 import { Link } from "../router.jsx";
 
@@ -75,6 +75,15 @@ export function CasePage({ item }) {
 
       <div className="wrap case-body">
         <div className="case-facts">
+          {item.build ? (
+            <div className="build-note">
+              <p className="build-note__title">コードの書き方</p>
+              <div>
+                <BuildBadge build={item.build} />
+                <p>{item.build.detail}</p>
+              </div>
+            </div>
+          ) : null}
           <dl className="case-meta">
             <div>
               <dt>役割</dt>
