@@ -1,4 +1,4 @@
-import { links, opsSteps } from "../data/projects.js";
+import { eventDemoUrl, opsSteps } from "../data/demo.js";
 import { Icon } from "./Icon.jsx";
 
 export function OpsDemo({ runCount, onNextStep }) {
@@ -87,9 +87,9 @@ export function OpsDemo({ runCount, onNextStep }) {
             <span>起票、PDF解析、定型バナー流し込み、納品データ作成までを一本化</span>
             <strong>ready</strong>
           </div>
-          <a href={links.event} target="_blank" rel="noreferrer">
+          <a href={eventDemoUrl} target="_blank" rel="noreferrer">
             <Icon>↗</Icon>
-            Open automation demo
+            実際のデモを開く
           </a>
         </div>
       </div>

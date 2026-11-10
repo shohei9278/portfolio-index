@@ -1,52 +1,32 @@
-# Portfolio Index
+# 中原 翔平 ポートフォリオ
 
-公開中の個人開発プロダクトと、実務で作成した業務ツールの公開用デモを一覧で見せるReact/Viteポートフォリオハブです。
+個人開発と業務ツールの開発について、課題、考えたこと、判断、結果、まだできていないことをまとめたサイトです。React と Vite で作っています。
 
-## 公開URL
+- 公開URL: https://portfolio-index-ten.vercel.app/
+- トップのほかに、作品ごとのページが `/work/<slug>` にあります。
 
-- フロント: https://portfolio-index-ten.vercel.app/
-- GitHub: https://github.com/shohei9278/portfolio-index
+## 掲載している作品
 
-## 掲載プロジェクト
+| 作品 | ページ |
+|---|---|
+| AI Product Lab | `/work/ai-product-lab` |
+| AI Job Dashboard | `/work/ai-job-dashboard` |
+| TechScope AI | `/work/techscope-ai` |
+| 添付PDFから定型バナーを自動生成 | `/work/routine-automation` |
 
-- AI Job Dashboard
-  - 公開URL: https://ai-job-dashboard-plum.vercel.app/
-  - 構成: Vercel（フロントエンド）/ GCP Cloud Run（API）/ Cloud Run Jobs（分析・収集）/ Cloud Scheduler / Supabase PostgreSQL
-  - GitHub: https://github.com/shohei9278/ai-job-dashboard
-- TechScope AI
-  - 公開URL: https://techscope-ai.vercel.app/
-  - GitHub: https://github.com/shohei9278/techscope-ai
-- 添付PDFから定型バナーを自動生成
-  - フロント: https://event-operations-demo.vercel.app/
-  - バックエンド: https://event-operations-demo.onrender.com/
-  - GitHub: https://github.com/shohei9278/event-operations-demo
-  - 内容: 添付PDFを解析し、決まったバナーフォーマットへ日時、形式、講演タイトル、登壇者を自動で流し込む流れを再現
+## 内容を直すとき
 
-## 見てほしいポイント
+文章と数字は `src/data/cases.js` にまとめています。
 
-- AI Job Dashboard: データ収集、分析、AIコメント、ダッシュボードUIを含むフルスタック構成。GCP Cloud Run、Cloud Run Jobs、Cloud Scheduler、Artifact Registry、Secret Managerを利用しています。
-- TechScope AI: 学習ログ、記事推薦、日報ドラフト生成をつなぐAI活用プロダクト
-- 添付PDFから定型バナーを自動生成: 実務で作成したツールを匿名サンプル化し、メール起票から納品ZIP作成までの流れを再現
-- 各カードから公開URLとGitHubを確認できるため、画面の動きと実装内容をセットで見られます。
-
-## 初回表示について
-
-AI Job DashboardはVercelのフロントエンドから、GCP Cloud Run上のAPIへ接続しています。Cloud Runはアクセス状況に応じて起動するため、初回表示や一部機能の応答に少し時間がかかることがあります。
-
-## About
-
-Reactの画面設計、API連携、データ保存、PDFや画像生成まわりの自動化を組み合わせて、手作業で繰り返していた業務を使える形へ落とし込むことを重視しています。
+- 確かめられる事実だけを書きます。実績や数字は作りません。
+- AI Product Lab の数字は手で写したものです。更新するときは `LAB_AS_OF` と `labStats` を一緒に直してください。最新の数字は https://ai-lab-dashboard-production-fc9e.up.railway.app/showcase で確かめられます。
+- AI Product Lab では、人とAIの役割を `/interventions` の説明に合わせます。
+- AI Job Dashboard の `notice` は、公開サイトの障害が直ったら消してください。
 
 ## 公開用の配慮
 
-- 会社名、実メール本文、実在する個人名、絶対ローカルパスは掲載しません。
-- 実務制作ツールは、サンプルPDFと匿名データで処理の流れだけを再現しています。
-- 機密情報に該当しそうなデータはリポジトリへ含めず、デモ用の固定データに置き換えています。
-
-## アクセス確認
-
-Vercel Web Analyticsを導入しています。Vercel DashboardでこのプロジェクトのAnalyticsを有効化すると、ページビュー、参照元、閲覧ページを確認できます。
-作品リンク、GitHubリンク、デモ切り替えはカスタムイベントとして記録します。
+- 実務のツールについて、会社名、実メールの本文、実在する個人名、ローカルのパスは載せません。
+- 実務をもとにしたデモは、サンプルPDFと匿名データだけで作っています。
 
 ## 起動
 
@@ -55,6 +35,13 @@ npm install
 npm run dev
 ```
 
-一覧は `http://127.0.0.1:5180/` で表示できます。
+`http://127.0.0.1:5180/` で表示できます。
 
-リンク先の変更は `src/data/projects.js` の `links` を編集してください。
+## デプロイ
+
+Vercel の GitHub 連携で動いています。main に入ると本番に反映されます。変更はブランチで作業してPRにし、動作確認のあとにマージします。
+`vercel.json` は、作品ページのURLを直接開いても表示できるようにする設定です。
+
+## アクセス確認
+
+Vercel Web Analytics を入れています。作品のリンクやデモの切り替えはカスタムイベントとして記録します。

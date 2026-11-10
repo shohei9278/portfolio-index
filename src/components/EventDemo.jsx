@@ -1,4 +1,4 @@
-import { boardColumns } from "../data/projects.js";
+import { boardColumns } from "../data/demo.js";
 import { Icon } from "./Icon.jsx";
 
 export function EventDemo({ cards, setCards, filter, setFilter }) {

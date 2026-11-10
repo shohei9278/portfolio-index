@@ -1,0 +1,371 @@
+.ops-demo {
+  display: grid;
+  grid-template-columns: minmax(280px, 0.72fr) minmax(0, 1.28fr);
+  gap: 16px;
+  align-items: stretch;
+}
+
+.ops-left,
+.ops-workspace,
+.event-demo {
+  border: 1px solid #e3e7ee;
+  border-radius: 8px;
+  background: #f9fafb;
+}
+
+.ops-left,
+.ops-workspace {
+  padding: 16px;
+}
+
+.demo-panel-head {
+  margin-bottom: 14px;
+}
+
+.demo-panel-head span {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: #17202f;
+  font-size: 13px;
+  font-weight: 900;
+}
+
+.demo-panel-head button,
+.output-row button,
+.output-row a {
+  padding: 0 12px;
+}
+
+.step-rail {
+  display: grid;
+  gap: 10px;
+}
+
+.step-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-height: 66px;
+  padding: 12px;
+  border: 1px solid #dfe5ed;
+  border-radius: 8px;
+  background: #ffffff;
+  color: #445066;
+}
+
+.step-item > span {
+  width: 40px;
+  height: 40px;
+  flex: 0 0 40px;
+  display: grid;
+  place-items: center;
+  border-radius: 8px;
+  background: #eef2f6;
+  color: #647083;
+}
+
+.step-item strong,
+.step-item small {
+  display: block;
+}
+
+.step-item strong {
+  color: #17202f;
+  font-size: 14px;
+}
+
+.step-item small {
+  margin-top: 3px;
+  color: #647083;
+  font-size: 12px;
+}
+
+.step-item.is-active {
+  border-color: rgba(255, 116, 95, 0.6);
+  box-shadow: inset 4px 0 0 #ff745f;
+}
+
+.step-item.is-active > span {
+  background: #ff745f;
+  color: #ffffff;
+}
+
+.step-item.is-done > span {
+  background: #16a34a;
+  color: #ffffff;
+}
+
+.ops-workspace {
+  display: grid;
+  gap: 14px;
+}
+
+.file-drop {
+  min-height: 92px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 16px;
+  border: 1px dashed #aeb8c8;
+  border-radius: 8px;
+  background: #ffffff;
+}
+
+.file-icon {
+  width: 46px;
+  height: 46px;
+  flex: 0 0 46px;
+  display: grid;
+  place-items: center;
+  border-radius: 8px;
+  background: #fff1ed;
+  color: #b23323;
+  font-size: 12px;
+  font-weight: 950;
+}
+
+.file-drop strong,
+.file-drop span {
+  display: block;
+}
+
+.file-drop strong {
+  color: #17202f;
+}
+
+.file-drop span {
+  margin-top: 4px;
+  color: #647083;
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.sample-input-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.sample-input-grid div {
+  display: grid;
+  gap: 6px;
+  min-height: 104px;
+  align-content: start;
+  padding: 12px;
+  border: 1px solid #e3e7ee;
+  border-radius: 8px;
+  background: #ffffff;
+}
+
+.sample-input-grid span,
+.sample-input-grid small {
+  color: #647083;
+  font-size: 11px;
+  font-weight: 850;
+}
+
+.sample-input-grid span {
+  color: #b23323;
+  font-weight: 950;
+  text-transform: uppercase;
+}
+
+.sample-input-grid strong {
+  color: #17202f;
+  font-size: 13px;
+  line-height: 1.35;
+}
+
+.mapping-table {
+  overflow: hidden;
+  border: 1px solid #e3e7ee;
+  border-radius: 8px;
+  background: #ffffff;
+}
+
+.table-row {
+  display: grid;
+  grid-template-columns: minmax(150px, 1.1fr) minmax(120px, 0.9fr) 86px;
+  gap: 10px;
+  align-items: center;
+  padding: 11px 12px;
+  border-top: 1px solid #eef2f6;
+  color: #445066;
+  font-size: 13px;
+  line-height: 1.35;
+}
+
+.table-row:first-child {
+  border-top: 0;
+}
+
+.table-head {
+  background: #f3f6fa;
+  color: #647083;
+  font-size: 12px;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.table-row strong {
+  justify-self: start;
+  padding: 5px 8px;
+  border-radius: 999px;
+  background: #dcfce7;
+  color: #166534;
+  font-size: 11px;
+  line-height: 1;
+}
+
+.output-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 14px;
+  border: 1px solid #e3e7ee;
+  border-radius: 8px;
+  background: #ffffff;
+}
+
+.output-row > div {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  color: #445066;
+  font-size: 13px;
+  font-weight: 850;
+}
+
+.output-row strong {
+  padding: 5px 8px;
+  border-radius: 999px;
+  background: #e0f2fe;
+  color: #075985;
+  font-size: 11px;
+}
+
+.event-demo {
+  padding: 14px;
+}
+
+.board-toolbar {
+  margin-bottom: 14px;
+}
+
+.search-pill {
+  min-height: 40px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex: 1 1 260px;
+  max-width: 420px;
+  padding: 0 12px;
+  border: 1px solid #dfe5ed;
+  border-radius: 8px;
+  background: #ffffff;
+  color: #647083;
+  font-size: 13px;
+  font-weight: 800;
+}
+
+.filter-group button {
+  min-height: 36px;
+  padding: 0 11px;
+}
+
+.kanban-board {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(180px, 1fr));
+  gap: 12px;
+  overflow-x: auto;
+  padding-bottom: 2px;
+}
+
+.kanban-column {
+  min-height: 340px;
+  min-width: 180px;
+  padding: 10px;
+  border: 1px solid #dfe5ed;
+  border-radius: 8px;
+  background: #ffffff;
+}
+
+.kanban-column header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 10px;
+  color: #17202f;
+  font-size: 13px;
+  font-weight: 900;
+}
+
+.kanban-column header strong {
+  min-width: 24px;
+  height: 24px;
+  display: grid;
+  place-items: center;
+  border-radius: 999px;
+  background: #eef2f6;
+  color: #445066;
+  font-size: 12px;
+}
+
+.kanban-column--amber {
+  box-shadow: inset 0 4px 0 #f59e0b;
+}
+
+.kanban-column--blue {
+  box-shadow: inset 0 4px 0 #3b82f6;
+}
+
+.kanban-column--purple {
+  box-shadow: inset 0 4px 0 #8b5cf6;
+}
+
+.kanban-column--green {
+  box-shadow: inset 0 4px 0 #16a34a;
+}
+
+.kanban-column--gray {
+  box-shadow: inset 0 4px 0 #94a3b8;
+}
+
+.kanban-card-list {
+  display: grid;
+  gap: 10px;
+}
+
+.kanban-card {
+  display: grid;
+  gap: 10px;
+  padding: 12px;
+  border: 1px solid #e3e7ee;
+  border-radius: 8px;
+  background: #f9fafb;
+  box-shadow: 0 8px 20px rgba(23, 32, 47, 0.07);
+  cursor: grab;
+}
+
+.kanban-card:active {
+  cursor: grabbing;
+}
+
+.kanban-card__top,
+.kanban-card__meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.kanban-card__top span,
+.kanban-card__top small {
+  color: #647083;
+  font-size: 11px;
+  font-weight: 900;
+}
