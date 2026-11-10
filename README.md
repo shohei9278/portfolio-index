@@ -12,7 +12,8 @@
 | AI Product Lab | `/work/ai-product-lab` |
 | AI Job Dashboard | `/work/ai-job-dashboard` |
 | TechScope AI | `/work/techscope-ai` |
-| 添付PDFから定型バナーを自動生成 | `/work/routine-automation` |
+| 依頼メールから進む案件管理 | `/work/case-management`（デモ: `/demo/case-management`） |
+| PDFの読み取りと定型物の生成・照合 | `/work/pdf-check`（デモ: `/demo/pdf-check`） |
 
 ## 内容を直すとき
 
@@ -27,7 +28,8 @@
 ## 公開用の配慮
 
 - 実務のツールについて、会社名、実メールの本文、実在する個人名、ローカルのパスは載せません。
-- 実務をもとにしたデモは、サンプルPDFと匿名データだけで作っています。
+- 実務をもとにしたデモは、実務のコードを流用せず、架空のサンプルだけで新しく作っています。
+- デモはブラウザの中だけで動き、PDFや入力内容をサーバーへ送りません。
 
 ## 起動
 

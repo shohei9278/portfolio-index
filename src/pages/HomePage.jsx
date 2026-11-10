@@ -148,8 +148,8 @@ export function HomePage() {
       <section className="band tone-sand" aria-labelledby="work-title">
         <div className="wrap section section--band">
           <SectionHead english="./at-work" title="実務" id="work-title">
-            仕事で作ったツールは、そのままでは公開できません。ここでは実務で作った2つのツールを組み合わせて、
-            会社の情報を含まない公開用のデモにしたものを載せています。
+            仕事で作ったツールは、そのままでは公開できません。ここでは実務で作った2つのツールの仕組みを、
+            架空のデータで動く公開用のデモとして作り直しています。
           </SectionHead>
 
           {workCases.map((item) => (
@@ -165,8 +165,11 @@ export function HomePage() {
                   </p>
                   <h3>{item.title}</h3>
                   <Summary summary={item.summary} />
-                  <span className="more">詳しく読む</span>
+                  <span className="more">考えたことを読む</span>
                 </div>
+              </Link>
+              <Link to={`/demo/${item.slug}`} className="button work-wide__try">
+                デモを試す
               </Link>
             </Reveal>
           ))}

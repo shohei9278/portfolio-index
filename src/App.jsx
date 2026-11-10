@@ -3,6 +3,7 @@ import { ContactSection } from "./components/ContactSection.jsx";
 import { ExternalLink } from "./components/ExternalLink.jsx";
 import { cases, profile } from "./data/cases.js";
 import { CasePage } from "./pages/CasePage.jsx";
+import { DemoPage } from "./pages/DemoPage.jsx";
 import { HomePage } from "./pages/HomePage.jsx";
 import { NotFoundPage } from "./pages/NotFoundPage.jsx";
 import { Link, usePath } from "./router.jsx";
@@ -13,13 +14,16 @@ export default function App() {
   const path = usePath();
   const slug = path.match(/^\/work\/([^/]+)$/)?.[1];
   const activeCase = cases.find((item) => item.slug === slug);
+  const demoSlug = path.match(/^\/demo\/([^/]+)$/)?.[1];
+  const demoCase = cases.find((item) => item.demo && item.slug === demoSlug);
   const isHome = path === "/";
 
   useEffect(() => {
     if (isHome) document.title = SITE_TITLE;
+    else if (demoCase) document.title = `デモ: ${demoCase.title} | ${profile.nameEn}`;
     else if (activeCase) document.title = `${activeCase.title} | ${profile.nameEn}`;
     else document.title = `ページが見つかりません | ${profile.nameEn}`;
-  }, [isHome, activeCase]);
+  }, [isHome, activeCase, demoCase]);
 
   return (
     <>
@@ -41,6 +45,8 @@ export default function App() {
       <main>
         {isHome ? (
           <HomePage />
+        ) : demoCase ? (
+          <DemoPage item={demoCase} key={demoCase.slug} />
         ) : activeCase ? (
           <CasePage item={activeCase} key={activeCase.slug} />
         ) : (

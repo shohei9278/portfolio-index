@@ -896,6 +896,10 @@ button {
   gap: 8px;
 }
 
+.work-wide__try {
+  margin-top: 16px;
+}
+
 .demo-badge {
   padding: 2px 10px;
   border: 1px solid var(--ink);
@@ -1029,6 +1033,20 @@ button {
   transition:
     background 0.2s ease,
     color 0.2s ease;
+}
+
+.case-links a.case-links__primary {
+  background: var(--ink);
+  color: var(--surface);
+}
+
+.case-links a.case-links__primary::after {
+  margin-left: 8px;
+  content: "→";
+}
+
+.case-links a.case-links__primary:hover {
+  background: var(--accent);
 }
 
 .case-links a:hover {
@@ -1417,72 +1435,6 @@ button {
   opacity: 0.68;
 }
 
-/* デモ（固定サンプル） */
-.demo-preview {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr);
-  gap: 12px;
-  margin-top: 14px;
-}
-
-.demo-tabs,
-.filter-group {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-}
-
-.demo-tabs button,
-.filter-group button,
-.demo-panel-head button,
-.output-row a {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 6px;
-  min-height: 40px;
-  padding: 0 14px;
-  border: 1px solid var(--line);
-  border-radius: 999px;
-  background: var(--surface);
-  color: var(--ink);
-  font-size: 13px;
-  font-weight: 600;
-  text-decoration: none;
-}
-
-.output-row a {
-  flex: 0 0 auto;
-  white-space: nowrap;
-}
-
-.demo-tabs button.is-active,
-.filter-group button.is-active {
-  border-color: var(--ink);
-  background: var(--ink);
-  color: var(--surface);
-}
-
-.demo-panel-head,
-.board-toolbar {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 12px;
-  flex-wrap: wrap;
-}
-
-.inline-icon {
-  font-size: 11px;
-  font-weight: 700;
-}
-
-.demo-preview__note {
-  color: var(--muted);
-  font-size: 13px;
-  line-height: 1.7;
-}
-
 @media (max-width: 900px) {
   .hero {
     grid-template-columns: minmax(0, 1fr);
@@ -1642,20 +1594,6 @@ button {
     grid-column: 1;
   }
 
-  .ops-demo,
-  .sample-input-grid,
-  .table-row {
-    grid-template-columns: minmax(0, 1fr) !important;
-  }
-
-  .output-row {
-    align-items: stretch;
-    flex-direction: column;
-  }
-
-  .kanban-board {
-    grid-template-columns: repeat(5, 220px);
-  }
 }
 
 @media (prefers-reduced-motion: reduce) {
