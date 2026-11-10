@@ -49,7 +49,7 @@ export const cases = [
       kind: "ai",
       label: "AIが実装・自分はレビュー",
       detail:
-        "コードはなるべくAIに生成させ、自分はコードレビュー、問題の発見、方針決定、動作確認に回っています。原因調査や修正にもAIを使っています。",
+        "コードは基本的にAIに生成させ、自分はコードレビュー、問題の発見、方針決定、動作確認に回っています。原因調査や修正にもAIを使っています。",
     },
     image: {
       src: "/works/ai-product-lab.jpg",
@@ -157,7 +157,7 @@ export const cases = [
     build: {
       kind: "hand",
       label: "自分で実装",
-      detail: "AIに任せる実験の AI Product Lab とは違い、コードはなるべく自分で書いています。",
+      detail: "AIに任せる実験の AI Product Lab とは違い、コードは基本的に自分で書いています。",
     },
     image: {
       src: "/works/ai-job-dashboard.jpg",
@@ -235,7 +235,7 @@ export const cases = [
     build: {
       kind: "hand",
       label: "自分で実装",
-      detail: "AIに任せる実験の AI Product Lab とは違い、コードはなるべく自分で書いています。",
+      detail: "AIに任せる実験の AI Product Lab とは違い、コードは基本的に自分で書いています。",
     },
     figure: "learning-loop",
     title: "TechScope AI",

@@ -87,7 +87,7 @@ export function HomePage() {
 
       <section className="wrap section" aria-labelledby="personal-title">
         <SectionHead english="./personal" title="個人開発" id="personal-title">
-          自分で課題を決めて、作って公開しているものです。AI Product Lab はAIにコードを書かせて自分はレビューに回る実験、ほかの2つはなるべく自分でコードを書いたものです。
+          自分で課題を決めて、作って公開しているものです。AI Product Lab はAIにコードを書かせて自分はレビューに回る実験、ほかの2つは基本的に自分でコードを書いたものです。
         </SectionHead>
       </section>
 
