@@ -1,3 +1,4 @@
+import { CodeTerminal } from "../components/CodeTerminal.jsx";
 import { LabStats } from "../components/LabPanels.jsx";
 import { BrowserFrame, CaseVisual, Reveal } from "../components/Visuals.jsx";
 import { cases, featuredCase, personalCases, profile, workCases } from "../data/cases.js";
@@ -26,7 +27,7 @@ function SectionHead({ english, title, id, children }) {
   return (
     <Reveal className="section-head">
       <p className="section-head__en" aria-hidden="true">
-        {english}
+        <span style={{ "--chars": english.length }}>{english}</span>
       </p>
       <div>
         <h2 id={id}>{title}</h2>
@@ -45,28 +46,30 @@ export function HomePage() {
 
   return (
     <>
-      <section className="hero wrap">
-        <div className="hero__copy">
-          <p className="hero__name">{profile.name} Portfolio</p>
-          <h1>作って終わりにせず、動かした結果まで見ています。</h1>
-          <p className="hero__lead">
-            個人開発と業務ツールの開発で、何を課題と考え、何を判断し、どうなったかをまとめました。
-            うまくいっていない結果も、そのまま載せています。
-          </p>
-          <a href="#personal-title" className="button">
-            作品を見る
-          </a>
-        </div>
-        <div className="hero__visual" aria-hidden="true">
-          {heroImages.map((item, index) => (
-            <BrowserFrame
-              image={item.image}
-              eager
-              decorative
-              className={`hero__frame hero__frame--${index + 1}`}
-              key={item.slug}
-            />
-          ))}
+      <section className="band tone-ink hero-band">
+        <div className="wrap hero">
+          <div className="hero__copy">
+            <p className="hero__name">
+              {profile.nameEn}
+              <span aria-hidden="true"> / portfolio</span>
+            </p>
+            <h1>作って終わりにせず、動かした結果まで見ています。</h1>
+            <p className="hero__lead">
+              個人開発と業務ツールの開発で、何を課題と考え、何を判断し、どうなったかをまとめました。
+              コード生成にはAIも使い、うまくいっていない結果もそのまま載せています。
+            </p>
+            <a href="#personal-title" className="button button--light">
+              作品を見る
+            </a>
+          </div>
+          <div className="hero__visual">
+            {heroImages.slice(0, 2).map((item, index) => (
+              <div aria-hidden="true" className={`hero__frame hero__frame--${index + 1}`} key={item.slug}>
+                <BrowserFrame image={item.image} eager decorative />
+              </div>
+            ))}
+            <CodeTerminal />
+          </div>
         </div>
       </section>
 
@@ -83,7 +86,7 @@ export function HomePage() {
       </section>
 
       <section className="wrap section" aria-labelledby="personal-title">
-        <SectionHead english="Personal" title="個人開発" id="personal-title">
+        <SectionHead english="./personal" title="個人開発" id="personal-title">
           自分で課題を決めて、作って公開しているものです。
         </SectionHead>
       </section>
@@ -96,6 +99,11 @@ export function HomePage() {
             </p>
             <h3 id="featured-title">{featuredCase.title}</h3>
             <p>{featuredCase.lead}</p>
+            <ul className="agents" aria-label="社員のAI">
+              <li>claude</li>
+              <li>gpt</li>
+              <li>gemini</li>
+            </ul>
             <Link to={`/work/${featuredCase.slug}`} className="button button--light">
               運用の設計と判断を読む
             </Link>
@@ -135,7 +143,7 @@ export function HomePage() {
 
       <section className="band tone-sand" aria-labelledby="work-title">
         <div className="wrap section section--band">
-          <SectionHead english="At Work" title="実務" id="work-title">
+          <SectionHead english="./at-work" title="実務" id="work-title">
             仕事で作ったツールは、そのままでは公開できません。ここでは実務で作った2つのツールを組み合わせて、
             会社の情報を含まない公開用のデモにしたものを載せています。
           </SectionHead>

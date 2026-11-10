@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+import { ContactSection } from "./components/ContactSection.jsx";
 import { ExternalLink } from "./components/ExternalLink.jsx";
 import { cases, profile } from "./data/cases.js";
 import { CasePage } from "./pages/CasePage.jsx";
@@ -6,7 +7,7 @@ import { HomePage } from "./pages/HomePage.jsx";
 import { NotFoundPage } from "./pages/NotFoundPage.jsx";
 import { Link, usePath } from "./router.jsx";
 
-const SITE_TITLE = `${profile.name} | ポートフォリオ`;
+const SITE_TITLE = `${profile.nameEn}（${profile.name}）| Portfolio`;
 
 export default function App() {
   const path = usePath();
@@ -16,8 +17,8 @@ export default function App() {
 
   useEffect(() => {
     if (isHome) document.title = SITE_TITLE;
-    else if (activeCase) document.title = `${activeCase.title} | ${profile.name}`;
-    else document.title = `ページが見つかりません | ${profile.name}`;
+    else if (activeCase) document.title = `${activeCase.title} | ${profile.nameEn}`;
+    else document.title = `ページが見つかりません | ${profile.nameEn}`;
   }, [isHome, activeCase]);
 
   return (
@@ -25,7 +26,7 @@ export default function App() {
       <header className="site-header">
         <div className="wrap site-header__inner">
           <Link to="/" className="site-header__name">
-            {profile.name}
+            {profile.nameEn}
           </Link>
           <nav aria-label="サイト内">
             <Link to="/">作品</Link>
@@ -47,24 +48,7 @@ export default function App() {
         )}
       </main>
 
-      <footer className="site-footer" id="contact">
-        <div className="wrap site-footer__inner">
-          <div>
-            <p className="site-footer__label" aria-hidden="true">
-              Contact
-            </p>
-            <a className="site-footer__mail" href={`mailto:${profile.email}`}>
-              {profile.email}
-            </a>
-          </div>
-          <div className="site-footer__side">
-            <ExternalLink href={profile.github} label="footer-github">
-              GitHub
-            </ExternalLink>
-            <p>このサイトの実装には Claude Code を使っています。</p>
-          </div>
-        </div>
-      </footer>
+      <ContactSection />
     </>
   );
 }

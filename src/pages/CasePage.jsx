@@ -58,6 +58,9 @@ export function CasePage({ item }) {
           <Link to="/" className="back-link">
             ← 作品一覧
           </Link>
+          <p className="case-hero__path" aria-hidden="true">
+            ~/works/{item.slug}
+          </p>
           <p className="case-hero__kicker">
             <span>{CATEGORY_LABELS[item.category]}</span>
             {item.kicker}

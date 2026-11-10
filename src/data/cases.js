@@ -4,6 +4,8 @@
 
 export const profile = {
   name: "中原 翔平",
+  nameEn: "Shohei Nakahara",
+  note: "https://note.com/shon9278",
   email: "sn920708@gmail.com",
   github: "https://github.com/shohei9278",
 };
