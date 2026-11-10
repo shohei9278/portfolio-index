@@ -21,7 +21,7 @@
 - 確かめられる事実だけを書きます。実績や数字は作りません。
 - AI Product Lab の数字は手で写したものです。更新するときは `LAB_AS_OF` と `labStats` を一緒に直してください。最新の数字は https://ai-lab-dashboard-production-fc9e.up.railway.app/showcase で確かめられます。
 - AI Product Lab では、人とAIの役割を `/interventions` の説明に合わせます。
-- AI Job Dashboard の `notice` は、公開サイトの障害が直ったら消してください。
+- AI Job Dashboard の `notice` は、毎日の収集が再開したら消してください。
 
 ## 公開用の配慮
 
