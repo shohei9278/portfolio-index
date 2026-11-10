@@ -32,9 +32,15 @@ export const labFlow = [
   { who: "human", label: "マージして本番へ", note: "公開後に主要ページの表示を自動で確認" },
 ];
 
+export const CATEGORY_LABELS = {
+  personal: "個人開発",
+  work: "実務",
+};
+
 export const cases = [
   {
     slug: "ai-product-lab",
+    category: "personal",
     title: "AI Product Lab",
     kicker: "AIにプロダクト運営を任せる実験",
     lead: "Claude・GPT・Gemini の3社のAIを社員にして、アイデア出し、採点、制作、公開、SNS集客、続ける・撤退の判断までを任せています。人は社長の立場で確認します。",
@@ -125,6 +131,7 @@ export const cases = [
   },
   {
     slug: "ai-job-dashboard",
+    category: "personal",
     title: "AI Job Dashboard",
     kicker: "求人データの分析ダッシュボード",
     lead: "求人データを毎日集めて、スキルの需要や求人数の推移と、自分のスキルとの差を見られるようにしたダッシュボードです。",
@@ -191,6 +198,7 @@ export const cases = [
   },
   {
     slug: "techscope-ai",
+    category: "personal",
     title: "TechScope AI",
     kicker: "AI学習支援アプリ",
     lead: "学習の記録から次に学ぶテーマと記事を提案し、日報の作成とスキルの更新までをつなげた学習支援アプリです。",
@@ -244,8 +252,9 @@ export const cases = [
   },
   {
     slug: "routine-automation",
+    category: "work",
     title: "添付PDFから定型バナーを自動生成",
-    kicker: "実務ツールをもとにした公開用デモ",
+    kicker: "定型バナー作成の自動化（公開用デモ）",
     lead: "依頼メールの添付PDFから日時や登壇者を読み取り、定型バナーと納品データまで作る流れのデモです。実務で作った2つのツールを組み合わせて、公開用に作りました。",
     summary: {
       problem: "依頼メールとPDFの内容を、定型バナーへ転記する繰り返しの作業を減らしたい。",
@@ -308,4 +317,7 @@ export const cases = [
 ];
 
 export const featuredCase = cases[0];
-export const otherCases = cases.slice(1);
+export const personalCases = cases.filter(
+  (item) => item.category === "personal" && item !== featuredCase,
+);
+export const workCases = cases.filter((item) => item.category === "work");

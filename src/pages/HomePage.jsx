@@ -1,5 +1,5 @@
 import { LabStats } from "../components/LabPanels.jsx";
-import { featuredCase, otherCases, profile } from "../data/cases.js";
+import { featuredCase, personalCases, profile, workCases } from "../data/cases.js";
 import { Link } from "../router.jsx";
 
 function Summary({ summary }) {
@@ -21,6 +21,25 @@ function Summary({ summary }) {
   );
 }
 
+function WorkList({ items }) {
+  return (
+    <ul className="works">
+      {items.map((item) => (
+        <li key={item.slug}>
+          <Link to={`/work/${item.slug}`} className="work-row">
+            <span className="work-row__title">
+              <small>{item.kicker}</small>
+              <strong>{item.title}</strong>
+            </span>
+            <Summary summary={item.summary} />
+            <span className="work-row__more">詳しく読む →</span>
+          </Link>
+        </li>
+      ))}
+    </ul>
+  );
+}
+
 export function HomePage() {
   return (
     <>
@@ -33,35 +52,38 @@ export function HomePage() {
         </p>
       </section>
 
-      <section className="featured" aria-labelledby="featured-title">
-        <div className="featured__head">
-          <p className="eyebrow">いちばん見てほしいもの</p>
-          <h2 id="featured-title">{featuredCase.title}</h2>
-          <p>{featuredCase.lead}</p>
+      <section className="category" aria-labelledby="personal-title">
+        <div className="category__head">
+          <h2 id="personal-title">個人開発</h2>
+          <p>自分で課題を決めて、作って公開しているものです。</p>
         </div>
-        <Summary summary={featuredCase.summary} />
-        <LabStats />
-        <Link to={`/work/${featuredCase.slug}`} className="button">
-          運用の設計と判断を読む
-        </Link>
+
+        <div className="featured">
+          <div className="featured__head">
+            <p className="eyebrow">いちばん見てほしいもの</p>
+            <h3>{featuredCase.title}</h3>
+            <p>{featuredCase.lead}</p>
+          </div>
+          <Summary summary={featuredCase.summary} />
+          <LabStats />
+          <Link to={`/work/${featuredCase.slug}`} className="button">
+            運用の設計と判断を読む
+          </Link>
+        </div>
+
+        <WorkList items={personalCases} />
       </section>
 
-      <section className="works" aria-labelledby="works-title">
-        <h2 id="works-title">その他の作品</h2>
-        <ul>
-          {otherCases.map((item) => (
-            <li key={item.slug}>
-              <Link to={`/work/${item.slug}`} className="work-row">
-                <span className="work-row__title">
-                  <small>{item.kicker}</small>
-                  <strong>{item.title}</strong>
-                </span>
-                <Summary summary={item.summary} />
-                <span className="work-row__more">詳しく読む →</span>
-              </Link>
-            </li>
-          ))}
-        </ul>
+      <section className="category" aria-labelledby="work-title">
+        <div className="category__head">
+          <h2 id="work-title">実務</h2>
+          <p>
+            仕事で作ったツールは、そのままでは公開できません。ここでは実務で作った2つのツールを組み合わせて、
+            会社の情報を含まない公開用のデモにしたものを載せています。
+          </p>
+        </div>
+
+        <WorkList items={workCases} />
       </section>
     </>
   );

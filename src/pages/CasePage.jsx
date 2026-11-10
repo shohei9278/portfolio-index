@@ -1,7 +1,7 @@
 import { DemoPreview } from "../components/DemoPreview.jsx";
 import { ExternalLink } from "../components/ExternalLink.jsx";
 import { LabFlow, LabStats } from "../components/LabPanels.jsx";
-import { cases } from "../data/cases.js";
+import { CATEGORY_LABELS, cases } from "../data/cases.js";
 import { Link } from "../router.jsx";
 
 function Section({ number, title, children }) {
@@ -52,7 +52,9 @@ export function CasePage({ item }) {
       </Link>
 
       <header className="case-head">
-        <p className="eyebrow">{item.kicker}</p>
+        <p className="eyebrow">
+          {CATEGORY_LABELS[item.category]} ・ {item.kicker}
+        </p>
         <h1>{item.title}</h1>
         <p className="case-head__lead">{item.lead}</p>
         <dl className="case-meta">
