@@ -1,5 +1,5 @@
-import { DemoPreview } from "../components/DemoPreview.jsx";
 import { ExternalLink } from "../components/ExternalLink.jsx";
+import { LabFeatures } from "../components/LabFeatures.jsx";
 import { LabFlow, LabStats } from "../components/LabPanels.jsx";
 import { BrowserFrame, BuildBadge, CaseVisual, Reveal } from "../components/Visuals.jsx";
 import { CATEGORY_LABELS, cases } from "../data/cases.js";
@@ -22,7 +22,7 @@ function Paragraphs({ items }) {
 }
 
 function Decision({ decision, index, slug }) {
-  const [sourceLabel, sourceHref] = decision.source;
+  const [sourceLabel, sourceHref] = decision.source ?? [];
 
   return (
     <article className="decision">
@@ -39,9 +39,11 @@ function Decision({ decision, index, slug }) {
             </div>
           ))}
         </dl>
-        <ExternalLink href={sourceHref} label={`${slug}-source`} className="decision__source">
-          {sourceLabel}
-        </ExternalLink>
+        {decision.source ? (
+          <ExternalLink href={sourceHref} label={`${slug}-source`} className="decision__source">
+            {sourceLabel}
+          </ExternalLink>
+        ) : null}
       </div>
     </article>
   );
@@ -99,6 +101,11 @@ export function CasePage({ item }) {
             </div>
           </dl>
           <div className="case-links">
+            {item.demo ? (
+              <Link to={`/demo/${item.slug}`} className="case-links__primary">
+                デモを試す
+              </Link>
+            ) : null}
             {item.links.map(([label, href]) => (
               <ExternalLink href={href} label={`${item.slug}-${label}`} key={href}>
                 {label}
@@ -121,6 +128,13 @@ export function CasePage({ item }) {
             </p>
           ) : null}
         </div>
+
+        {item.showFeatures ? (
+          <section className="case-features">
+            <h2>AIの社員がしていること</h2>
+            <LabFeatures />
+          </section>
+        ) : null}
 
         <Section number="01" title="課題">
           <div className="lead-text">
@@ -160,7 +174,6 @@ export function CasePage({ item }) {
               <p>{item.gallery.caption}</p>
             </div>
           ) : null}
-          {item.showDemo ? <DemoPreview /> : null}
         </Section>
 
         <Section number="05" title="まだできていないこと">
