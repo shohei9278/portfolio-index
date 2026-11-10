@@ -1,9 +1,9 @@
-import { CaseBoardDemo } from "../demos/CaseBoardDemo.jsx";
+import { RequestDemo } from "../demos/RequestDemo.jsx";
 import { PdfCheckDemo } from "../demos/PdfCheckDemo.jsx";
 import { Link } from "../router.jsx";
 
 const DEMOS = {
-  "case-management": CaseBoardDemo,
+  "case-management": RequestDemo,
   "pdf-check": PdfCheckDemo,
 };
 

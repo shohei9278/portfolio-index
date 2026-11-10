@@ -12,8 +12,8 @@
 | AI Product Lab | `/work/ai-product-lab` |
 | AI Job Dashboard | `/work/ai-job-dashboard` |
 | TechScope AI | `/work/techscope-ai` |
-| 依頼メールから進む案件管理 | `/work/case-management`（デモ: `/demo/case-management`） |
-| PDFの読み取りと定型物の生成・照合 | `/work/pdf-check`（デモ: `/demo/pdf-check`） |
+| 申請書から制作物を展開する案件管理 | `/work/case-management`（デモ: `/demo/case-management`） |
+| 形式の違うPDFの読み取りと照合 | `/work/pdf-check`（デモ: `/demo/pdf-check`） |
 
 ## 内容を直すとき
 
