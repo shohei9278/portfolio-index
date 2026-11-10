@@ -53,6 +53,13 @@ export const cases = [
       ["作ったツールの一覧", "https://hitoride.vercel.app"],
       ["GitHub", LAB_REPO],
     ],
+    social: [
+      ["note", "https://note.com/shon9278"],
+      ["X（開発者の記録）", "https://x.com/ShoN9278"],
+      ["X（運用）", "https://x.com/hitoride_app"],
+      ["Threads（運用）", "https://www.threads.com/@hitoride1030"],
+      ["Bluesky（運用）", "https://bsky.app/profile/hitoride1030.bsky.social"],
+    ],
     problem: [
       "AIにアイデア出しから公開、集客、続ける・撤退の判断まで任せたとき、どこまで動き、どこで人が必要になるのかを確かめる実験です。",
       "作ったものの数より、AIが勝手に進んでも壊れにくく、あとから何が起きたか確かめられる運用の設計を重視しています。",

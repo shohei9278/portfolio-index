@@ -76,6 +76,16 @@ export function CasePage({ item }) {
             </ExternalLink>
           ))}
         </div>
+        {item.social ? (
+          <div className="case-links case-links--social">
+            <span>発信</span>
+            {item.social.map(([label, href]) => (
+              <ExternalLink href={href} label={`${item.slug}-${label}`} key={href}>
+                {label}
+              </ExternalLink>
+            ))}
+          </div>
+        ) : null}
         {item.notice ? (
           <p className="notice" role="status">
             {item.notice}
