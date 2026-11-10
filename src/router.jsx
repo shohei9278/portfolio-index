@@ -29,7 +29,7 @@ export function Link({ to, onClick, children, ...props }) {
     event.preventDefault();
     window.history.pushState(null, "", to);
     window.dispatchEvent(new Event(CHANGE_EVENT));
-    window.scrollTo(0, 0);
+    window.scrollTo({ top: 0, behavior: "instant" });
   }
 
   return (

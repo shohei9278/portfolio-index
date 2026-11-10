@@ -1,4 +1,5 @@
 // 掲載する内容は、公開ページ、公開リポジトリ、本人の説明で確かめられる事実だけにする。
+// 作品の画像は2026年11月10日に撮影した実際の画面。
 // AI Product Lab の数字は手で写したものなので、更新するときは LAB_AS_OF と labStats を一緒に直す。
 
 export const profile = {
@@ -41,6 +42,18 @@ export const cases = [
   {
     slug: "ai-product-lab",
     category: "personal",
+    tone: "ink",
+    image: {
+      src: "/works/ai-product-lab.jpg",
+      alt: "AI Product Lab のダッシュボード。人の確認待ちの案件と、公開数や処理数の数字が並んでいる画面",
+      domain: "ai-lab-dashboard",
+    },
+    gallery: {
+      src: "/works/hitoride.jpg",
+      alt: "AIが企画して作った小さなWebツールの一覧ページ",
+      domain: "hitoride.vercel.app",
+      caption: "AIが企画して公開したツールの一覧",
+    },
     title: "AI Product Lab",
     kicker: "AIにプロダクト運営を任せる実験",
     lead: "Claude・GPT・Gemini の3社のAIを社員にして、アイデア出し、採点、制作、公開、SNS集客、続ける・撤退の判断までを任せています。人は社長の立場で確認します。",
@@ -132,6 +145,12 @@ export const cases = [
   {
     slug: "ai-job-dashboard",
     category: "personal",
+    tone: "blue",
+    image: {
+      src: "/works/ai-job-dashboard.jpg",
+      alt: "AI Job Dashboard の画面。総求人数、平均年収、新着求人件数の推移のグラフが並んでいる",
+      domain: "ai-job-dashboard-plum.vercel.app",
+    },
     title: "AI Job Dashboard",
     kicker: "求人データの分析ダッシュボード",
     lead: "求人データを毎日集めて、スキルの需要や求人数の推移と、自分のスキルとの差を見られるようにしたダッシュボードです。",
@@ -199,13 +218,15 @@ export const cases = [
   {
     slug: "techscope-ai",
     category: "personal",
+    tone: "green",
+    figure: "learning-loop",
     title: "TechScope AI",
     kicker: "AI学習支援アプリ",
     lead: "学習の記録から次に学ぶテーマと記事を提案し、日報の作成とスキルの更新までをつなげた学習支援アプリです。",
     summary: {
       problem: "市場で求められることが分かったうえで、勉強を効率化したい。",
       decision: "記録、提案、日報を別々にせず、ひと続きの流れにする。",
-      result: "公開中。効率がどれだけ上がったかの数字はまだありません。",
+      result: "記録から提案、日報までつなげて公開しました。今はデータベースの停止でログインできません。",
     },
     role: "個人開発",
     period: "2025年10月〜",
@@ -214,6 +235,8 @@ export const cases = [
       ["公開サイト", "https://techscope-ai.vercel.app/"],
       ["GitHub", TECHSCOPE_REPO],
     ],
+    notice:
+      "2026年11月10日時点、データベースが一時停止していて、公開サイトにログインできません。",
     problem: [
       "AI Job Dashboard で市場を知ったうえで、勉強の効率化を図りたいと考えたのがきっかけです。",
     ],
@@ -242,17 +265,24 @@ export const cases = [
       },
     ],
     result: [
-      "学習の記録、AIのおすすめ、日報の連携まで作り、公開しています。",
+      "学習の記録、AIのおすすめ、日報の連携まで作り、公開しました。",
       "勉強の効率がどれだけ上がったか、利用者が何人いるかは、確かめられる数字がないため載せていません。",
     ],
     next: [
       "スキルの変化を見せるダッシュボードと、学習タスクの自動生成は、まだ作っている途中か計画の段階です。",
       "効率化が目的なので、効果をどう測るかが次の課題です。",
+      "データベースは無料プランで動かしていて、同時に動かせる数の上限により、今は再開できていません。",
     ],
   },
   {
     slug: "routine-automation",
     category: "work",
+    tone: "sand",
+    image: {
+      src: "/works/routine-automation.jpg",
+      alt: "公開用デモの案件ボード。依頼メールから納品までの案件カードが列ごとに並んでいる",
+      domain: "event-operations-demo.vercel.app",
+    },
     title: "添付PDFから定型バナーを自動生成",
     kicker: "定型バナー作成の自動化（公開用デモ）",
     lead: "依頼メールの添付PDFから日時や登壇者を読み取り、定型バナーと納品データまで作る流れのデモです。実務で作った2つのツールを組み合わせて、公開用に作りました。",

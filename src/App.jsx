@@ -21,38 +21,50 @@ export default function App() {
   }, [isHome, activeCase]);
 
   return (
-    <div className="site">
+    <>
       <header className="site-header">
-        <Link to="/" className="site-header__name">
-          {profile.name}
-        </Link>
-        <nav aria-label="サイト内">
-          <Link to="/">作品</Link>
-          <ExternalLink href={profile.github} label="header-github">
-            GitHub
-          </ExternalLink>
-          <a href="#contact">連絡先</a>
-        </nav>
+        <div className="wrap site-header__inner">
+          <Link to="/" className="site-header__name">
+            {profile.name}
+          </Link>
+          <nav aria-label="サイト内">
+            <Link to="/">作品</Link>
+            <ExternalLink href={profile.github} label="header-github">
+              GitHub
+            </ExternalLink>
+            <a href="#contact">連絡先</a>
+          </nav>
+        </div>
       </header>
 
       <main>
-        {isHome ? <HomePage /> : activeCase ? <CasePage item={activeCase} /> : <NotFoundPage />}
+        {isHome ? (
+          <HomePage />
+        ) : activeCase ? (
+          <CasePage item={activeCase} key={activeCase.slug} />
+        ) : (
+          <NotFoundPage />
+        )}
       </main>
 
       <footer className="site-footer" id="contact">
-        <div>
-          <p className="site-footer__label">連絡先</p>
-          <a className="site-footer__mail" href={`mailto:${profile.email}`}>
-            {profile.email}
-          </a>
-        </div>
-        <div className="site-footer__side">
-          <ExternalLink href={profile.github} label="footer-github">
-            GitHub
-          </ExternalLink>
-          <p>このサイトの実装には Claude Code を使っています。</p>
+        <div className="wrap site-footer__inner">
+          <div>
+            <p className="site-footer__label" aria-hidden="true">
+              Contact
+            </p>
+            <a className="site-footer__mail" href={`mailto:${profile.email}`}>
+              {profile.email}
+            </a>
+          </div>
+          <div className="site-footer__side">
+            <ExternalLink href={profile.github} label="footer-github">
+              GitHub
+            </ExternalLink>
+            <p>このサイトの実装には Claude Code を使っています。</p>
+          </div>
         </div>
       </footer>
-    </div>
+    </>
   );
 }
