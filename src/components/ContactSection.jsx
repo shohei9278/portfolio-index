@@ -18,7 +18,8 @@ function composeMail(event) {
   window.location.href = `mailto:${profile.email}?subject=${subject}&body=${body}`;
 }
 
-export function ContactSection() {
+// トップでは問い合わせフォームまで出し、作品やデモのページでは連絡先だけの短い形にする
+export function ContactSection({ compact = false }) {
   const [copied, setCopied] = useState(false);
 
   async function copyAddress() {
@@ -32,8 +33,8 @@ export function ContactSection() {
   }
 
   return (
-    <footer className="site-footer tone-ink" id="contact">
-      <div className="wrap contact">
+    <footer className={`site-footer tone-ink${compact ? " site-footer--compact" : ""}`} id="contact">
+      <div className={`wrap contact${compact ? " contact--compact" : ""}`}>
         <div className="contact__info">
           <p className="contact__title" aria-hidden="true">
             ./contact
@@ -58,6 +59,11 @@ export function ContactSection() {
           </div>
         </div>
 
+        {compact ? (
+          <a href="/#contact" className="button button--light contact__to-form">
+            フォームで連絡する
+          </a>
+        ) : (
         <form className="contact-form" onSubmit={composeMail}>
           <label>
             <span>お名前</span>
@@ -78,6 +84,7 @@ export function ContactSection() {
           </button>
           <p>お使いのメールアプリが開きます。入力した内容はこのサイトに保存されません。</p>
         </form>
+        )}
 
         <p className="contact__credit">このサイトの実装には Claude Code を使っています。</p>
       </div>

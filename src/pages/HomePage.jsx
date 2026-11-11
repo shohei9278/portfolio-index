@@ -64,12 +64,18 @@ export function HomePage() {
             </p>
             <h1>作って終わりにせず、動かした結果まで見ています。</h1>
             <p className="hero__lead">
+              業務のルールを整理して、Webツール、データ処理、AIを使った自動化まで実装します。
               個人開発と業務ツールの開発で、何を課題と考え、何を判断し、どうなったかをまとめました。
               AIにコードを任せた作品と、自分で書いた作品があり、うまくいっていない結果もそのまま載せています。
             </p>
-            <a href="#personal-title" className="button button--light">
-              作品を見る
-            </a>
+            <div className="hero__actions">
+              <a href="#personal-title" className="button button--light">
+                作品を見る
+              </a>
+              <a href="#work-title" className="hero__sub-link">
+                実務のデモを試す →
+              </a>
+            </div>
           </div>
           <div className="hero__visual">
             {heroImages.slice(0, 2).map((item, index) => (

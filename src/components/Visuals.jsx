@@ -28,7 +28,19 @@ export function Reveal({ as: Tag = "div", className = "", children, ...props }) 
   );
 }
 
-export function BrowserFrame({ image, eager = false, decorative = false, className = "" }) {
+export function BrowserFrame({ image, eager = false, decorative = false, zoomable = false, className = "" }) {
+  const dialogRef = useRef(null);
+  const img = (
+    <img
+      src={image.src}
+      alt={decorative ? "" : image.alt}
+      width="1400"
+      height="875"
+      loading={eager ? "eager" : "lazy"}
+      decoding="async"
+    />
+  );
+
   return (
     <figure className={`browser ${className}`}>
       <div className="browser__bar" aria-hidden="true">
@@ -37,14 +49,36 @@ export function BrowserFrame({ image, eager = false, decorative = false, classNa
         <i />
         <span>{image.domain}</span>
       </div>
-      <img
-        src={image.src}
-        alt={decorative ? "" : image.alt}
-        width="1400"
-        height="875"
-        loading={eager ? "eager" : "lazy"}
-        decoding="async"
-      />
+      {zoomable ? (
+        <>
+          <button
+            type="button"
+            className="browser__zoom"
+            onClick={() => dialogRef.current?.showModal()}
+            aria-label={`${image.alt}（拡大して見る）`}
+          >
+            {img}
+            <span className="browser__zoom-hint" aria-hidden="true">
+              拡大
+            </span>
+          </button>
+          <dialog
+            ref={dialogRef}
+            className="zoom-dialog"
+            aria-label={image.alt}
+            onClick={(event) => {
+              if (event.target === event.currentTarget) dialogRef.current?.close();
+            }}
+          >
+            <img src={image.src} alt={image.alt} />
+            <button type="button" className="zoom-dialog__close" onClick={() => dialogRef.current?.close()}>
+              閉じる
+            </button>
+          </dialog>
+        </>
+      ) : (
+        img
+      )}
     </figure>
   );
 }
@@ -167,11 +201,21 @@ const POWER_LANES = [
       ["通知", "申請者へ結果"],
     ],
   },
+  {
+    title: "音声入力アプリ",
+    steps: [
+      ["Power Apps", "マイクで録音"],
+      ["Power Automate", "音声を受け取る"],
+      ["Azure OpenAI", "Whisper で文字に"],
+      ["Power Automate", "結果を返す"],
+      ["Power Apps", "入力欄に表示"],
+    ],
+  },
 ];
 
 export function PowerFlow() {
   return (
-    <figure className="power-flow" aria-label="QAアプリと承認アプリの処理の流れの図">
+    <figure className="power-flow" aria-label="QAアプリ、承認アプリ、音声入力アプリの処理の流れの図">
       {POWER_LANES.map((lane) => (
         <div className="power-flow__lane" key={lane.title}>
           <p className="crm-flow__label">{lane.title}</p>
@@ -197,7 +241,7 @@ export function AzureFlow() {
         <p className="crm-flow__label">移行前</p>
         <div className="crm-flow__user">
           <strong>ローカルの Python</strong>
-          <span className="azure-flow__note">約50ファイル・Excel や CSV を処理</span>
+          <span className="azure-flow__note">約50本のスクリプト・Excel や CSV を処理</span>
         </div>
       </div>
       <div className="crm-flow__arrow" aria-hidden="true" />
@@ -228,10 +272,46 @@ export function AzureFlow() {
   );
 }
 
-export function CaseVisual({ item, eager = false }) {
+export function SeminarFlow() {
+  return (
+    <figure className="crm-flow" aria-label="管理画面で指定したおすすめの記事を、講演会の予約が終わった画面に表示する仕組みの図">
+      <div className="crm-flow__col">
+        <p className="crm-flow__label">管理画面</p>
+        <div className="crm-flow__user">
+          <strong>講演会の編集</strong>
+          <span className="azure-flow__note">おすすめの記事を ID か URL で3件まで指定</span>
+        </div>
+      </div>
+      <div className="crm-flow__arrow" aria-hidden="true" />
+      <div className="crm-flow__col">
+        <p className="crm-flow__label">表示の前に</p>
+        <ul>
+          {["URL から記事を特定", "URL の表記の違いを吸収", "画像の有無を確認"].map((label, index) => (
+            <li key={label} style={{ "--i": index }}>
+              {label}
+            </li>
+          ))}
+        </ul>
+      </div>
+      <div className="crm-flow__arrow" aria-hidden="true" />
+      <div className="crm-flow__col">
+        <p className="crm-flow__label">予約した人の画面</p>
+        <div className="crm-flow__tool">
+          <span>予約完了のモーダル</span>
+          <strong>おすすめの記事</strong>
+          <strong>記事の位置へ移動</strong>
+        </div>
+      </div>
+      <figcaption>仕組みの説明図です。実際の画面ではありません。</figcaption>
+    </figure>
+  );
+}
+
+export function CaseVisual({ item, eager = false, zoomable = false }) {
+  if (item.figure === "seminar-flow") return <SeminarFlow />;
   if (item.figure === "learning-loop") return <LearningLoop />;
   if (item.figure === "crm-flow") return <CrmFlow />;
   if (item.figure === "power-flow") return <PowerFlow />;
   if (item.figure === "azure-flow") return <AzureFlow />;
-  return <BrowserFrame image={item.image} eager={eager} />;
+  return <BrowserFrame image={item.image} eager={eager} zoomable={zoomable} />;
 }

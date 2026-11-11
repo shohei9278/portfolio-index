@@ -18,7 +18,18 @@ function Section({ number, title, children }) {
 }
 
 function Paragraphs({ items }) {
-  return items.map((text) => <p key={text}>{text}</p>);
+  return items.map((item) =>
+    typeof item === "string" ? (
+      <p key={item}>{item}</p>
+    ) : (
+      <div className="thinking-group" key={item.title}>
+        <h3 className="case-subhead">{item.title}</h3>
+        {item.items.map((text) => (
+          <p key={text}>{text}</p>
+        ))}
+      </div>
+    ),
+  );
 }
 
 function Decision({ decision, index, slug }) {
@@ -52,6 +63,7 @@ function Decision({ decision, index, slug }) {
 export function CasePage({ item }) {
   const index = cases.indexOf(item);
   const nextCase = cases[(index + 1) % cases.length];
+  const prevCase = cases[(index - 1 + cases.length) % cases.length];
 
   return (
     <article>
@@ -70,7 +82,7 @@ export function CasePage({ item }) {
           <h1>{item.title}</h1>
           <p className="case-hero__lead">{item.lead}</p>
           <div className="case-hero__visual">
-            <CaseVisual item={item} eager />
+            <CaseVisual item={item} eager zoomable />
           </div>
         </div>
       </header>
@@ -191,7 +203,7 @@ export function CasePage({ item }) {
           <Paragraphs items={item.result} />
           {item.gallery ? (
             <div className="case-gallery">
-              <BrowserFrame image={item.gallery} />
+              <BrowserFrame image={item.gallery} zoomable />
               <p>{item.gallery.caption}</p>
             </div>
           ) : null}
@@ -203,6 +215,16 @@ export function CasePage({ item }) {
           </>
         )}
       </div>
+
+      <nav className="case-pager wrap" aria-label="ほかの作品">
+        <Link to={`/work/${prevCase.slug}`} className="case-pager__prev">
+          <small>← 前の作品</small>
+          <span>{prevCase.shortTitle ?? prevCase.title}</span>
+        </Link>
+        <a href="/#personal-title" className="case-pager__list">
+          作品一覧
+        </a>
+      </nav>
 
       <Link to={`/work/${nextCase.slug}`} className={`band next-case tone-${nextCase.tone}`}>
         <span className="wrap">
