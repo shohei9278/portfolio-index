@@ -296,6 +296,11 @@ export const cases = [
     slug: "case-management",
     category: "work",
     tone: "sand",
+    build: {
+      kind: "hand",
+      label: "自分で実装",
+      detail: "コードは基本的に自分で書いています。",
+    },
     image: {
       src: "/works/case-management.jpg",
       alt: "申請書のデモの画面。申請書の表と、業務ルールで整理した結果が並んでいる",
@@ -371,6 +376,11 @@ export const cases = [
     slug: "pdf-check",
     category: "work",
     tone: "sand",
+    build: {
+      kind: "hand",
+      label: "自分で実装",
+      detail: "コードは基本的に自分で書いています。",
+    },
     image: {
       src: "/works/pdf-check.jpg",
       alt: "PDF読み取りデモの画面。PDF上の項目が色の枠で示され、読み取り結果が右に並んでいる",
@@ -519,6 +529,11 @@ export const cases = [
     slug: "crm-tools",
     category: "work",
     tone: "sand",
+    build: {
+      kind: "hand",
+      label: "自分で実装",
+      detail: "コードは基本的に自分で書いています。",
+    },
     figure: "crm-flow",
     title: "Veeva CRM 上の業務ツール開発",
     kicker: "Salesforce 連携の実務（概要のみ）",
@@ -562,6 +577,11 @@ export const cases = [
     slug: "power-apps",
     category: "work",
     tone: "sand",
+    build: {
+      kind: "hand",
+      label: "自分で実装",
+      detail: "コードは基本的に自分で書いています。",
+    },
     figure: "power-flow",
     title: "Power Apps の業務アプリ開発",
     kicker: "Power Platform の実務（概要のみ）",
@@ -601,6 +621,11 @@ export const cases = [
     slug: "azure-migration",
     category: "work",
     tone: "sand",
+    build: {
+      kind: "hand",
+      label: "自分で実装",
+      detail: "コードは基本的に自分で書いています。",
+    },
     figure: "azure-flow",
     title: "Python の処理を Azure 環境へ移行",
     kicker: "データ処理の移行と改善（概要のみ）",
