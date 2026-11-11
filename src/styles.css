@@ -1398,6 +1398,11 @@ button {
   color: var(--ink);
 }
 
+.build-badge--mixed {
+  border-color: var(--ai);
+  color: var(--ai);
+}
+
 .build-badge--hand {
   border-color: var(--human);
   background: var(--human-soft);

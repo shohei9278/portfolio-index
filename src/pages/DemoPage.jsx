@@ -1,10 +1,12 @@
 import { RequestDemo } from "../demos/RequestDemo.jsx";
+import { DoubleCheckDemo } from "../demos/DoubleCheckDemo.jsx";
 import { PdfCheckDemo } from "../demos/PdfCheckDemo.jsx";
 import { Link } from "../router.jsx";
 
 const DEMOS = {
   "case-management": RequestDemo,
   "pdf-check": PdfCheckDemo,
+  "double-check": DoubleCheckDemo,
 };
 
 export function DemoPage({ item }) {

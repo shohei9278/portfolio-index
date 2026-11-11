@@ -153,7 +153,7 @@ export function HomePage() {
       <section className="band tone-sand" aria-labelledby="work-title">
         <div className="wrap section section--band">
           <SectionHead english="./at-work" title="実務" id="work-title">
-            仕事で作ったツールは、そのままでは公開できません。ここでは実務で作った2つのツールの仕組みを、
+            仕事で作ったツールは、そのままでは公開できません。ここでは実務で作ったツールの仕組みを、
             架空のデータで動く公開用のデモとして作り直しています。Veeva CRM、Power Apps、Azure への移行は、内容を載せられないため概要だけを紹介します。
           </SectionHead>
 
@@ -167,6 +167,7 @@ export function HomePage() {
                   <p className="work-card__meta">
                     <span>{caseNumber(item)}</span>
                     <em className="demo-badge">{item.demo ? "公開用デモ" : "概要のみ"}</em>
+                    <BuildBadge build={item.build} />
                   </p>
                   <h3>{item.title}</h3>
                   <Summary summary={item.summary} />
