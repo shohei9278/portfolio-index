@@ -5,22 +5,27 @@ import { track } from "@vercel/analytics/react";
 const COMMIT_URL = "https://github.com/shohei9278/ai-lab-dashboard/commit/e3c21d8";
 
 // speed: 1文字あたりの時間（ms）。0 は1行まとめて表示する
-const LINES = [
+const ALL_LINES = [
   { kind: "cmd", text: "$ claude", speed: 45, pause: 350 },
   { kind: "human", text: "> 集客の件数が 4/3件 になってる。分母と分子あってる？", speed: 38, pause: 650 },
   { kind: "ai", text: "● 分母が古い設定のまま。分子も実際の判定と数え方が違う", speed: 0, pause: 650 },
   { kind: "ai", text: "● src/lib/sns.ts を編集", speed: 0, pause: 350 },
-  { kind: "comment", text: "+ // 画面の表示と判定をそろえる", speed: 16, pause: 80 },
-  { kind: "add", text: "+ export function postQuota(platform: string) {", speed: 16, pause: 80 },
-  { kind: "add", text: "+   if (plannedToday())", speed: 16, pause: 40 },
-  { kind: "add", text: "+     return { ...safetyQuota(platform), planned: true };", speed: 16, pause: 40 },
-  { kind: "add", text: "+   return { used: recentAutoPosts(platform).n,", speed: 16, pause: 40 },
-  { kind: "add", text: "+     cap: getSettings().autoPostPerDay, planned: false };", speed: 16, pause: 40 },
-  { kind: "add", text: "+ }", speed: 16, pause: 550 },
+  { kind: "comment", text: "+ // 画面の表示と判定をそろえる", wide: true, speed: 16, pause: 80 },
+  { kind: "add", text: "+ export function postQuota(platform: string) {", wide: true, speed: 16, pause: 80 },
+  { kind: "add", text: "+   if (plannedToday())", wide: true, speed: 16, pause: 40 },
+  { kind: "add", text: "+     return { ...safetyQuota(platform), planned: true };", wide: true, speed: 16, pause: 40 },
+  { kind: "add", text: "+   return { used: recentAutoPosts(platform).n,", wide: true, speed: 16, pause: 40 },
+  { kind: "add", text: "+     cap: getSettings().autoPostPerDay, planned: false };", wide: true, speed: 16, pause: 40 },
+  { kind: "add", text: "+ }", wide: true, speed: 16, pause: 550 },
+  { kind: "add", text: "+ export function postQuota(platform) { … }", narrow: true, speed: 16, pause: 550 },
   { kind: "cmd", text: "$ git commit", speed: 45, pause: 450 },
   { kind: "dim", text: "[e3c21d8] 4 files changed, 30 insertions(+), 12 deletions(-)", speed: 0, pause: 650 },
   { kind: "ok", text: "✓ 本番の表示  4/3件 → 1/10", speed: 0, pause: 5000 },
 ];
+
+// スマホでは、コードの行を1行にまとめて短くする
+const IS_NARROW = window.matchMedia("(max-width: 760px)").matches;
+const LINES = ALL_LINES.filter((line) => (IS_NARROW ? !line.wide : !line.narrow));
 
 const FINISHED = { line: LINES.length - 1, chars: LINES.at(-1).text.length };
 
