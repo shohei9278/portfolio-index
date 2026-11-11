@@ -228,39 +228,10 @@ export function AzureFlow() {
   );
 }
 
-const RESEARCH_STEPS = [
-  ["一覧", "医療機関のリスト"],
-  ["検索API", "候補のURLを集める"],
-  ["AI", "公式サイトを選ぶ"],
-  ["HTML / PDF", "本文を取り出す"],
-  ["AI", "件数を項目ごとに抽出"],
-  ["CSV", "根拠のURL付きで出力"],
-];
-
-export function ResearchFlow() {
-  return (
-    <figure className="power-flow power-flow--six" aria-label="公開情報からAIで件数を集めて表にする流れの図">
-      <div className="power-flow__lane">
-        <p className="crm-flow__label">サンプルの処理の流れ</p>
-        <ol>
-          {RESEARCH_STEPS.map(([tool, action], index) => (
-            <li key={action} style={{ "--i": index }}>
-              <strong>{tool}</strong>
-              <span>{action}</span>
-            </li>
-          ))}
-        </ol>
-      </div>
-      <figcaption>仕組みの説明図です。実際の画面ではありません。</figcaption>
-    </figure>
-  );
-}
-
 export function CaseVisual({ item, eager = false }) {
   if (item.figure === "learning-loop") return <LearningLoop />;
   if (item.figure === "crm-flow") return <CrmFlow />;
   if (item.figure === "power-flow") return <PowerFlow />;
   if (item.figure === "azure-flow") return <AzureFlow />;
-  if (item.figure === "research-flow") return <ResearchFlow />;
   return <BrowserFrame image={item.image} eager={eager} />;
 }

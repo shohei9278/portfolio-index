@@ -1328,10 +1328,6 @@ button {
   font-size: 11px;
 }
 
-.power-flow--six ol {
-  grid-template-columns: repeat(6, minmax(0, 1fr));
-}
-
 .azure-flow__note {
   color: var(--muted);
   font-size: 12px;
@@ -2210,8 +2206,7 @@ button {
     grid-template-columns: minmax(0, 1fr);
   }
 
-  .power-flow ol,
-  .power-flow--six ol {
+  .power-flow ol {
     grid-template-columns: minmax(0, 1fr);
     gap: 16px;
   }
