@@ -18,8 +18,8 @@ const SKILLS = [
   },
   {
     label: "バックエンド",
-    items: ["Node.js", "NestJS", "Prisma", "SQL"],
-    works: ["ai-job-dashboard", "techscope-ai"],
+    items: ["Node.js", "NestJS", "Prisma", "SQL", "PHP（WordPress）"],
+    works: ["ai-job-dashboard", "techscope-ai", "medical-site"],
   },
   {
     label: "データ・AI",
@@ -73,9 +73,21 @@ export function AboutSection() {
           <div className="about__next">
             <p className="about__label">これからやりたいこと</p>
             <p>
-              AIがコードを書けるようになり、何を作るかを決める上流工程がより大事になると考えています。課題の整理、要件定義、設計といった上流に軸足を置き、AIも使いながら実装まで見られるエンジニアとして働きたいです。
+              生成AIで、コードを書く速さは誰でも上げられるようになりました。これから差が出るのは、何を作るかを決めることと、AIが作ったものを本番で安心して使える品質にすることだと考えています。
+            </p>
+            <p>
+              これまで製薬業界の業務ツールや自動化で、現場のルールを整理して仕組みにすることを続けてきました。AI Product Lab では、AIに実装を任せたときのレビュー、テスト、費用と安全の管理を、実際に運用しながら作っています。
+            </p>
+            <p>
+              今後は、業務の課題整理と要件定義から関わり、AIを組み込んだ機能や業務の仕組みを、設計からリリース後の改善まで担うエンジニアとして、事業に貢献したいです。
             </p>
           </div>
+          <dl className="about__wish">
+            <div>
+              <dt>希望する働き方</dt>
+              <dd>正社員</dd>
+            </div>
+          </dl>
           <div className="about__links">
             <a href="#contact">連絡先</a>
             <ExternalLink href={profile.github} label="about-github">

@@ -14,7 +14,10 @@ export function LabStats() {
           </div>
         ))}
       </dl>
-      <figcaption>{LAB_AS_OF}時点。最新の数字は実験の概要ページで確かめられます。</figcaption>
+      <figcaption>
+        {LAB_AS_OF}
+        時点。公開した案件は、AIが作って公開した事前登録ページと小さなツールの数です。登録・利用は、事前登録とツールの利用を合わせた数です。最新の数字は実験の概要ページで確かめられます。
+      </figcaption>
     </figure>
   );
 }

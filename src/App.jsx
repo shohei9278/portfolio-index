@@ -54,7 +54,7 @@ export default function App() {
         )}
       </main>
 
-      <ContactSection />
+      <ContactSection compact={!isHome} key={isHome ? "home" : "page"} />
     </>
   );
 }
