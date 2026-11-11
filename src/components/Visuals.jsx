@@ -204,7 +204,7 @@ export function AzureFlow() {
       <div className="crm-flow__col">
         <p className="crm-flow__label">取り組んだこと</p>
         <ul>
-          {["Azure 向けに書き直し", "出力ファイルの対応", "予測ロジックの見直し", "想定外の値の扱い", "処理後データの確認"].map(
+          {["Azure 向けに書き直し", "出力ファイルの対応", "予測ロジックの見直し", "想定外の値の扱い", "処理後データの確認", "エラーログの改善"].map(
             (label, index) => (
               <li key={label} style={{ "--i": index }}>
                 {label}
@@ -220,6 +220,7 @@ export function AzureFlow() {
           <span>Azure</span>
           <strong>Azure Functions</strong>
           <strong>Blob Storage</strong>
+          <strong>Power BI に出力</strong>
         </div>
       </div>
       <figcaption>取り組みの範囲を説明する図です。実際の構成図ではありません。</figcaption>

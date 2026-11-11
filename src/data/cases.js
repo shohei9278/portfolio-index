@@ -531,7 +531,7 @@ export const cases = [
     figure: "azure-flow",
     title: "Python の処理を Azure 環境へ移行",
     kicker: "データ処理の移行と改善（概要のみ）",
-    lead: "ローカルで動いていた約50ファイルの Python の処理を、出力ファイルも含めて Azure Functions と Blob Storage で動くように書き直しました。あわせて、医療機器の導入データから予測データを出すロジックの見直しや、想定外のデータへの対応も行いました。実案件のため、取り組んだ内容だけを紹介します。",
+    lead: "ローカルで動いていた約50ファイルの Python の処理を、出力ファイルも含めて Azure Functions と Blob Storage で動くように書き直しました。あわせて、医療機器の導入データから予測データを出すロジックの見直し、想定外のデータへの対応、エラーのログが取れるようにする改善も行いました。実案件のため、取り組んだ内容だけを紹介します。",
     summary: {
       problem: "ローカルの環境に依存したデータ処理を、Azure 上で動かせるようにしたい。",
       decision: "想定外の値の扱いは関係者と話し合って決め、処理後のデータから原因をさかのぼって直す。",
@@ -539,7 +539,7 @@ export const cases = [
     },
     role: "調査から実装まで",
     period: "2024年7月〜（約1年）",
-    stack: ["Python", "Azure Functions", "Blob Storage", "Excel / CSV"],
+    stack: ["Python", "Azure Functions", "Blob Storage", "Power BI", "Excel / CSV"],
     links: [],
     sections: [
       {
@@ -548,6 +548,7 @@ export const cases = [
           "ローカルで動いていた約50ファイルの Python の処理を、Azure Functions で動くように書き直し",
           "入力と出力のファイルの読み書きを、Blob Storage に合わせて変更",
           "医療機器の導入データから予測データを出すロジックの見直し",
+          "全体的にエラーのログが取れない仕組みだったため、ログを取れるように改善",
         ],
       },
       {
@@ -555,6 +556,7 @@ export const cases = [
         paragraphs: [
           "入力は主に Excel や CSV のデータで、想定していない値が入っていることがありました。そうした値をどう扱うかを関係者と話し合って決め、処理に組み込みました。",
           "処理後のデータも確認し、うまく処理できていなさそうな箇所は、元のデータまでさかのぼって原因を調べ、ロジックを直しました。",
+          "出力は Power BI に取り込まれるものだったため、Power BI での表示も見ながら修正しました。",
         ],
       },
       {
