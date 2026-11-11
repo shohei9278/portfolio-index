@@ -14,6 +14,10 @@
 | TechScope AI | `/work/techscope-ai` |
 | 申請書から制作物を展開する案件管理 | `/work/case-management`（デモ: `/demo/case-management`） |
 | 形式の違うPDFの読み取りと照合 | `/work/pdf-check`（デモ: `/demo/pdf-check`） |
+| 登録内容をダブルチェックするChrome拡張機能 | `/work/double-check`（デモ: `/demo/double-check`） |
+| Veeva CRM 上の業務ツール開発 | `/work/crm-tools`（概要のみ） |
+| Power Apps の業務アプリ開発 | `/work/power-apps`（概要のみ） |
+| Python の処理を Azure 環境へ移行 | `/work/azure-migration`（概要のみ） |
 
 ## 内容を直すとき
 

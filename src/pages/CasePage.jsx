@@ -87,19 +87,24 @@ export function CasePage({ item }) {
             </div>
           ) : null}
           <dl className="case-meta">
-            <div>
-              <dt>役割</dt>
-              <dd>{item.role}</dd>
-            </div>
-            <div>
-              <dt>時期</dt>
-              <dd>{item.period}</dd>
-            </div>
+            {item.role ? (
+              <div>
+                <dt>役割</dt>
+                <dd>{item.role}</dd>
+              </div>
+            ) : null}
+            {item.period ? (
+              <div>
+                <dt>時期</dt>
+                <dd>{item.period}</dd>
+              </div>
+            ) : null}
             <div>
               <dt>技術</dt>
               <dd>{item.stack.join(" / ")}</dd>
             </div>
           </dl>
+          {item.links.length || item.demo ? (
           <div className="case-links">
             {item.demo ? (
               <Link to={`/demo/${item.slug}`} className="case-links__primary">
@@ -112,6 +117,7 @@ export function CasePage({ item }) {
               </ExternalLink>
             ))}
           </div>
+          ) : null}
           {item.social ? (
             <div className="case-social">
               <span>発信</span>
@@ -136,6 +142,21 @@ export function CasePage({ item }) {
           </section>
         ) : null}
 
+        {item.sections ? (
+          item.sections.map((section, index) => (
+            <Section number={String(index + 1).padStart(2, "0")} title={section.title} key={section.title}>
+              {section.paragraphs ? <Paragraphs items={section.paragraphs} /> : null}
+              {section.list ? (
+                <ul className="plain-list">
+                  {section.list.map((text) => (
+                    <li key={text}>{text}</li>
+                  ))}
+                </ul>
+              ) : null}
+            </Section>
+          ))
+        ) : (
+          <>
         <Section number="01" title="課題">
           <div className="lead-text">
             <Paragraphs items={item.problem} />
@@ -179,6 +200,8 @@ export function CasePage({ item }) {
         <Section number="05" title="まだできていないこと">
           <Paragraphs items={item.next} />
         </Section>
+          </>
+        )}
       </div>
 
       <Link to={`/work/${nextCase.slug}`} className={`band next-case tone-${nextCase.tone}`}>

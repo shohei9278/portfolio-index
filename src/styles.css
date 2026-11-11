@@ -1160,6 +1160,187 @@ button {
   text-underline-offset: 3px;
 }
 
+/* Veeva CRM の仕組みの図 */
+.crm-flow {
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) 28px minmax(0, 1fr) 28px minmax(0, 1fr);
+  gap: 10px;
+  align-items: center;
+  width: 100%;
+  padding: clamp(14px, 2.4vw, 24px);
+  border-radius: 10px;
+  background: var(--surface);
+  font-size: 13px;
+}
+
+.crm-flow__col {
+  display: grid;
+  gap: 6px;
+  min-width: 0;
+}
+
+.crm-flow__label {
+  color: var(--muted);
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.crm-flow ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+}
+
+.crm-flow li {
+  padding: 2px 8px;
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  background: var(--paper);
+  font-size: 12px;
+  animation: crm-pulse 3.5s ease-in-out infinite;
+  animation-delay: calc(var(--i) * 0.35s);
+}
+
+@keyframes crm-pulse {
+  0%,
+  70%,
+  100% {
+    border-color: var(--line);
+  }
+
+  35% {
+    border-color: var(--accent);
+    color: var(--accent);
+  }
+}
+
+.crm-flow__tool,
+.crm-flow__user {
+  display: grid;
+  gap: 6px;
+  padding: 12px;
+  border-radius: 8px;
+}
+
+.crm-flow__tool {
+  background: var(--ink);
+  color: var(--surface);
+}
+
+.crm-flow__tool span {
+  font-family: var(--mono);
+  font-size: 11px;
+  opacity: 0.7;
+}
+
+.crm-flow__tool strong {
+  padding: 6px 8px;
+  border-radius: 4px;
+  background: rgb(245 242 234 / 12%);
+}
+
+.crm-flow__user {
+  border: 1px solid var(--ink);
+}
+
+.crm-flow__arrow {
+  height: 2px;
+  background: linear-gradient(90deg, var(--line) 0 40%, var(--accent) 50%, var(--line) 60% 100%);
+  background-size: 300% 100%;
+  animation: crm-flow 2.4s linear infinite;
+}
+
+@keyframes crm-flow {
+  from {
+    background-position: 100% 0;
+  }
+
+  to {
+    background-position: 0 0;
+  }
+}
+
+.crm-flow figcaption {
+  grid-column: 1 / -1;
+  color: var(--muted);
+  font-size: 11px;
+}
+
+.power-flow {
+  display: grid;
+  gap: 16px;
+  width: 100%;
+  padding: clamp(14px, 2.4vw, 24px);
+  border-radius: 10px;
+  background: var(--surface);
+}
+
+.power-flow__lane {
+  display: grid;
+  gap: 6px;
+}
+
+.power-flow ol {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.power-flow li {
+  position: relative;
+  display: grid;
+  align-content: start;
+  gap: 2px;
+  min-width: 0;
+  padding: 8px 10px;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: var(--paper);
+  animation: crm-pulse 4s ease-in-out infinite;
+  animation-delay: calc(var(--i) * 0.45s);
+}
+
+.power-flow li:not(:last-child)::after {
+  position: absolute;
+  top: 50%;
+  right: -15px;
+  color: var(--muted);
+  content: "→";
+  font-size: 12px;
+  line-height: 1;
+  translate: 0 -50%;
+}
+
+.power-flow li strong {
+  font-family: var(--mono);
+  font-size: 11px;
+  overflow-wrap: anywhere;
+}
+
+.power-flow li span {
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+.power-flow figcaption {
+  color: var(--muted);
+  font-size: 11px;
+}
+
+.azure-flow__note {
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+.plain-list {
+  display: grid;
+  gap: 8px;
+  padding-left: 1.2em;
+  list-style: disc;
+}
+
 /* 作品カード */
 .works {
   display: grid;
@@ -1215,6 +1396,11 @@ button {
 .build-badge--ai {
   background: var(--accent);
   color: var(--ink);
+}
+
+.build-badge--mixed {
+  border-color: var(--ai);
+  color: var(--ai);
 }
 
 .build-badge--hand {
@@ -2021,6 +2207,37 @@ button {
     grid-template-columns: minmax(0, 1fr);
   }
 
+  .crm-flow {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .power-flow ol {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 16px;
+  }
+
+  .power-flow li {
+    grid-template-columns: 9em minmax(0, 1fr);
+    align-items: baseline;
+  }
+
+  .power-flow li:not(:last-child)::after {
+    top: auto;
+    right: auto;
+    bottom: -15px;
+    left: 50%;
+    content: "↓";
+    translate: -50% 0;
+  }
+
+  .crm-flow__arrow {
+    width: 2px;
+    height: 20px;
+    margin-inline: auto;
+    background: linear-gradient(180deg, var(--line) 0 40%, var(--accent) 50%, var(--line) 60% 100%);
+    background-size: 100% 300%;
+  }
+
   .lab-features__menu {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
@@ -2074,6 +2291,12 @@ button {
     opacity: 1;
     transform: none;
     transition: none;
+  }
+
+  .crm-flow li,
+  .power-flow li,
+  .crm-flow__arrow {
+    animation: none;
   }
 
   .lab-item {

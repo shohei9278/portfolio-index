@@ -109,7 +109,129 @@ export function BuildBadge({ build }) {
   return <span className={`build-badge build-badge--${build.kind}`}>{build.label}</span>;
 }
 
+const CRM_DATA = ["取引先", "訪問記録", "承認済み資料", "メール送信履歴", "配信の同意", "アンケート", "イベント"];
+
+export function CrmFlow() {
+  return (
+    <figure className="crm-flow" aria-label="Salesforce のデータを Veeva CRM 上のツールで取得し、営業担当者の画面にまとめる仕組みの図">
+      <div className="crm-flow__col">
+        <p className="crm-flow__label">Salesforce のデータ</p>
+        <ul>
+          {CRM_DATA.map((label, index) => (
+            <li key={label} style={{ "--i": index }}>
+              {label}
+            </li>
+          ))}
+        </ul>
+      </div>
+      <div className="crm-flow__arrow" aria-hidden="true" />
+      <div className="crm-flow__col">
+        <p className="crm-flow__label">Veeva CRM 上のツール</p>
+        <div className="crm-flow__tool">
+          <span>Vue / React の画面</span>
+          <strong>ダッシュボード</strong>
+          <strong>メール配信</strong>
+        </div>
+      </div>
+      <div className="crm-flow__arrow" aria-hidden="true" />
+      <div className="crm-flow__col">
+        <p className="crm-flow__label">営業担当者</p>
+        <div className="crm-flow__user">
+          <strong>訪問の予定と履歴</strong>
+          <strong>同意を確かめて配信</strong>
+        </div>
+      </div>
+      <figcaption>仕組みの説明図です。実際の画面ではありません。</figcaption>
+    </figure>
+  );
+}
+
+const POWER_LANES = [
+  {
+    title: "QAアプリ",
+    steps: [
+      ["Power Apps", "質問を入力"],
+      ["SharePoint", "FAQを検索"],
+      ["Power Automate", "見つからなければ"],
+      ["OpenAI API", "回答を生成・要約"],
+      ["Teams", "未回答を管理者へ通知"],
+    ],
+  },
+  {
+    title: "承認アプリ",
+    steps: [
+      ["Power Apps", "申請フォーム"],
+      ["SharePoint", "申請を保存"],
+      ["Power Automate", "承認者へ依頼"],
+      ["承認・却下", "承認者が判断"],
+      ["通知", "申請者へ結果"],
+    ],
+  },
+];
+
+export function PowerFlow() {
+  return (
+    <figure className="power-flow" aria-label="QAアプリと承認アプリの処理の流れの図">
+      {POWER_LANES.map((lane) => (
+        <div className="power-flow__lane" key={lane.title}>
+          <p className="crm-flow__label">{lane.title}</p>
+          <ol>
+            {lane.steps.map(([tool, action], index) => (
+              <li key={tool + action} style={{ "--i": index }}>
+                <strong>{tool}</strong>
+                <span>{action}</span>
+              </li>
+            ))}
+          </ol>
+        </div>
+      ))}
+      <figcaption>仕組みの説明図です。実際の画面ではありません。</figcaption>
+    </figure>
+  );
+}
+
+export function AzureFlow() {
+  return (
+    <figure className="crm-flow" aria-label="ローカルの Python の処理を書き直して Azure 環境へ移す取り組みの図">
+      <div className="crm-flow__col">
+        <p className="crm-flow__label">移行前</p>
+        <div className="crm-flow__user">
+          <strong>ローカルの Python</strong>
+          <span className="azure-flow__note">約50ファイル・Excel や CSV を処理</span>
+        </div>
+      </div>
+      <div className="crm-flow__arrow" aria-hidden="true" />
+      <div className="crm-flow__col">
+        <p className="crm-flow__label">取り組んだこと</p>
+        <ul>
+          {["Azure 向けに書き直し", "出力ファイルの対応", "予測ロジックの見直し", "想定外の値の扱い", "処理後データの確認", "エラーログの改善"].map(
+            (label, index) => (
+              <li key={label} style={{ "--i": index }}>
+                {label}
+              </li>
+            ),
+          )}
+        </ul>
+      </div>
+      <div className="crm-flow__arrow" aria-hidden="true" />
+      <div className="crm-flow__col">
+        <p className="crm-flow__label">移行後</p>
+        <div className="crm-flow__tool">
+          <span>Azure</span>
+          <strong>Azure Functions</strong>
+          <strong>Blob Storage</strong>
+          <strong>Power BI に出力</strong>
+        </div>
+      </div>
+      <figcaption>取り組みの範囲を説明する図です。実際の構成図ではありません。</figcaption>
+    </figure>
+  );
+}
+
 export function CaseVisual({ item, eager = false }) {
   if (item.figure === "learning-loop") return <LearningLoop />;
+  if (item.figure === "crm-flow") return <CrmFlow />;
+  if (item.figure === "power-flow") return <PowerFlow />;
+  if (item.figure === "azure-flow") return <AzureFlow />;
   return <BrowserFrame image={item.image} eager={eager} />;
 }

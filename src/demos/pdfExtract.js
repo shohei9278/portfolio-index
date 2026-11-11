@@ -339,6 +339,10 @@ export function extractRows(document, learned) {
     const number = index + 1;
     const talk = readTalk(anchor, regionOf(anchor, anchors, blocks, pageHeight), learned);
     rows.push(
+      row(`talk${number}-time`, `時間${number}`, {
+        text: anchor.text.match(TIME_RANGE)[0],
+        block: anchor,
+      }),
       row(`talk${number}-title`, `演題${number}`, {
         text: talk.titleParts.map((part) => part.text).join(""),
         blocks: talk.titleParts.map((part) => part.block),

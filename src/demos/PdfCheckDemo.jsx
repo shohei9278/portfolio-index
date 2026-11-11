@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import { track } from "@vercel/analytics/react";
+import { BannerEditor, jobFromValues } from "./BannerEditor.jsx";
 import { compareValues, extractRows, loadPdf } from "./pdfExtract.js";
 
 const SAMPLES = [
@@ -71,70 +72,11 @@ const SAMPLES = [
 
 const MAX_UPLOAD_BYTES = 20 * 1024 * 1024;
 
-const PALETTES = [
-  { id: "navy", label: "紺", band: "#123a73", accent: "#f2b84b", paper: "#f7f9fc" },
-  { id: "green", label: "緑", band: "#0d6b58", accent: "#ffd166", paper: "#f4faf7" },
-  { id: "plum", label: "紫", band: "#5b2a86", accent: "#ff9f7a", paper: "#faf6fd" },
-];
-
 const STATUS_LABEL = { match: "一致", partial: "部分一致", missing: "未検出" };
 const FIELD_COLORS = { title: "#d6442a", date: "#0d7a5f", format: "#7a4fd0", chair: "#c98500" };
 const TALK_COLOR = "#1f6fd1";
-const BANNER_FONT = '"Hiragino Sans", "Noto Sans JP", sans-serif';
-
 function rowColor(id) {
   return FIELD_COLORS[id] ?? TALK_COLOR;
-}
-
-function wrapText(context, text, maxWidth) {
-  const lines = [];
-  let line = "";
-  for (const character of text) {
-    if (context.measureText(line + character).width > maxWidth && line) {
-      lines.push(line);
-      line = character;
-    } else {
-      line += character;
-    }
-  }
-  if (line) lines.push(line);
-  return lines;
-}
-
-function drawBanner(canvas, values, palette) {
-  const context = canvas.getContext("2d");
-  const { width, height } = canvas;
-  context.fillStyle = palette.paper;
-  context.fillRect(0, 0, width, height);
-  context.fillStyle = palette.band;
-  context.fillRect(0, 0, width, 330);
-
-  context.fillStyle = palette.accent;
-  context.font = `700 30px ${BANNER_FONT}`;
-  context.fillText(values.format ?? "", 60, 74);
-
-  context.fillStyle = "#ffffff";
-  context.font = `700 58px ${BANNER_FONT}`;
-  wrapText(context, values.title ?? "", width - 120)
-    .slice(0, 2)
-    .forEach((line, index) => context.fillText(line, 60, 152 + index * 74));
-  context.font = `500 32px ${BANNER_FONT}`;
-  context.fillText(values.date ?? "", 60, 298);
-
-  [1, 2].forEach((number, index) => {
-    const top = 396 + index * 112;
-    context.fillStyle = palette.band;
-    context.font = `700 32px ${BANNER_FONT}`;
-    context.fillText(values[`talk${number}-title`] ?? "", 60, top);
-    context.fillStyle = "#3b4452";
-    context.font = `500 25px ${BANNER_FONT}`;
-    const affiliation = values[`talk${number}-affiliation`];
-    context.fillText(
-      `${values[`talk${number}-name`] ?? ""}${affiliation ? `（${affiliation}）` : ""}`,
-      60,
-      top + 44,
-    );
-  });
 }
 
 function PdfBox({ box, document, color, pending }) {
@@ -158,15 +100,15 @@ function pendingBox(block) {
 
 export function PdfCheckDemo() {
   const canvasRef = useRef(null);
-  const bannerRef = useRef(null);
   const [source, setSource] = useState({ sample: SAMPLES[0] });
   const [document, setDocument] = useState(null);
   const [error, setError] = useState("");
   const [learned, setLearned] = useState({});
   const [edits, setEdits] = useState({});
-  const [paletteId, setPaletteId] = useState(PALETTES[0].id);
+  const [editorKey, setEditorKey] = useState(0);
+  const [editorJob, setEditorJob] = useState(null);
+  const editorRef = useRef(null);
 
-  const palette = PALETTES.find((item) => item.id === paletteId);
   const sheet = source.sample?.sheet ?? null;
 
   useEffect(() => {
@@ -174,6 +116,7 @@ export function PdfCheckDemo() {
     setDocument(null);
     setError("");
     setEdits({});
+    setEditorJob(null);
     const pdfSource = source.sample ? `/samples/${source.sample.id}.pdf` : { data: source.data };
     loadPdf(pdfSource)
       .then((result) => {
@@ -201,10 +144,6 @@ export function PdfCheckDemo() {
     () => Object.fromEntries(rows.map((row) => [row.id, edits[row.id] ?? row.value])),
     [rows, edits],
   );
-
-  useEffect(() => {
-    if (document) drawBanner(bannerRef.current, values, palette);
-  }, [document, values, palette]);
 
   const pendingRows = rows.filter((row) => row.pending && !row.value);
   const noText = document && document.blocks.length === 0;
@@ -235,12 +174,13 @@ export function PdfCheckDemo() {
     setSource({ data: new Uint8Array(await file.arrayBuffer()), fileName: file.name });
   }
 
-  function downloadBanner() {
-    track("Portfolio Action", { action: "pdf_demo_download" });
-    const link = window.document.createElement("a");
-    link.href = bannerRef.current.toDataURL("image/png");
-    link.download = "banner.png";
-    link.click();
+  function openEditor() {
+    track("Portfolio Action", { action: "pdf_demo_open_editor" });
+    setEditorJob(jobFromValues(values));
+    setEditorKey((key) => key + 1);
+    window.requestAnimationFrame(() =>
+      editorRef.current?.scrollIntoView({ behavior: "smooth", block: "start" }),
+    );
   }
 
   return (
@@ -320,6 +260,9 @@ export function PdfCheckDemo() {
               ? `判定できない文字が${pendingRows.length}件あります。教えると次から自動で判定します。`
               : "内容は自由に直せます。"}
           </p>
+          <button type="button" className="demo-button demo-button--primary" onClick={openEditor} disabled={!document}>
+            この内容で編集画面を開く
+          </button>
           <div className="field-list">
             {rows.map((row) => (
               <div className="field" key={row.id}>
@@ -350,42 +293,23 @@ export function PdfCheckDemo() {
         </section>
       </div>
 
-      <div className="pdf-demo__bottom">
-        <section className="demo-panel" aria-labelledby="pdf-step-3">
-          <h2 id="pdf-step-3">
-            <span>4</span>定型バナーを作る
-          </h2>
-          <p className="demo-panel__hint">デザインは固定で、変えられるのは配色だけです。</p>
-          <canvas
-            ref={bannerRef}
-            className="banner-canvas"
-            width="1200"
-            height="628"
-            aria-label="読み取った内容で作った定型バナー"
-          />
-          <div className="demo-toolbar">
-            <div className="demo-switch" role="group" aria-label="配色">
-              {PALETTES.map((item) => (
-                <button
-                  type="button"
-                  className={item.id === paletteId ? "is-active" : ""}
-                  aria-pressed={item.id === paletteId}
-                  key={item.id}
-                  onClick={() => setPaletteId(item.id)}
-                >
-                  {item.label}
-                </button>
-              ))}
-            </div>
-            <button type="button" className="demo-button" onClick={downloadBanner} disabled={!document}>
-              PNGで保存
-            </button>
-          </div>
-        </section>
+      <section className="demo-panel" aria-labelledby="pdf-step-editor" ref={editorRef}>
+        <h2 id="pdf-step-editor">
+          <span>5</span>定型バナーの編集画面
+        </h2>
+        {editorJob ? (
+          <BannerEditor initialJob={editorJob} key={editorKey} />
+        ) : (
+          <p className="demo-panel__hint">
+            「この内容で編集画面を開く」を押すと、読み取った内容が入った編集画面がここに開きます。
+          </p>
+        )}
+      </section>
 
+      <div className="pdf-demo__bottom">
         <section className="demo-panel" aria-labelledby="pdf-step-4">
           <h2 id="pdf-step-4">
-            <span>5</span>シートと照合する
+            <span>4</span>シートと照合する
           </h2>
           <p className="demo-panel__hint">
             {sheet ? "管理シートの値と比べて、見るべき箇所を絞ります。" : "サンプルのPDFで試せます。"}
