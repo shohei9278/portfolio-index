@@ -1,3 +1,5 @@
+import { useEffect } from "react";
+import { AboutSection } from "../components/AboutSection.jsx";
 import { CodeTerminal } from "../components/CodeTerminal.jsx";
 import { LabFeatures } from "../components/LabFeatures.jsx";
 import { LabStats } from "../components/LabPanels.jsx";
@@ -45,6 +47,12 @@ function caseNumber(item) {
 export function HomePage() {
   const heroImages = [featuredCase, ...personalCases, ...workCases].filter((item) => item.image);
 
+  // 作品ページから「/#about」のように来たときは、描画のあとでその位置へ移動する
+  useEffect(() => {
+    const id = window.location.hash.slice(1);
+    if (id) window.document.getElementById(id)?.scrollIntoView({ behavior: "instant", block: "start" });
+  }, []);
+
   return (
     <>
       <section className="band tone-ink hero-band">
@@ -52,7 +60,7 @@ export function HomePage() {
           <div className="hero__copy">
             <p className="hero__name">
               {profile.nameEn}
-              <span aria-hidden="true"> / portfolio</span>
+              <span> / フルスタックエンジニア</span>
             </p>
             <h1>作って終わりにせず、動かした結果まで見ています。</h1>
             <p className="hero__lead">
@@ -73,6 +81,8 @@ export function HomePage() {
           </div>
         </div>
       </section>
+
+      <AboutSection />
 
       <section className="guide wrap" aria-label="作品の読み方">
         <p>すべての作品を、この順番で書いています。</p>
@@ -154,10 +164,10 @@ export function HomePage() {
         <div className="wrap section section--band">
           <SectionHead english="./at-work" title="実務" id="work-title">
             仕事で作ったツールは、そのままでは公開できません。ここでは実務で作ったツールの仕組みを、
-            架空のデータで動く公開用のデモとして作り直しています。Veeva CRM、Power Apps、Azure への移行は、内容を載せられないため概要だけを紹介します。
+            架空のデータで動く公開用のデモとして作り直しています。内容を載せられない仕事は、概要だけを紹介します。
           </SectionHead>
 
-          {workCases.map((item) => (
+          {workCases.filter((item) => item.demo).map((item) => (
             <Reveal key={item.slug}>
               <Link to={`/work/${item.slug}`} className="work-wide">
                 <div className="work-wide__visual">
@@ -166,21 +176,45 @@ export function HomePage() {
                 <div className="work-wide__body">
                   <p className="work-card__meta">
                     <span>{caseNumber(item)}</span>
-                    <em className="demo-badge">{item.demo ? "公開用デモ" : "概要のみ"}</em>
+                    <em className="demo-badge">公開用デモ</em>
                     <BuildBadge build={item.build} />
                   </p>
                   <h3>{item.title}</h3>
                   <Summary summary={item.summary} />
-                  <span className="more">{item.demo ? "考えたことを読む" : "詳しく読む"}</span>
+                  <span className="more">考えたことを読む</span>
                 </div>
               </Link>
-              {item.demo ? (
-                <Link to={`/demo/${item.slug}`} className="button work-wide__try">
-                  デモを試す
-                </Link>
-              ) : null}
+              <Link to={`/demo/${item.slug}`} className="button work-wide__try">
+                デモを試す
+              </Link>
             </Reveal>
           ))}
+
+          <Reveal className="work-compact">
+            <h3 className="work-compact__title">そのほかの実務（概要のみ）</h3>
+            <ul>
+              {workCases
+                .filter((item) => !item.demo)
+                .map((item) => (
+                  <li key={item.slug}>
+                    <Link to={`/work/${item.slug}`} className="compact-card">
+                      <p className="work-card__meta">
+                        <span>{caseNumber(item)}</span>
+                        <BuildBadge build={item.build} />
+                      </p>
+                      <h4>{item.title}</h4>
+                      <p className="compact-card__text">{item.summary.result}</p>
+                      <ul className="compact-card__stack">
+                        {item.stack.slice(0, 5).map((tech) => (
+                          <li key={tech}>{tech}</li>
+                        ))}
+                      </ul>
+                      <span className="more">詳しく読む</span>
+                    </Link>
+                  </li>
+                ))}
+            </ul>
+          </Reveal>
         </div>
       </section>
     </>

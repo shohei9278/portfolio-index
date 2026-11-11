@@ -1,6 +1,5 @@
 import { useEffect } from "react";
 import { ContactSection } from "./components/ContactSection.jsx";
-import { ExternalLink } from "./components/ExternalLink.jsx";
 import { cases, profile } from "./data/cases.js";
 import { CasePage } from "./pages/CasePage.jsx";
 import { DemoPage } from "./pages/DemoPage.jsx";
@@ -33,10 +32,11 @@ export default function App() {
             {profile.nameEn}
           </Link>
           <nav aria-label="サイト内">
-            <Link to="/">作品</Link>
-            <ExternalLink href={profile.github} label="header-github">
-              GitHub
-            </ExternalLink>
+            <a href="/#about" className="nav-optional">
+              プロフィール
+            </a>
+            <a href="/#personal-title">個人開発</a>
+            <a href="/#work-title">実務</a>
             <a href="#contact">連絡先</a>
           </nav>
         </div>

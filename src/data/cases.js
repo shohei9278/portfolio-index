@@ -184,7 +184,7 @@ export const cases = [
     summary: {
       problem: "エンジニアの市場で、何が求められているのかを知りたい。",
       decision: "市場全体だけでなく、自分のスキルとの差まで見えるようにする。",
-      result: "収集から画面までつなげて公開しました。ただし今は費用の都合で収集を止めていて、データは2026年9月3日までです。",
+      result: "データの収集から分析、API、画面、AIのコメントまでを一貫して作り、公開しています。",
     },
     role: "個人開発",
     period: "2025年10月〜",
@@ -258,7 +258,7 @@ export const cases = [
     summary: {
       problem: "市場で求められることが分かったうえで、勉強を効率化したい。",
       decision: "記録、提案、日報を別々にせず、ひと続きの流れにする。",
-      result: "記録から提案、日報までつなげて公開しました。今はデータベースの停止でログインできません。",
+      result: "学習の記録からAIの提案、日報の作成までを、ひと続きの流れとして作りました。",
     },
     role: "個人開発",
     period: "2025年10月〜",
@@ -308,6 +308,7 @@ export const cases = [
   },
   {
     slug: "case-management",
+    shortTitle: "申請書の案件管理",
     category: "work",
     tone: "sand",
     build: {
@@ -388,6 +389,7 @@ export const cases = [
   },
   {
     slug: "pdf-check",
+    shortTitle: "PDFの読み取り",
     category: "work",
     tone: "sand",
     build: {
@@ -469,6 +471,7 @@ export const cases = [
   },
   {
     slug: "double-check",
+    shortTitle: "ダブルチェック拡張機能",
     category: "work",
     tone: "sand",
     image: {
@@ -542,6 +545,7 @@ export const cases = [
   },
   {
     slug: "crm-tools",
+    shortTitle: "Veeva CRM の開発",
     category: "work",
     tone: "sand",
     build: {
@@ -552,14 +556,14 @@ export const cases = [
     figure: "crm-flow",
     title: "Veeva CRM 上の業務ツール開発",
     kicker: "Salesforce 連携の実務（概要のみ）",
-    lead: "ライフサイエンス業界向けのCRM（Salesforce を基盤にした Veeva CRM）の中で動く、営業担当者向けのツールやメール配信の画面の開発・運用に、2022年からチームで携わっています。実案件の画面や内容は載せられないため、仕事の範囲と技術だけを紹介します。",
+    lead: "ライフサイエンス業界向けのCRM（Salesforce を基盤にした Veeva CRM）の中で動く、営業担当者向けのツールやメール配信の画面の開発・運用に、チームで携わっています。Veeva CRM に関わる仕事は、2018年から続けています。実案件の画面や内容は載せられないため、仕事の範囲と技術だけを紹介します。",
     summary: {
       problem: "CRMに分かれている訪問、資料、メール、同意の情報を、営業担当者が1つの画面で扱えるようにする。",
       decision: "Salesforce 上のデータを Veeva のライブラリで取得し、Vue や React の画面にまとめる。",
       result: "チームの一員として、機能の追加と定期的な運用更新を続けています。",
     },
     role: "チームでの開発・運用",
-    period: "2022年5月〜現在",
+    period: "2018年〜現在",
     stack: ["Vue 3", "TypeScript", "Pinia", "React", "Redux-Saga", "Veeva CRM", "Salesforce", "IndexedDB"],
     links: [],
     sections: [
@@ -590,6 +594,7 @@ export const cases = [
   },
   {
     slug: "power-apps",
+    shortTitle: "Power Apps の開発",
     category: "work",
     tone: "sand",
     build: {
@@ -634,6 +639,7 @@ export const cases = [
   },
   {
     slug: "azure-migration",
+    shortTitle: "Azure への移行",
     category: "work",
     tone: "sand",
     build: {
