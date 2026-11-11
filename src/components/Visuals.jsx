@@ -146,8 +146,53 @@ export function CrmFlow() {
   );
 }
 
+const POWER_LANES = [
+  {
+    title: "QAアプリ",
+    steps: [
+      ["Power Apps", "質問を入力"],
+      ["SharePoint", "FAQを検索"],
+      ["Power Automate", "見つからなければ"],
+      ["OpenAI API", "回答を生成・要約"],
+      ["Teams", "未回答を管理者へ通知"],
+    ],
+  },
+  {
+    title: "承認アプリ",
+    steps: [
+      ["Power Apps", "申請フォーム"],
+      ["SharePoint", "申請を保存"],
+      ["Power Automate", "承認者へ依頼"],
+      ["承認・却下", "承認者が判断"],
+      ["通知", "申請者へ結果"],
+    ],
+  },
+];
+
+export function PowerFlow() {
+  return (
+    <figure className="power-flow" aria-label="QAアプリと承認アプリの処理の流れの図">
+      {POWER_LANES.map((lane) => (
+        <div className="power-flow__lane" key={lane.title}>
+          <p className="crm-flow__label">{lane.title}</p>
+          <ol>
+            {lane.steps.map(([tool, action], index) => (
+              <li key={tool + action} style={{ "--i": index }}>
+                <strong>{tool}</strong>
+                <span>{action}</span>
+              </li>
+            ))}
+          </ol>
+        </div>
+      ))}
+      <figcaption>仕組みの説明図です。実際の画面ではありません。</figcaption>
+    </figure>
+  );
+}
+
 export function CaseVisual({ item, eager = false }) {
   if (item.figure === "learning-loop") return <LearningLoop />;
   if (item.figure === "crm-flow") return <CrmFlow />;
+  if (item.figure === "power-flow") return <PowerFlow />;
   return <BrowserFrame image={item.image} eager={eager} />;
 }

@@ -87,14 +87,18 @@ export function CasePage({ item }) {
             </div>
           ) : null}
           <dl className="case-meta">
-            <div>
-              <dt>役割</dt>
-              <dd>{item.role}</dd>
-            </div>
-            <div>
-              <dt>時期</dt>
-              <dd>{item.period}</dd>
-            </div>
+            {item.role ? (
+              <div>
+                <dt>役割</dt>
+                <dd>{item.role}</dd>
+              </div>
+            ) : null}
+            {item.period ? (
+              <div>
+                <dt>時期</dt>
+                <dd>{item.period}</dd>
+              </div>
+            ) : null}
             <div>
               <dt>技術</dt>
               <dd>{item.stack.join(" / ")}</dd>

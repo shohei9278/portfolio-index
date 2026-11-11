@@ -154,7 +154,7 @@ export function HomePage() {
         <div className="wrap section section--band">
           <SectionHead english="./at-work" title="実務" id="work-title">
             仕事で作ったツールは、そのままでは公開できません。ここでは実務で作った2つのツールの仕組みを、
-            架空のデータで動く公開用のデモとして作り直しています。Veeva CRM 上の開発は、内容を載せられないため概要だけを紹介します。
+            架空のデータで動く公開用のデモとして作り直しています。Veeva CRM と Power Apps の開発は、内容を載せられないため概要だけを紹介します。
           </SectionHead>
 
           {workCases.map((item) => (

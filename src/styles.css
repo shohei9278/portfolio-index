@@ -1267,6 +1267,67 @@ button {
   font-size: 11px;
 }
 
+.power-flow {
+  display: grid;
+  gap: 16px;
+  width: 100%;
+  padding: clamp(14px, 2.4vw, 24px);
+  border-radius: 10px;
+  background: var(--surface);
+}
+
+.power-flow__lane {
+  display: grid;
+  gap: 6px;
+}
+
+.power-flow ol {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.power-flow li {
+  position: relative;
+  display: grid;
+  align-content: start;
+  gap: 2px;
+  min-width: 0;
+  padding: 8px 10px;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: var(--paper);
+  animation: crm-pulse 4s ease-in-out infinite;
+  animation-delay: calc(var(--i) * 0.45s);
+}
+
+.power-flow li:not(:last-child)::after {
+  position: absolute;
+  top: 50%;
+  right: -15px;
+  color: var(--muted);
+  content: "→";
+  font-size: 12px;
+  line-height: 1;
+  translate: 0 -50%;
+}
+
+.power-flow li strong {
+  font-family: var(--mono);
+  font-size: 11px;
+  overflow-wrap: anywhere;
+}
+
+.power-flow li span {
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+.power-flow figcaption {
+  color: var(--muted);
+  font-size: 11px;
+}
+
 .plain-list {
   display: grid;
   gap: 8px;
@@ -2139,6 +2200,25 @@ button {
     grid-template-columns: minmax(0, 1fr);
   }
 
+  .power-flow ol {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 16px;
+  }
+
+  .power-flow li {
+    grid-template-columns: 9em minmax(0, 1fr);
+    align-items: baseline;
+  }
+
+  .power-flow li:not(:last-child)::after {
+    top: auto;
+    right: auto;
+    bottom: -15px;
+    left: 50%;
+    content: "↓";
+    translate: -50% 0;
+  }
+
   .crm-flow__arrow {
     width: 2px;
     height: 20px;
@@ -2203,6 +2283,7 @@ button {
   }
 
   .crm-flow li,
+  .power-flow li,
   .crm-flow__arrow {
     animation: none;
   }
