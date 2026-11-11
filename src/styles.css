@@ -1328,6 +1328,12 @@ button {
   font-size: 11px;
 }
 
+.azure-flow__note {
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.5;
+}
+
 .plain-list {
   display: grid;
   gap: 8px;

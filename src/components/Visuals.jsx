@@ -190,9 +190,47 @@ export function PowerFlow() {
   );
 }
 
+export function AzureFlow() {
+  return (
+    <figure className="crm-flow" aria-label="ローカルの Python の処理を書き直して Azure 環境へ移す取り組みの図">
+      <div className="crm-flow__col">
+        <p className="crm-flow__label">移行前</p>
+        <div className="crm-flow__user">
+          <strong>ローカルの Python</strong>
+          <span className="azure-flow__note">約50ファイル・ローカルのファイルに出力</span>
+        </div>
+      </div>
+      <div className="crm-flow__arrow" aria-hidden="true" />
+      <div className="crm-flow__col">
+        <p className="crm-flow__label">取り組んだこと</p>
+        <ul>
+          {["Azure 向けに書き直し", "出力ファイルの対応", "予測ロジックの見直し", "例外データへの対応"].map(
+            (label, index) => (
+              <li key={label} style={{ "--i": index }}>
+                {label}
+              </li>
+            ),
+          )}
+        </ul>
+      </div>
+      <div className="crm-flow__arrow" aria-hidden="true" />
+      <div className="crm-flow__col">
+        <p className="crm-flow__label">移行後</p>
+        <div className="crm-flow__tool">
+          <span>Azure 環境</span>
+          <strong>Python の処理</strong>
+          <strong>予測データの出力</strong>
+        </div>
+      </div>
+      <figcaption>取り組みの範囲を説明する図です。実際の構成図ではありません。</figcaption>
+    </figure>
+  );
+}
+
 export function CaseVisual({ item, eager = false }) {
   if (item.figure === "learning-loop") return <LearningLoop />;
   if (item.figure === "crm-flow") return <CrmFlow />;
   if (item.figure === "power-flow") return <PowerFlow />;
+  if (item.figure === "azure-flow") return <AzureFlow />;
   return <BrowserFrame image={item.image} eager={eager} />;
 }
