@@ -109,7 +109,45 @@ export function BuildBadge({ build }) {
   return <span className={`build-badge build-badge--${build.kind}`}>{build.label}</span>;
 }
 
+const CRM_DATA = ["取引先", "訪問記録", "承認済み資料", "メール送信履歴", "配信の同意", "アンケート", "イベント"];
+
+export function CrmFlow() {
+  return (
+    <figure className="crm-flow" aria-label="Salesforce のデータを Veeva CRM 上のツールで取得し、営業担当者の画面にまとめる仕組みの図">
+      <div className="crm-flow__col">
+        <p className="crm-flow__label">Salesforce のデータ</p>
+        <ul>
+          {CRM_DATA.map((label, index) => (
+            <li key={label} style={{ "--i": index }}>
+              {label}
+            </li>
+          ))}
+        </ul>
+      </div>
+      <div className="crm-flow__arrow" aria-hidden="true" />
+      <div className="crm-flow__col">
+        <p className="crm-flow__label">Veeva CRM 上のツール</p>
+        <div className="crm-flow__tool">
+          <span>Vue / React の画面</span>
+          <strong>ダッシュボード</strong>
+          <strong>メール配信</strong>
+        </div>
+      </div>
+      <div className="crm-flow__arrow" aria-hidden="true" />
+      <div className="crm-flow__col">
+        <p className="crm-flow__label">営業担当者</p>
+        <div className="crm-flow__user">
+          <strong>訪問の予定と履歴</strong>
+          <strong>同意を確かめて配信</strong>
+        </div>
+      </div>
+      <figcaption>仕組みの説明図です。実際の画面ではありません。</figcaption>
+    </figure>
+  );
+}
+
 export function CaseVisual({ item, eager = false }) {
   if (item.figure === "learning-loop") return <LearningLoop />;
+  if (item.figure === "crm-flow") return <CrmFlow />;
   return <BrowserFrame image={item.image} eager={eager} />;
 }

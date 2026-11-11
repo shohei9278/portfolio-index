@@ -154,7 +154,7 @@ export function HomePage() {
         <div className="wrap section section--band">
           <SectionHead english="./at-work" title="実務" id="work-title">
             仕事で作ったツールは、そのままでは公開できません。ここでは実務で作った2つのツールの仕組みを、
-            架空のデータで動く公開用のデモとして作り直しています。
+            架空のデータで動く公開用のデモとして作り直しています。Veeva CRM 上の開発は、内容を載せられないため概要だけを紹介します。
           </SectionHead>
 
           {workCases.map((item) => (
@@ -166,16 +166,18 @@ export function HomePage() {
                 <div className="work-wide__body">
                   <p className="work-card__meta">
                     <span>{caseNumber(item)}</span>
-                    <em className="demo-badge">公開用デモ</em>
+                    <em className="demo-badge">{item.demo ? "公開用デモ" : "概要のみ"}</em>
                   </p>
                   <h3>{item.title}</h3>
                   <Summary summary={item.summary} />
-                  <span className="more">考えたことを読む</span>
+                  <span className="more">{item.demo ? "考えたことを読む" : "詳しく読む"}</span>
                 </div>
               </Link>
-              <Link to={`/demo/${item.slug}`} className="button work-wide__try">
-                デモを試す
-              </Link>
+              {item.demo ? (
+                <Link to={`/demo/${item.slug}`} className="button work-wide__try">
+                  デモを試す
+                </Link>
+              ) : null}
             </Reveal>
           ))}
         </div>

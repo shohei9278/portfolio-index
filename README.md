@@ -14,6 +14,7 @@
 | TechScope AI | `/work/techscope-ai` |
 | 申請書から制作物を展開する案件管理 | `/work/case-management`（デモ: `/demo/case-management`） |
 | 形式の違うPDFの読み取りと照合 | `/work/pdf-check`（デモ: `/demo/pdf-check`） |
+| Veeva CRM 上の業務ツール開発 | `/work/crm-tools`（概要のみ） |
 
 ## 内容を直すとき
 
