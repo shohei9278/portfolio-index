@@ -13,12 +13,12 @@ const CAREER = [
 const SKILLS = [
   {
     label: "フロントエンド",
-    items: ["React", "Vue.js", "TypeScript", "JavaScript"],
-    works: ["ai-job-dashboard", "double-check", "crm-tools"],
+    items: ["React", "Vue.js", "TypeScript", "JavaScript", "jQuery", "SCSS"],
+    works: ["ai-job-dashboard", "double-check", "crm-tools", "medical-site"],
   },
   {
     label: "バックエンド",
-    items: ["Node.js", "NestJS", "Prisma", "SQL", "PHP（WordPress）"],
+    items: ["Node.js", "NestJS", "Prisma", "SQL", "PHP", "WordPress"],
     works: ["ai-job-dashboard", "techscope-ai", "medical-site"],
   },
   {
@@ -73,13 +73,13 @@ export function AboutSection() {
           <div className="about__next">
             <p className="about__label">これからやりたいこと</p>
             <p>
-              生成AIで、コードを書く速さは誰でも上げられるようになりました。これから差が出るのは、何を作るかを決めることと、AIが作ったものを本番で安心して使える品質にすることだと考えています。
+              生成AIによって開発の進め方が大きく変わる中で、「何を、なぜ作るのか」を考え、適切な技術で形にする力を伸ばしていきたいと考えています。
             </p>
             <p>
-              これまで製薬業界の業務ツールや自動化で、現場のルールを整理して仕組みにすることを続けてきました。AI Product Lab では、AIに実装を任せたときのレビュー、テスト、費用と安全の管理を、実際に運用しながら作っています。
+              これまで製薬業界の業務ツールや自動化で、現場のルールを整理して仕組みにしてきました。AI Product Lab では、AIと一緒に開発するときのレビュー、テスト、費用と安全の管理を、実際に運用しながら作っています。
             </p>
             <p>
-              今後は、業務の課題整理と要件定義から関わり、AIを組み込んだ機能や業務の仕組みを、設計からリリース後の改善まで担うエンジニアとして、事業に貢献したいです。
+              今後も課題の整理から要件定義、設計、実装、改善まで幅広く関わり、AIも積極的に活用しながら、ユーザーにとって価値のあるプロダクトを届けられるエンジニアを目指しています。
             </p>
           </div>
           <dl className="about__wish">

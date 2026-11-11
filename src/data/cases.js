@@ -716,6 +716,11 @@ export const cases = [
     shortTitle: "医療向けサイトの改修",
     category: "work",
     tone: "sand",
+    build: {
+      kind: "hand",
+      label: "自分で実装",
+      detail: "コードは基本的に自分で書いています。",
+    },
     figure: "seminar-flow",
     title: "医療向け会員サイトの講演会ページ改修",
     kicker: "WordPress の改修（概要のみ）",
