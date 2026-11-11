@@ -197,14 +197,14 @@ export function AzureFlow() {
         <p className="crm-flow__label">移行前</p>
         <div className="crm-flow__user">
           <strong>ローカルの Python</strong>
-          <span className="azure-flow__note">約50ファイル・ローカルのファイルに出力</span>
+          <span className="azure-flow__note">約50ファイル・Excel や CSV を処理</span>
         </div>
       </div>
       <div className="crm-flow__arrow" aria-hidden="true" />
       <div className="crm-flow__col">
         <p className="crm-flow__label">取り組んだこと</p>
         <ul>
-          {["Azure 向けに書き直し", "出力ファイルの対応", "予測ロジックの見直し", "例外データへの対応"].map(
+          {["Azure 向けに書き直し", "出力ファイルの対応", "予測ロジックの見直し", "想定外の値の扱い", "処理後データの確認"].map(
             (label, index) => (
               <li key={label} style={{ "--i": index }}>
                 {label}
@@ -217,9 +217,9 @@ export function AzureFlow() {
       <div className="crm-flow__col">
         <p className="crm-flow__label">移行後</p>
         <div className="crm-flow__tool">
-          <span>Azure 環境</span>
-          <strong>Python の処理</strong>
-          <strong>予測データの出力</strong>
+          <span>Azure</span>
+          <strong>Azure Functions</strong>
+          <strong>Blob Storage</strong>
         </div>
       </div>
       <figcaption>取り組みの範囲を説明する図です。実際の構成図ではありません。</figcaption>
