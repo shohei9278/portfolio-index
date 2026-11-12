@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { track } from "@vercel/analytics/react";
+import { track } from "../analytics.js";
 import { LAB_AS_OF } from "../data/cases.js";
 
 const SHOWCASE_URL = "https://ai-lab-dashboard-production-fc9e.up.railway.app/showcase";

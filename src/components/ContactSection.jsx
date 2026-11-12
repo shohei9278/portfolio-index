@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { track } from "@vercel/analytics/react";
+import { track } from "../analytics.js";
 import { profile } from "../data/cases.js";
 import { ExternalLink } from "./ExternalLink.jsx";
 

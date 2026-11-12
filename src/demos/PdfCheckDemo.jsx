@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useRef, useState } from "react";
-import { track } from "@vercel/analytics/react";
+import { track } from "../analytics.js";
 import { BannerEditor, jobFromValues } from "./BannerEditor.jsx";
 import { compareValues, extractRows, loadPdf } from "./pdfExtract.js";
 

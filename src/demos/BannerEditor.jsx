@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { track } from "@vercel/analytics/react";
+import { track } from "../analytics.js";
 
 const TIME_RANGE = /(\d{1,2}:\d{2})\s*[-–—〜~～]\s*(\d{1,2}:\d{2})/;
 const WIDTH = 1200;

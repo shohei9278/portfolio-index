@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { track } from "@vercel/analytics/react";
+import { track } from "../analytics.js";
 
 // AI Product Lab の実際の修正（コミット e3c21d8）を短くして再現している
 const COMMIT_URL = "https://github.com/shohei9278/ai-lab-dashboard/commit/e3c21d8";
