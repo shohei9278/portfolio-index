@@ -1,4 +1,4 @@
-import { track } from "@vercel/analytics/react";
+import { track } from "../analytics.js";
 
 export function ExternalLink({ href, label, children, ...props }) {
   return (

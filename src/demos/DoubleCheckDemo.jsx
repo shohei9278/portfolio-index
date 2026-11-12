@@ -1,5 +1,5 @@
 import { useMemo, useState } from "react";
-import { track } from "@vercel/analytics/react";
+import { track } from "../analytics.js";
 import {
   SCREENS,
   SHEET_COLUMNS,

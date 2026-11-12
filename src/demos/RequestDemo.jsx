@@ -1,5 +1,5 @@
 import { useMemo, useState } from "react";
-import { track } from "@vercel/analytics/react";
+import { track } from "../analytics.js";
 import { processRequest } from "./requestRules.js";
 
 // 受信一覧に並ぶ架空のメール。添付の申請書は形式がそれぞれ違う
