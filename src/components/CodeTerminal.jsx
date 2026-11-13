@@ -81,7 +81,10 @@ export function CodeTerminal() {
                 ? position.chars
                 : 0;
           return (
-            <span className={`terminal__line terminal__line--${line.kind}`} key={line.text}>
+            <span
+              className={`terminal__line terminal__line--${line.kind}${index > position.line ? " is-pending" : ""}`}
+              key={line.text}
+            >
               {line.text.slice(0, shown)}
               {index === position.line ? <b className="terminal__caret" /> : null}
               <span className="terminal__rest">{line.text.slice(shown)}</span>

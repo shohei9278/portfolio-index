@@ -1,10 +1,11 @@
 import { useEffect } from "react";
 import { AboutSection } from "../components/AboutSection.jsx";
 import { CodeTerminal } from "../components/CodeTerminal.jsx";
-import { LabFeatures } from "../components/LabFeatures.jsx";
+import { ExternalLink } from "../components/ExternalLink.jsx";
+import { LabShowcase } from "../components/LabOffice.jsx";
 import { LabStats } from "../components/LabPanels.jsx";
-import { BrowserFrame, BuildBadge, CaseVisual, Reveal } from "../components/Visuals.jsx";
-import { cases, featuredCase, personalCases, profile, workCases } from "../data/cases.js";
+import { BuildBadge, CaseVisual, OfficeVideo, Reveal } from "../components/Visuals.jsx";
+import { cases, featuredCase, labLinks, personalCases, profile, workCases } from "../data/cases.js";
 import { Link } from "../router.jsx";
 
 const READING_STEPS = ["課題", "考えたこと", "判断", "結果", "まだできていないこと"];
@@ -45,8 +46,6 @@ function caseNumber(item) {
 }
 
 export function HomePage() {
-  const heroImages = [featuredCase, ...personalCases, ...workCases].filter((item) => item.image);
-
   // 作品ページから「/#about」のように来たときは、描画のあとでその位置へ移動する
   useEffect(() => {
     const id = window.location.hash.slice(1);
@@ -78,11 +77,9 @@ export function HomePage() {
             </div>
           </div>
           <div className="hero__visual">
-            {heroImages.slice(0, 2).map((item, index) => (
-              <div aria-hidden="true" className={`hero__frame hero__frame--${index + 1}`} key={item.slug}>
-                <BrowserFrame image={item.image} eager decorative />
-              </div>
-            ))}
+            <div aria-hidden="true" className="hero__office">
+              <OfficeVideo item={featuredCase} eager decorative />
+            </div>
             <CodeTerminal />
           </div>
         </div>
@@ -119,14 +116,17 @@ export function HomePage() {
               <BuildBadge build={featuredCase.build} />
             </p>
             <p>{featuredCase.lead}</p>
-            <ul className="agents" aria-label="社員のAI">
-              <li>claude</li>
-              <li>gpt</li>
-              <li>gemini</li>
-            </ul>
             <Link to={`/work/${featuredCase.slug}`} className="button button--light">
               運用の設計と判断を読む
             </Link>
+            <p className="featured__links">
+              <ExternalLink href={labLinks.showcase} label="featured-showcase">
+                実験の概要
+              </ExternalLink>
+              <ExternalLink href={labLinks.dashboard} label="featured-dashboard">
+                ダッシュボード（閲覧のみ）
+              </ExternalLink>
+            </p>
           </Reveal>
           <Reveal className="featured__visual">
             <CaseVisual item={featuredCase} />
@@ -135,8 +135,7 @@ export function HomePage() {
             <Summary summary={featuredCase.summary} />
           </Reveal>
           <div className="featured__features">
-            <h4>AIの社員がしていること</h4>
-            <LabFeatures />
+            <LabShowcase />
           </div>
           <Reveal className="featured__stats">
             <LabStats />
