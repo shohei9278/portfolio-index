@@ -1,5 +1,5 @@
 // 掲載する内容は、公開ページ、公開リポジトリ、本人の説明で確かめられる事実だけにする。
-// 作品の画像は2026年11月10日に撮影した実際の画面。
+// 作品の画像は2026年11月10日に撮影した実際の画面。AI Product Lab のオフィスの動画と画面は2026年11月13日に本番を来訪者（閲覧のみ）として開いて撮った。
 // AI Product Lab の数字は手で写したものなので、更新するときは LAB_AS_OF と labStats を一緒に直す。
 
 export const profile = {
@@ -11,19 +11,68 @@ export const profile = {
 };
 
 const LAB = "https://ai-lab-dashboard-production-fc9e.up.railway.app";
+export const labLinks = { showcase: `${LAB}/showcase`, dashboard: `${LAB}/` };
 const LAB_REPO = "https://github.com/shohei9278/ai-lab-dashboard";
 const JOB_REPO = "https://github.com/shohei9278/ai-job-dashboard";
 const TECHSCOPE_REPO = "https://github.com/shohei9278/techscope-ai";
 
-export const LAB_AS_OF = "2026年11月11日";
+export const LAB_AS_OF = "2026年11月13日";
 
 export const labStats = [
-  ["AIが出したアイデア", "108", "件"],
-  ["進めた案件", "18", "件"],
-  ["公開した案件", "14", "件"],
-  ["訪問（累計）", "103", "人"],
+  ["AIが出したアイデア", "114", "件"],
+  ["進めた案件", "19", "件"],
+  ["公開した案件", "16", "件"],
+  ["訪問（累計）", "134", "人"],
   ["登録・利用（累計）", "2", "件"],
-  ["AI費用（累計）", "9,349", "円"],
+  ["AI費用（累計）", "10,571", "円"],
+];
+
+// 実験の概要ページの「社員」の欄から写した。数字は LAB_AS_OF 時点
+export const labStaff = [
+  {
+    key: "claude",
+    name: "Claude",
+    company: "Anthropic",
+    robot: "/works/robots/anthropic.png",
+    job: "LP・ツールを作る担当。SNS投稿の下書き、LPのチェックもよくしている",
+    picked: "11/24",
+    bias: "自分の案に辛め",
+  },
+  {
+    key: "gpt",
+    name: "GPT",
+    company: "OpenAI",
+    robot: "/works/robots/openai.png",
+    job: "アイデアの採点、アイデア出し、LPの候補作成をよくしている",
+    picked: "6/24",
+    bias: "自分の案に甘め",
+  },
+  {
+    key: "gemini",
+    name: "Gemini",
+    company: "Google",
+    robot: "/works/robots/google.png",
+    job: "アイデアの採点、アイデア出し、LPの候補作成をよくしている",
+    picked: "0/24",
+    bias: "自分の案に辛め",
+  },
+];
+
+export const labScreens = [
+  {
+    key: "cases",
+    src: "/works/ai-lab-cases.jpg",
+    alt: "実験の概要ページの「公開した案件」。AIが作った紹介ページと動くツールが、画面写真つきのカードで6件並んでいる",
+    domain: "ai-lab-dashboard/showcase",
+    caption: "AIが作って公開した案件。写真は公開前にAIが確かめたときの画面です",
+  },
+  {
+    key: "live",
+    src: "/works/ai-lab-live.jpg",
+    alt: "ダッシュボードのライブの欄。AIがSNSに投稿した文が新しい順に流れている",
+    domain: "ai-lab-dashboard",
+    caption: "ライブ。AIの会話と処理が3秒ごとに更新されます",
+  },
 ];
 
 export const labFlow = [
@@ -51,9 +100,14 @@ export const cases = [
         "コードは基本的にAIに生成させ、自分はコードレビュー、問題の発見、方針決定、動作確認に回っています。原因調査や修正にもAIを使っています。",
     },
     image: {
-      src: "/works/ai-product-lab.jpg",
-      alt: "AI Product Lab のダッシュボード。人の確認待ちの案件と、公開数や処理数の数字が並んでいる画面",
+      src: "/works/ai-lab-office.jpg",
+      alt: "AI Product Lab のドット絵のオフィス。開発室、会議室、広報デスク、休憩室、社長室、案件の展示があり、ロボットの社員が働いている",
       domain: "ai-lab-dashboard",
+    },
+    video: {
+      src: "/works/ai-lab-office.mp4",
+      alt: "AI Product Lab のオフィスで、Claude・GPT・Gemini のロボットの社員が、仕事に合わせて開発室や会議室、広報デスクへ移動する様子",
+      caption: "本番のダッシュボードで、直近24時間の動きを4倍速で再生した画面です。",
     },
     gallery: {
       src: "/works/hitoride.jpg",
@@ -62,20 +116,20 @@ export const cases = [
       caption: "AIが企画して公開したツールの一覧",
     },
     title: "AI Product Lab",
-    kicker: "AIにプロダクト運営を任せる実験",
-    lead: "Claude・GPT・Gemini の3社のAIを社員にして、アイデア出し、採点、制作、公開、SNS集客、続ける・撤退の判断までを任せています。人は社長の立場で確認します。",
+    kicker: "AIだけの会社を動かす実験",
+    lead: "Claude・GPT・Gemini が社員の、人がいない会社。アイデアから公開、続ける・撤退までをAIが進め、人は社長として確かめるだけです。",
     summary: {
       problem: "AIに運営を任せると、どこまで動き、どこで人が必要になるのか。",
       decision: "人の仕事をコードレビュー、問題の発見、方針決定、動作確認に絞り、人とAIの役割を公開で記録する。",
-      result: "公開14件。登録・利用はまだ2件で、集客が課題です。",
+      result: "公開16件。登録・利用はまだ2件で、集客が課題です。",
     },
     role: "企画、方針決定、コードレビュー、動作確認。コード生成は主に Claude Code を使い、原因調査や修正にもAIを使っています。",
     period: "運用中",
     stack: ["Next.js", "TypeScript", "SQLite", "Supabase", "GitHub Actions", "Railway", "Vercel"],
     links: [
       ["実験の概要", `${LAB}/showcase`],
+      ["ダッシュボード（閲覧のみ）", `${LAB}/`],
       ["人とAIの役割の記録", `${LAB}/interventions`],
-      ["ダッシュボード", `${LAB}/`],
       ["作ったツールの一覧", "https://hitoride.vercel.app"],
       ["GitHub", LAB_REPO],
     ],
@@ -120,7 +174,7 @@ export const cases = [
       },
     ],
     showFlow: true,
-    showFeatures: true,
+    showOffice: true,
     decisions: [
       {
         title: "アイデア出しを3社の競争にした",
@@ -175,7 +229,7 @@ export const cases = [
     ],
     showStats: true,
     result: [
-      "公開14件のうち、12件は登録・利用がまだ0件です。訪問も少なく、案件ごとの差は偶然の可能性が高い段階です。",
+      "公開16件に対して、登録・利用は合わせて2件です。訪問も少なく、案件ごとの差は偶然の可能性が高い段階です。",
       "費用の無駄は減らせたものもあります。ツール改善の失敗では、AIに渡す内容を絞り、同じ処理の費用が約59円から約9円になりました。",
       "これまでに人が手を入れた回数は、AIの提案の承認・却下が10回、修正やデザインの指示が8回、公開を止めた回数は0回です。",
     ],

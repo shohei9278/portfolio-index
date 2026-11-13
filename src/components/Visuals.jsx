@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from "react";
+import { OfficeVideo } from "./LabOffice.jsx";
 
 export function Reveal({ as: Tag = "div", className = "", children, ...props }) {
   const ref = useRef(null);
@@ -313,5 +314,6 @@ export function CaseVisual({ item, eager = false, zoomable = false }) {
   if (item.figure === "crm-flow") return <CrmFlow />;
   if (item.figure === "power-flow") return <PowerFlow />;
   if (item.figure === "azure-flow") return <AzureFlow />;
+  if (item.video) return <OfficeVideo item={item} eager={eager} />;
   return <BrowserFrame image={item.image} eager={eager} zoomable={zoomable} />;
 }

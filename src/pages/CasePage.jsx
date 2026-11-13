@@ -1,5 +1,5 @@
 import { ExternalLink } from "../components/ExternalLink.jsx";
-import { LabFeatures } from "../components/LabFeatures.jsx";
+import { LabShowcase } from "../components/LabOffice.jsx";
 import { LabFlow, LabStats } from "../components/LabPanels.jsx";
 import { BrowserFrame, BuildBadge, CaseVisual, Reveal } from "../components/Visuals.jsx";
 import { CATEGORY_LABELS, cases } from "../data/cases.js";
@@ -147,10 +147,10 @@ export function CasePage({ item }) {
           ) : null}
         </div>
 
-        {item.showFeatures ? (
+        {item.showOffice ? (
           <section className="case-features">
-            <h2>AIの社員がしていること</h2>
-            <LabFeatures />
+            <h2>オフィスの中</h2>
+            <LabShowcase />
           </section>
         ) : null}
 
