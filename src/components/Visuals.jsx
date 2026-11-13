@@ -1,5 +1,4 @@
 import { useEffect, useRef, useState } from "react";
-import { OfficeVideo } from "./LabOffice.jsx";
 
 export function Reveal({ as: Tag = "div", className = "", children, ...props }) {
   const ref = useRef(null);
@@ -26,6 +25,75 @@ export function Reveal({ as: Tag = "div", className = "", children, ...props }) 
     <Tag ref={ref} className={`reveal${shown ? " is-shown" : ""} ${className}`} {...props}>
       {children}
     </Tag>
+  );
+}
+
+function usePrefersReducedMotion() {
+  const [reduce, setReduce] = useState(
+    () => typeof window !== "undefined" && window.matchMedia("(prefers-reduced-motion: reduce)").matches,
+  );
+  useEffect(() => {
+    const query = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const onChange = () => setReduce(query.matches);
+    query.addEventListener("change", onChange);
+    return () => query.removeEventListener("change", onChange);
+  }, []);
+  return reduce;
+}
+
+// ドット絵のオフィスを本番で再生した動画。動きを減らす設定の人には静止画だけを出す
+export function OfficeVideo({ item, eager = false, decorative = false }) {
+  const { image, video } = item;
+  const reduce = usePrefersReducedMotion();
+  const ref = useRef(null);
+
+  // 画面の外にあるときは止めておく
+  useEffect(() => {
+    const el = ref.current;
+    if (!el || reduce || !("IntersectionObserver" in window)) return undefined;
+    const observer = new IntersectionObserver(([entry]) => {
+      if (entry.isIntersecting) el.play().catch(() => {});
+      else el.pause();
+    });
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, [reduce]);
+
+  return (
+    <figure className={`browser office-video${decorative ? " office-video--decorative" : ""}`}>
+      <div className="browser__bar" aria-hidden="true">
+        <i />
+        <i />
+        <i />
+        <span>{image.domain}</span>
+      </div>
+      {reduce ? (
+        <img
+          src={image.src}
+          alt={decorative ? "" : image.alt}
+          width="1352"
+          height="904"
+          loading={eager ? "eager" : "lazy"}
+        />
+      ) : (
+        <video
+          ref={ref}
+          src={video.src}
+          poster={image.src}
+          width="1352"
+          height="904"
+          muted
+          loop
+          playsInline
+          autoPlay
+          preload={eager ? "auto" : "metadata"}
+          aria-label={decorative ? undefined : video.alt}
+          aria-hidden={decorative || undefined}
+          tabIndex={decorative ? -1 : undefined}
+        />
+      )}
+      {decorative ? null : <figcaption className="office-video__caption">{video.caption}</figcaption>}
+    </figure>
   );
 }
 

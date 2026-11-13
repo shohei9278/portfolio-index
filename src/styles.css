@@ -482,25 +482,51 @@ button {
 
 .hero__visual {
   position: relative;
-  padding-top: 92px;
 }
 
-.hero__frame {
-  position: absolute;
-  z-index: 1;
-  top: 0;
-  width: 62%;
-  filter: brightness(0.55);
+/* オフィスを奥に大きく、ターミナルを手前の右下に少し重ねる */
+.hero__office {
+  width: 88%;
+  rotate: -1.5deg;
 }
 
-.hero__frame--1 {
-  left: 0;
-  rotate: -2.5deg;
+.hero__office .browser {
+  border-color: rgb(245 242 234 / 18%);
+  box-shadow: 0 30px 60px -20px rgb(0 0 0 / 70%);
 }
 
-.hero__frame--2 {
-  right: -4%;
-  rotate: 2.5deg;
+/* ターミナルは打った行の分だけ伸び、説明文は下の決まった位置に置く */
+.hero__visual .terminal {
+  display: flex;
+  flex-direction: column;
+  width: 86%;
+  /* 最後の行まで打ったときの高さ。打つ途中で一番上の高さが変わらないようにする */
+  min-height: 432px;
+  margin: -100px 0 0 auto;
+}
+
+.hero__visual .terminal__body {
+  font-size: 11.5px;
+  line-height: 1.55;
+}
+
+.hero__visual .terminal__line.is-pending {
+  display: none;
+}
+
+.hero__visual .terminal figcaption {
+  margin-top: auto;
+  padding-top: 10px;
+}
+
+.terminal {
+  width: 74%;
+  margin: -16% 0 0 auto;
+}
+
+.hero__visual .terminal__body {
+  font-size: clamp(10.5px, 0.9vw, 12px);
+  line-height: 1.55;
 }
 
 .terminal {
@@ -2192,11 +2218,33 @@ button {
   .hero__visual {
     width: 100%;
     max-width: 680px;
-    padding-top: 0;
   }
 
-  .hero__frame {
-    display: none;
+  .hero__visual .terminal {
+    display: block;
+    min-height: 0;
+  }
+
+  .hero__visual .terminal__body {
+    font-size: clamp(11.5px, 3vw, 13.5px);
+  }
+
+  .hero__visual .terminal__line.is-pending {
+    display: block;
+  }
+
+  .hero__office {
+    width: 100%;
+    rotate: none;
+  }
+
+  .hero__visual .terminal {
+    width: 100%;
+    margin-top: 16px;
+  }
+
+  .hero__visual .terminal figcaption {
+    padding-top: 0;
   }
 
   .guide {
@@ -2348,6 +2396,24 @@ button {
   .lab-staff ul,
   .lab-screens {
     grid-template-columns: minmax(0, 1fr);
+  }
+
+  /* スマホではライブの写真の下を切り、押すと全体を拡大して見られる */
+  .lab-screens__item--live .browser__zoom {
+    max-height: 320px;
+    overflow: hidden;
+  }
+
+  .lab-screens__item--live .browser__zoom::after {
+    position: absolute;
+    inset: auto 0 0;
+    height: 72px;
+    background: linear-gradient(transparent, rgb(21 20 15 / 55%));
+    content: "";
+  }
+
+  .lab-screens__item--live .browser__zoom-hint {
+    z-index: 1;
   }
 
   .about__grid,
