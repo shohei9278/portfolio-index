@@ -1202,6 +1202,146 @@ button {
   text-underline-offset: 5px;
 }
 
+/* テストとCI/CD */
+.case-features__lead {
+  max-width: 46em;
+  margin-bottom: 18px;
+  color: var(--muted);
+}
+
+.quality__stages {
+  display: grid;
+  grid-template-columns: minmax(0, 1.5fr) minmax(0, 1.1fr) minmax(0, 0.9fr);
+  gap: 12px;
+  list-style: none;
+}
+
+.quality__stage {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 18px;
+  border: 1px solid var(--line);
+  border-top: 3px solid var(--ai);
+  border-radius: 10px;
+  background: var(--surface);
+}
+
+.quality__when {
+  font-size: 17px;
+  font-weight: 700;
+  line-height: 1.4;
+}
+
+.quality__when small {
+  display: block;
+  margin-top: 2px;
+  color: var(--muted);
+  font-family: var(--mono);
+  font-size: 12px;
+  font-weight: 400;
+}
+
+.quality__steps {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  list-style: none;
+}
+
+.quality__steps li {
+  padding: 2px 10px;
+  border-radius: 4px;
+  background: var(--ai-soft);
+  color: var(--ai);
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.quality__note {
+  font-size: 14px;
+  line-height: 1.7;
+}
+
+.quality__links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 16px;
+  margin-top: auto;
+  font-family: var(--mono);
+  font-size: 13px;
+}
+
+.quality__links a,
+.quality__runs a {
+  color: var(--accent);
+  text-underline-offset: 3px;
+}
+
+.quality__runs {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: 8px 28px;
+  align-items: center;
+  margin-top: 14px;
+  padding: 16px 18px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: var(--surface);
+}
+
+.quality__runs dl {
+  display: flex;
+  gap: 24px;
+}
+
+.quality__runs dt {
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.quality__runs dd {
+  font-family: var(--mono);
+  font-size: 30px;
+  font-weight: 700;
+  line-height: 1.1;
+  font-variant-numeric: tabular-nums;
+}
+
+.quality__runs dd small {
+  margin-left: 2px;
+  font-family: "Hiragino Sans", "Noto Sans JP", sans-serif;
+  font-size: 13px;
+}
+
+.quality__runs figcaption {
+  font-size: 13px;
+  line-height: 1.7;
+  color: var(--muted);
+}
+
+.quality__runs figcaption a {
+  margin-left: 6px;
+}
+
+.featured__quality {
+  max-width: 34em;
+  margin-top: 18px;
+  padding-left: 12px;
+  border-left: 2px solid var(--accent-bright);
+  font-size: 14px;
+  line-height: 1.75;
+  opacity: 0.9;
+}
+
+.featured__quality a {
+  display: inline-block;
+  margin-left: 6px;
+  color: var(--accent-bright);
+  font-weight: 700;
+  text-underline-offset: 4px;
+}
+
 /* Veeva CRM の仕組みの図 */
 .crm-flow {
   display: grid;
@@ -2261,6 +2401,10 @@ button {
     grid-template-columns: minmax(0, 1fr);
   }
 
+  .quality__stages {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
   .stats__grid {
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }
@@ -2394,7 +2538,9 @@ button {
   }
 
   .lab-staff ul,
-  .lab-screens {
+  .lab-screens,
+  .quality__stages,
+  .quality__runs {
     grid-template-columns: minmax(0, 1fr);
   }
 

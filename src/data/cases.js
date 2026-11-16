@@ -75,6 +75,52 @@ export const labScreens = [
   },
 ];
 
+// テストとCI/CD。数字は GitHub Actions の記録から QUALITY_AS_OF 時点で写した
+export const QUALITY_AS_OF = "2026年11月16日";
+
+export const labQuality = {
+  stages: [
+    {
+      when: "PRのたび",
+      tool: "GitHub Actions（ci.yml）",
+      steps: ["lint", "単体テスト 46件", "本番用のビルド", "E2E（Playwright）", "型チェック"],
+      notes: [
+        "E2Eは、来訪者に見せる21ページをスマホの幅で開き、エラーと横のはみ出しがないことを確かめます。下書きが来訪者のHTMLに入っていないことも確かめます。",
+        "別の会社のAI（GPT）が差分を読んで、PRにレビューのコメントを書きます。マージは止めません。",
+        "main のCIが落ちると、本番（Railway）には出しません。",
+      ],
+      links: [
+        ["ci.yml", `${LAB_REPO}/blob/main/.github/workflows/ci.yml`],
+        ["E2Eのテスト", `${LAB_REPO}/blob/main/e2e/guest.e2e.ts`],
+      ],
+    },
+    {
+      when: "本番に出たあと・30分ごと",
+      tool: "GitHub Actions（smoke.yml）",
+      steps: ["主要な10ページが開く", "来訪者は操作できない", "main の最新が本番に届いている"],
+      notes: [
+        "公開が終わったときと30分ごとに、本番を外から確かめます。失敗したら Discord に通知します（続いているあいだは最初の1回だけ）。",
+      ],
+      links: [["smoke.yml", `${LAB_REPO}/blob/main/.github/workflows/smoke.yml`]],
+    },
+    {
+      when: "毎日",
+      tool: "アプリの中の定期処理",
+      steps: ["データベースの写し 14日分", "外部（Supabase）に30日分"],
+      notes: ["外部への保存に失敗すると通知します。"],
+      links: [],
+    },
+  ],
+  runs: {
+    total: "178",
+    success: "166",
+    failure: "4",
+    since: "2026年11月10日",
+    note: "失敗した4回はすべてPRの段階で止まり、本番には出ていません。うち2回は依存の自動更新（TypeScript 7）で、CIが落ちたためマージせずに閉じました。",
+    href: `${LAB_REPO}/actions/workflows/ci.yml`,
+  },
+};
+
 export const labFlow = [
   { who: "ai", label: "AIが実装", note: "コード生成は主に Claude Code" },
   { who: "ai", label: "別のAIがレビュー", note: "GPTがPRにコメント。マージは止めない" },
@@ -161,10 +207,9 @@ export const cases = [
       {
         title: "品質と安全",
         items: [
-          "来訪者に見せる21ページは、マージの前に毎回スマホの幅でブラウザで開き、エラーや横のはみ出しがないことと、下書きが見えていないことを確かめています。",
+          "テストとCI/CDは、PRのたび、本番に出たあと、毎日の3段で自動にしています（このページの「テストとCI/CD」の欄）。",
           "SNSのコメントなど外の人が書いた文章は、AIへの指示と区切って渡し、中に書かれた指示には従わないようAIに伝えています。",
-          "データベースは毎日、外部（Supabase）にも30日分を残しています。公開後の自動確認が失敗したときは Discord に通知が届きます。",
-        ],
+                  ],
       },
       {
         title: "改善と分析",
@@ -175,6 +220,7 @@ export const cases = [
     ],
     showFlow: true,
     showOffice: true,
+    showQuality: true,
     decisions: [
       {
         title: "アイデア出しを3社の競争にした",
