@@ -59,7 +59,10 @@ export function HomePage() {
           <div className="hero__copy">
             <p className="hero__name">
               {profile.nameEn}
-              <span> / フルスタックエンジニア</span>
+              <span>
+                {" / "}
+                <span className="nowrap">Webエンジニア（業務の自動化・AI）</span>
+              </span>
             </p>
             <h1>作って終わりにせず、動かした結果まで見ています。</h1>
             <p className="hero__lead">

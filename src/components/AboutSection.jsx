@@ -7,7 +7,7 @@ import { Reveal } from "./Visuals.jsx";
 const CAREER = [
   ["2017", "Web制作", "Webサイトのデザインとコーディング"],
   ["2018", "製薬業界向けのCRM", "Veeva CRM / Salesforce のコンテンツ制作と運用、その自動化"],
-  ["2021", "フリーランス", "フロントエンドとバックエンドの開発、データ処理、AI活用、業務の自動化"],
+  ["2021", "フリーランス", "フロントエンドを中心とした開発、データ処理、AI活用、業務の自動化"],
 ];
 
 const SKILLS = [
@@ -17,7 +17,7 @@ const SKILLS = [
     works: ["ai-job-dashboard", "double-check", "crm-tools", "medical-site", "pharma-lp"],
   },
   {
-    label: "バックエンド",
+    label: "バックエンド（経験あり）",
     items: ["Node.js", "NestJS", "Prisma", "SQL", "PHP", "WordPress"],
     works: ["ai-job-dashboard", "techscope-ai", "medical-site", "web-design-2017"],
   },
@@ -66,7 +66,7 @@ export function AboutSection() {
         </p>
         <h2 id="about-title">
           {profile.name}
-          <small>フルスタックエンジニア</small>
+          <small>Webエンジニア（業務の自動化・AI）</small>
         </h2>
       </Reveal>
 
@@ -77,7 +77,7 @@ export function AboutSection() {
             Salesforce）のコンテンツ制作と運用、その自動化に携わってきました。
           </p>
           <p>
-            2021年からはフリーランスとして、フロントエンドとバックエンドの開発、Python でのデータ処理、LLM
+            2021年からはフリーランスとして、フロントエンドを中心とした開発（API の実装も含む）、Python でのデータ処理、LLM
             を使った仕組みづくり、Power Platform での業務改善を手がけています。「仕組みで効率化する」ことを軸にしています。
           </p>
           <div className="about__next">
