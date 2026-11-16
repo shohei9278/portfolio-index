@@ -14,12 +14,12 @@ const SKILLS = [
   {
     label: "フロントエンド",
     items: ["React", "Vue.js", "TypeScript", "JavaScript", "jQuery", "SCSS"],
-    works: ["ai-job-dashboard", "double-check", "crm-tools", "medical-site"],
+    works: ["ai-job-dashboard", "double-check", "crm-tools", "medical-site", "pharma-lp"],
   },
   {
     label: "バックエンド",
     items: ["Node.js", "NestJS", "Prisma", "SQL", "PHP", "WordPress"],
-    works: ["ai-job-dashboard", "techscope-ai", "medical-site"],
+    works: ["ai-job-dashboard", "techscope-ai", "medical-site", "web-design-2017"],
   },
   {
     label: "データ・AI",
@@ -29,12 +29,17 @@ const SKILLS = [
   {
     label: "CRM",
     items: ["Salesforce", "Veeva CRM", "Veeva Vault"],
-    works: ["crm-tools"],
+    works: ["crm-tools", "clm-automation"],
   },
   {
     label: "業務の自動化",
-    items: ["Power Apps", "Power Automate", "Chrome拡張機能"],
-    works: ["power-apps", "double-check", "case-management"],
+    items: ["Power Apps", "Power Automate", "Google Apps Script", "Chrome拡張機能"],
+    works: ["power-apps", "double-check", "case-management", "clm-automation"],
+  },
+  {
+    label: "デザイン",
+    items: ["Figma", "Photoshop", "Illustrator", "Google Analytics"],
+    works: ["web-design-2017", "pharma-lp"],
   },
   {
     label: "テスト・CI/CD",
