@@ -710,6 +710,60 @@ export const cases = [
     ],
   },
   {
+    slug: "clm-automation",
+    shortTitle: "CLM資材の自動化",
+    category: "work",
+    tone: "sand",
+    build: {
+      kind: "hand",
+      label: "自分で実装",
+      detail: "コードは基本的に自分で書いています。",
+    },
+    figure: "clm-flow",
+    title: "CLM資材の制作と登録の自動化",
+    kicker: "Veeva CRM の資材づくりの実務（概要のみ）",
+    lead: "製薬会社の営業担当者が iPad で見せる説明資料（CLM資材）を、Veeva CRM 向けに制作・登録する仕事を担当していました。はじめは手作業で作っていましたが、Google Apps Script と Python を独学で身につけ、資材のHTMLづくりと、Veeva Vault へ登録するためのデータづくりを自動にしました。実案件のため、取り組んだ内容だけを紹介します。",
+    summary: {
+      problem: "PowerPoint の資料をもとにHTMLの資材を作り、Vault に登録する作業が手作業で、本数が増えるほど手間がかかる。",
+      decision: "スライドの画像やシートの内容を共通のテンプレートに差し込んでHTMLを作り、登録の情報は一括登録用のCSVにまとめて出す。",
+      result: "自分で作った仕組みを手順書にまとめ、チームの制作でも使えるようにしました。",
+    },
+    role: "設計・実装・運用（一人で作り、チームに展開）",
+    period: "2018年2月〜2021年5月",
+    stack: ["Google Apps Script", "Python", "HTML / CSS / JavaScript", "Google スプレッドシート", "Veeva CRM（CLM）", "Veeva Vault"],
+    links: [],
+    sections: [
+      {
+        title: "していたこと",
+        list: [
+          "PowerPoint の資料をもとに iPad で動くHTMLの資材を制作し、Veeva Vault への登録と、iPad での動作の確認まで担当",
+          "スライドを書き出した画像を、共通のHTMLテンプレートに差し込んで資材を作る仕組み",
+          "スプレッドシートに書いた内容から、Google Apps Script で資材のHTMLを作る仕組み",
+          "テンプレートを複製し、ファイル名や文言をまとめて差し替えるスクリプト",
+          "Vault に一括で登録するためのCSVを、スクリプトで自動で作成",
+        ],
+      },
+      {
+        title: "チームへの広げ方",
+        paragraphs: [
+          "作った仕組みは手順書にまとめ、自分の作業だけでなく、チームの制作でも使えるようにしました。新しく入った人の教育にも関わっています。",
+        ],
+      },
+      {
+        title: "この仕事から始まったこと",
+        paragraphs: [
+          "同じ作業の繰り返しを減らすためにプログラムを学んだことが、今の「仕組みで効率化する」仕事の出発点です。その後、Veeva CRM 上で動くツールの開発にも仕事を広げています。",
+        ],
+      },
+      {
+        title: "載せていないこと",
+        paragraphs: [
+          "実案件のため、会社名、製品名、資材、データ、コードは載せていません。図は仕組みを説明するためのもので、実際の画面ではありません。",
+        ],
+      },
+    ],
+  },
+  {
     slug: "power-apps",
     shortTitle: "Power Apps の開発",
     category: "work",
@@ -752,6 +806,12 @@ export const cases = [
         paragraphs: [
           "Power Apps のマイクで録音した音声を Power Automate のフローに渡し、フローから Azure OpenAI Service の Whisper を呼び出して文字にします。",
           "文字にした結果をアプリに返して入力欄に表示するので、手で打つ代わりに、話した内容をそのまま入力に使えます。",
+        ],
+      },
+      {
+        title: "検証したこと",
+        paragraphs: [
+          "Power Automate で日報や案件の報告を1か所に集め、AI Builder で要約する流れも検証しました。こちらは検証までで、本格的な運用には至っていません。",
         ],
       },
       {
@@ -855,6 +915,92 @@ export const cases = [
         title: "載せていないこと",
         paragraphs: [
           "実案件のため、会社名、サイト名、画面、コードは載せていません。図は仕組みを説明するためのもので、実際の画面ではありません。",
+        ],
+      },
+    ],
+  },
+  {
+    slug: "pharma-lp",
+    shortTitle: "製薬会社のLP制作",
+    category: "work",
+    tone: "sand",
+    build: {
+      kind: "hand",
+      label: "自分で実装",
+      detail: "コードは基本的に自分で書いています。",
+    },
+    figure: "lp-flow",
+    title: "製薬会社のLPの制作と進行",
+    kicker: "Webページ制作の実務（概要のみ）",
+    lead: "製薬会社の、病気について知ってもらうためのページや製品紹介、学会の告知などのLP（ランディングページ）を制作しました。構成案とデザインの確認から、HTML / CSS でのコーディング、校正、公開まで担当し、表現を薬機法のガイドラインに合わせる調整もしています。実案件のため、取り組んだ内容だけを紹介します。",
+    summary: {
+      problem: "製薬会社のLPは、デザインや実装に加えて、薬機法に沿った表現かどうかの確認が欠かせない。",
+      decision: "構成案とデザインの段階から関わり、実装のあとも校正と表現の確認を経てから公開する。",
+      result: "複数のLPで、企画への参加からコーディング、公開までを担当しました。",
+    },
+    role: "制作・進行（構成案、デザインの確認、実装、校正、進行管理）",
+    period: "2020年11月〜2021年5月",
+    stack: ["HTML", "CSS", "JavaScript", "Figma"],
+    links: [],
+    sections: [
+      {
+        title: "していたこと",
+        list: [
+          "病気について知ってもらうページ、製品紹介、学会の告知などのLPの企画に参加し、構成案を作成",
+          "Figma でデザインを確かめ、HTML / CSS でコーディング。JavaScript で簡単な動きやアニメーションを実装",
+          "スマホでも見やすいレスポンシブ対応と、読みやすさ・使いやすさの調整",
+          "薬機法のガイドラインに合わせた表現の調整と、校正への対応",
+          "スケジュールの管理、レビュー用の資料や修正の指示書の作成",
+        ],
+      },
+      {
+        title: "載せていないこと",
+        paragraphs: [
+          "実案件のため、会社名、製品名、ページ、コードは載せていません。図は進め方を説明するためのもので、実際の画面ではありません。",
+        ],
+      },
+    ],
+  },
+  {
+    slug: "web-design-2017",
+    shortTitle: "Webサイトのデザイン",
+    category: "work",
+    tone: "sand",
+    build: {
+      kind: "hand",
+      label: "自分で実装",
+      detail: "コードは基本的に自分で書いています。",
+    },
+    figure: "web-flow",
+    title: "Webサイトのデザインとコーディング",
+    kicker: "キャリアの最初の実務（概要のみ）",
+    lead: "キャリアの最初の1年は、Web制作の会社で、LP やサービス紹介のサイト、コーポレートサイト、採用サイト、バナーの制作を担当していました。Photoshop と Illustrator でのデザインから、HTML / CSS / JavaScript でのコーディング、WordPress での作り直しまでを一人で通して担当しています。実案件のため、取り組んだ内容だけを紹介します。",
+    summary: {
+      problem: "デザインと実装を別々の人が担うと、見た目の意図が実装で崩れやすく、手戻りも増える。",
+      decision: "デザインからコーディングまでを一人で通し、更新が多いサイトは WordPress で作り直す。",
+      result: "自社のコーポレートサイトと採用サイトを WordPress で作り直し、出向先では複数のサイトの改修と保守を担当しました。",
+    },
+    role: "デザイン・実装・保守",
+    period: "2017年1月〜2018年1月",
+    stack: ["Photoshop", "Illustrator", "HTML5", "CSS3", "LESS", "JavaScript", "PHP", "WordPress", "Subversion", "Bitbucket", "GitHub", "Google Analytics"],
+    links: [],
+    sections: [
+      {
+        title: "していたこと",
+        list: [
+          "LP、サービス紹介のサイト、コーポレートサイト、採用サイトのデザインを Photoshop と Illustrator で作成",
+          "広告やサイトに載せるバナーの制作",
+          "デザインをもとに HTML / CSS（LESS）/ JavaScript でコーディングし、レスポンシブ対応やアニメーションを実装",
+          "ソースコードは、案件に合わせて Subversion、Bitbucket、GitHub で管理",
+          "自社のコーポレートサイトと採用サイトを WordPress で作り直し、更新しやすくした",
+          "出向先で、複数のサイトの改修と保守を担当。要望の整理、指示書の作成、進行の管理もしていた",
+          "Google Analytics でのアクセス解析と、SEO の対応",
+        ],
+      },
+      {
+        title: "載せていないこと",
+        paragraphs: [
+          "実案件のため、会社名、サービス名、画面は載せていません。デザインの権利は当時の会社やお客さまにあり、写っている人の写真も含まれるためです。図は仕事の範囲を説明するためのものです。",
         ],
       },
     ],

@@ -341,6 +341,104 @@ export function AzureFlow() {
   );
 }
 
+export function ClmFlow() {
+  return (
+    <figure className="crm-flow" aria-label="資料の画像やシートの内容から、スクリプトで資材のHTMLと登録用のCSVを作り、Veeva Vault に登録する仕組みの図">
+      <div className="crm-flow__col">
+        <p className="crm-flow__label">元にするもの</p>
+        <ul>
+          {["PowerPoint の書き出し画像", "スプレッドシートの内容", "共通のテンプレート"].map((label, index) => (
+            <li key={label} style={{ "--i": index }}>
+              {label}
+            </li>
+          ))}
+        </ul>
+      </div>
+      <div className="crm-flow__arrow" aria-hidden="true" />
+      <div className="crm-flow__col">
+        <p className="crm-flow__label">スクリプト</p>
+        <div className="crm-flow__tool">
+          <span>Google Apps Script / Python</span>
+          <strong>資材のHTMLを作る</strong>
+          <strong>登録用のCSVを作る</strong>
+        </div>
+      </div>
+      <div className="crm-flow__arrow" aria-hidden="true" />
+      <div className="crm-flow__col">
+        <p className="crm-flow__label">Veeva</p>
+        <div className="crm-flow__user">
+          <strong>Vault に一括で登録</strong>
+          <strong>iPad で動作を確認</strong>
+        </div>
+      </div>
+      <figcaption>仕組みの説明図です。実際の画面ではありません。</figcaption>
+    </figure>
+  );
+}
+
+function ThreeStepFlow({ label, first, middle, last }) {
+  return (
+    <figure className="crm-flow" aria-label={label}>
+      <div className="crm-flow__col">
+        <p className="crm-flow__label">{first.title}</p>
+        <ul>
+          {first.items.map((text, index) => (
+            <li key={text} style={{ "--i": index }}>
+              {text}
+            </li>
+          ))}
+        </ul>
+      </div>
+      <div className="crm-flow__arrow" aria-hidden="true" />
+      <div className="crm-flow__col">
+        <p className="crm-flow__label">{middle.title}</p>
+        <div className="crm-flow__tool">
+          <span>{middle.tools}</span>
+          {middle.items.map((text) => (
+            <strong key={text}>{text}</strong>
+          ))}
+        </div>
+      </div>
+      <div className="crm-flow__arrow" aria-hidden="true" />
+      <div className="crm-flow__col">
+        <p className="crm-flow__label">{last.title}</p>
+        <div className="crm-flow__user">
+          {last.items.map((text) => (
+            <strong key={text}>{text}</strong>
+          ))}
+        </div>
+      </div>
+      <figcaption>進め方の説明図です。実際の画面ではありません。</figcaption>
+    </figure>
+  );
+}
+
+export function LpFlow() {
+  return (
+    <ThreeStepFlow
+      label="LPの企画から、デザインの確認と実装、表現の確認と校正を経て公開するまでの図"
+      first={{ title: "企画", items: ["病気を知ってもらうページ", "製品紹介", "学会の告知"] }}
+      middle={{ title: "制作", tools: "Figma → HTML / CSS / JavaScript", items: ["構成案とデザインの確認", "コーディング"] }}
+      last={{ title: "公開の前に", items: ["薬機法に合わせて表現を調整", "校正と品質の確認"] }}
+    />
+  );
+}
+
+export function WebFlow() {
+  return (
+    <ThreeStepFlow
+      label="サイトのデザインからコーディング、WordPress での作り直し、公開後の保守と解析までの図"
+      first={{ title: "作ったもの", items: ["LP", "サービス紹介", "コーポレートサイト", "採用サイト", "バナー"] }}
+      middle={{
+        title: "制作",
+        tools: "Photoshop / Illustrator → HTML / CSS / JS",
+        items: ["デザイン", "コーディング", "WordPress で作り直し"],
+      }}
+      last={{ title: "公開のあと", items: ["出向先での改修と保守", "アクセス解析と SEO"] }}
+    />
+  );
+}
+
 export function SeminarFlow() {
   return (
     <figure className="crm-flow" aria-label="管理画面で指定したおすすめの記事を、講演会の予約が終わった画面に表示する仕組みの図">
@@ -382,6 +480,9 @@ export function CaseVisual({ item, eager = false, zoomable = false }) {
   if (item.figure === "crm-flow") return <CrmFlow />;
   if (item.figure === "power-flow") return <PowerFlow />;
   if (item.figure === "azure-flow") return <AzureFlow />;
+  if (item.figure === "clm-flow") return <ClmFlow />;
+  if (item.figure === "lp-flow") return <LpFlow />;
+  if (item.figure === "web-flow") return <WebFlow />;
   if (item.video) return <OfficeVideo item={item} eager={eager} />;
   return <BrowserFrame image={item.image} eager={eager} zoomable={zoomable} />;
 }
