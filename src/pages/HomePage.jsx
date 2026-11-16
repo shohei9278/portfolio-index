@@ -119,6 +119,10 @@ export function HomePage() {
             <Link to={`/work/${featuredCase.slug}`} className="button button--light">
               運用の設計と判断を読む
             </Link>
+            <p className="featured__quality">
+              AIが書いたコードは、PRのたびに単体テストとE2E（Playwright）を通してから本番に出し、本番も30分ごとに自動で確かめています。
+              <Link to={`/work/${featuredCase.slug}#quality`}>テストとCI/CDを見る →</Link>
+            </p>
             <p className="featured__links">
               <ExternalLink href={labLinks.showcase} label="featured-showcase">
                 実験の概要

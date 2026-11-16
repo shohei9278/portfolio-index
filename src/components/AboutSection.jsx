@@ -37,8 +37,13 @@ const SKILLS = [
     works: ["power-apps", "double-check", "case-management"],
   },
   {
+    label: "テスト・CI/CD",
+    items: ["GitHub Actions", "Playwright", "E2Eテスト", "単体テスト"],
+    works: ["ai-product-lab", "double-check"],
+  },
+  {
     label: "クラウド・運用",
-    items: ["Azure", "Vercel", "GitHub Actions", "Docker"],
+    items: ["Azure", "Vercel", "Railway", "Docker"],
     works: ["azure-migration", "ai-product-lab"],
   },
 ];

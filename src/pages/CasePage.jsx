@@ -1,6 +1,7 @@
+import { useEffect } from "react";
 import { ExternalLink } from "../components/ExternalLink.jsx";
 import { LabShowcase } from "../components/LabOffice.jsx";
-import { LabFlow, LabStats } from "../components/LabPanels.jsx";
+import { LabFlow, LabQuality, LabStats } from "../components/LabPanels.jsx";
 import { BrowserFrame, BuildBadge, CaseVisual, Reveal } from "../components/Visuals.jsx";
 import { CATEGORY_LABELS, cases } from "../data/cases.js";
 import { Link } from "../router.jsx";
@@ -61,6 +62,12 @@ function Decision({ decision, index, slug }) {
 }
 
 export function CasePage({ item }) {
+  // 「/work/ai-product-lab#quality」のように来たときは、描画のあとでその位置へ移動する
+  useEffect(() => {
+    const id = window.location.hash.slice(1);
+    if (id) window.document.getElementById(id)?.scrollIntoView({ behavior: "instant", block: "start" });
+  }, [item]);
+
   const index = cases.indexOf(item);
   const nextCase = cases[(index + 1) % cases.length];
   const prevCase = cases[(index - 1 + cases.length) % cases.length];
@@ -151,6 +158,16 @@ export function CasePage({ item }) {
           <section className="case-features">
             <h2>オフィスの中</h2>
             <LabShowcase />
+          </section>
+        ) : null}
+
+        {item.showQuality ? (
+          <section className="case-features" id="quality">
+            <h2>テストとCI/CD</h2>
+            <p className="case-features__lead">
+              コードはAIが書くので、壊れたものが本番に出ないことを仕組みで守っています。人がマージする前と、本番に出たあとの両方で自動で確かめます。
+            </p>
+            <LabQuality />
           </section>
         ) : null}
 
