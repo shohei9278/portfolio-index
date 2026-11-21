@@ -414,6 +414,16 @@ button {
   font-size: 13px;
 }
 
+.stats__grid .stats__sub {
+  margin-top: 8px;
+  font-family: inherit;
+  font-size: 12px;
+  font-weight: 400;
+  letter-spacing: 0;
+  line-height: 1.4;
+  opacity: 0.72;
+}
+
 .stats figcaption {
   font-size: 13px;
   line-height: 1.6;
@@ -1211,7 +1221,7 @@ button {
 
 .quality__stages {
   display: grid;
-  grid-template-columns: minmax(0, 1.5fr) minmax(0, 1.1fr) minmax(0, 0.9fr);
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 12px;
   list-style: none;
 }
@@ -1978,7 +1988,7 @@ button {
 
 .flow {
   display: grid;
-  grid-template-columns: repeat(5, minmax(0, 1fr));
+  grid-template-columns: repeat(var(--steps, 5), minmax(0, 1fr));
   gap: 22px;
 }
 
@@ -2033,6 +2043,205 @@ button {
   color: var(--muted);
   font-size: 12px;
   line-height: 1.6;
+}
+
+.routines {
+  display: grid;
+  gap: 12px;
+}
+
+.routines__card {
+  display: grid;
+  gap: 14px;
+  padding: 18px;
+  border: 1px solid var(--line);
+  border-top: 3px solid var(--ai);
+  border-radius: 10px;
+  background: var(--surface);
+}
+
+.routines__card h3 {
+  font-size: 17px;
+  line-height: 1.4;
+}
+
+.routines__note {
+  max-width: 52em;
+  font-size: 14px;
+  line-height: 1.7;
+}
+
+.check-eval {
+  display: grid;
+  gap: 12px;
+  margin-top: 16px;
+  padding: 18px;
+  border: 1px solid var(--line);
+  border-top: 3px solid var(--ai);
+  border-radius: 10px;
+  background: var(--surface);
+}
+
+.check-eval h3 {
+  font-size: 17px;
+  line-height: 1.4;
+}
+
+.check-eval__list {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+  list-style: none;
+}
+
+.check-eval__list li {
+  display: grid;
+  align-content: start;
+  gap: 10px;
+  padding: 14px;
+  border-radius: 8px;
+  background: var(--ai-soft);
+}
+
+.check-eval__list strong {
+  font-size: 14px;
+}
+
+.check-eval__meter {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 4px 8px;
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+.check-eval__value {
+  font-family: var(--mono);
+  font-weight: 700;
+}
+
+.check-eval__bar {
+  grid-column: 1 / -1;
+  height: 6px;
+  border-radius: 3px;
+  background: var(--line);
+  overflow: hidden;
+}
+
+.check-eval__bar span {
+  display: block;
+  height: 100%;
+  border-radius: 3px;
+  background: var(--muted);
+}
+
+.check-eval__bar span.is-full {
+  background: var(--ai);
+}
+
+.handoffs {
+  display: grid;
+  gap: 12px;
+  margin-top: 20px;
+}
+
+.handoffs h3,
+.cycle__example h3 {
+  font-size: 17px;
+  line-height: 1.4;
+}
+
+.handoffs__list {
+  display: grid;
+  gap: 8px;
+  list-style: none;
+}
+
+.handoffs__list li {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+  gap: 12px;
+  align-items: stretch;
+}
+
+.handoffs__before,
+.handoffs__after {
+  display: grid;
+  align-content: start;
+  gap: 4px;
+  padding: 12px 14px;
+  border-radius: 8px;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.handoffs__before {
+  background: var(--human-soft);
+}
+
+.handoffs__after {
+  background: var(--ai-soft);
+}
+
+.handoffs__before span,
+.handoffs__after span {
+  color: var(--human);
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.handoffs__after span {
+  color: var(--ai);
+}
+
+.handoffs__arrow {
+  align-self: center;
+  color: var(--muted);
+}
+
+.cycle {
+  display: grid;
+  gap: 16px;
+}
+
+.cycle__loop {
+  display: grid;
+  gap: 10px;
+}
+
+.cycle__back {
+  color: var(--ai);
+  font-size: 14px;
+  font-weight: 700;
+  text-align: right;
+}
+
+.cycle__example {
+  display: grid;
+  gap: 12px;
+  padding: 18px;
+  border: 1px solid var(--line);
+  border-top: 3px solid var(--ai);
+  border-radius: 10px;
+  background: var(--surface);
+}
+
+.cycle__example dl {
+  display: grid;
+  gap: 8px;
+}
+
+.cycle__example dl div {
+  display: grid;
+  grid-template-columns: 6em minmax(0, 1fr);
+  gap: 12px;
+  font-size: 14px;
+  line-height: 1.7;
+}
+
+.cycle__example dt {
+  color: var(--muted);
+  font-weight: 700;
 }
 
 .decisions {
@@ -2508,6 +2717,33 @@ button {
   .flow {
     grid-template-columns: minmax(0, 1fr);
     gap: 24px;
+  }
+
+  .handoffs__list {
+    gap: 20px;
+  }
+
+  .check-eval__list {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .handoffs__list li {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 4px;
+  }
+
+  .handoffs__arrow {
+    justify-self: center;
+    rotate: 90deg;
+  }
+
+  .cycle__back {
+    text-align: center;
+  }
+
+  .cycle__example dl div {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 0;
   }
 
   .flow__step:not(:last-child)::after {
