@@ -2849,6 +2849,117 @@ button {
 
 }
 
+/* 人の手を、どこまで手放せるか */
+.autonomy {
+  display: grid;
+  gap: 20px;
+}
+
+.autonomy__headlines {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+  list-style: none;
+}
+
+.autonomy__card {
+  display: grid;
+  align-content: start;
+  gap: 8px;
+  padding: 20px;
+  border: 1px solid var(--line);
+  border-left: 4px solid var(--ai);
+  border-radius: 10px;
+  background: var(--surface);
+}
+
+.autonomy__kicker {
+  color: var(--ai);
+  font-family: var(--mono);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+}
+
+.autonomy__card h3 {
+  font-size: 20px;
+  line-height: 1.45;
+}
+
+.autonomy__card p {
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.7;
+}
+
+.autonomy__map,
+.autonomy__kept {
+  display: grid;
+  gap: 10px;
+}
+
+.autonomy__map h3,
+.autonomy__kept h3 {
+  font-size: 17px;
+  line-height: 1.4;
+}
+
+.autonomy__map ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  list-style: none;
+}
+
+.autonomy__chip {
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 4px 8px;
+  padding: 8px 12px;
+  border-radius: 999px;
+  background: var(--ai-soft);
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.autonomy__chip span {
+  color: var(--ai);
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.autonomy__chip small {
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.autonomy__chip--human {
+  background: var(--human-soft);
+}
+
+.autonomy__chip--human span {
+  color: var(--human);
+}
+
+.autonomy__kept ul {
+  display: grid;
+  gap: 6px;
+  padding-left: 1.2em;
+  font-size: 14px;
+  line-height: 1.7;
+}
+
+@media (max-width: 760px) {
+  .autonomy__headlines {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .autonomy__card h3 {
+    font-size: 18px;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;

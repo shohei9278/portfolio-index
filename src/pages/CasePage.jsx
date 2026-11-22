@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { ExternalLink } from "../components/ExternalLink.jsx";
 import { LabShowcase } from "../components/LabOffice.jsx";
 import { useLabNumbers } from "../data/labNumbers.js";
-import { LabCycle, LabFlow, LabHandoffs, LabQuality, LabRoutines, LabStats } from "../components/LabPanels.jsx";
+import { LabAutonomy, LabCycle, LabFlow, LabHandoffs, LabQuality, LabRoutines, LabStats } from "../components/LabPanels.jsx";
 import { BrowserFrame, BuildBadge, CaseVisual, Reveal } from "../components/Visuals.jsx";
 import { CATEGORY_LABELS, cases } from "../data/cases.js";
 import { Link } from "../router.jsx";
@@ -169,6 +169,16 @@ export function CasePage({ item }) {
           </section>
         ) : null}
 
+        {item.showAutonomy ? (
+          <section className="case-features" id="autonomy">
+            <h2>人の手を、どこまで手放せるか</h2>
+            <p className="case-features__lead">
+              目標は、人が寝ていても回り、壊れても自分で戻り、AIが自分のコードを育てていく会社です。人の手が要った場面を見つけるたびに、次はAIが自分でできる仕組みに置き換えています。
+            </p>
+            <LabAutonomy />
+          </section>
+        ) : null}
+
         {item.showCycle ? (
           <section className="case-features" id="cycle">
             <h2>毎日、自分で回す</h2>
@@ -183,7 +193,7 @@ export function CasePage({ item }) {
           <section className="case-features" id="routines">
             <h2>自分で直して、自分で作る</h2>
             <p className="case-features__lead">
-              ダッシュボードが、クラウドの Claude Code（ルーティン）に仕事を頼みます。人が入るのは、主に、直す改善を選ぶこと、PRのマージ、止まったものの判断です。
+              ダッシュボードが、クラウドの Claude Code（ルーティン）に仕事を頼みます。人が入るのは、主に、AIの社員の提案から直すものを選ぶことと、自動では進めない変更・止まったものの判断です。
             </p>
             <LabRoutines />
             <LabHandoffs />
