@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { ExternalLink } from "../components/ExternalLink.jsx";
 import { LabShowcase } from "../components/LabOffice.jsx";
+import { useLabNumbers } from "../data/labNumbers.js";
 import { LabCycle, LabFlow, LabHandoffs, LabQuality, LabRoutines, LabStats } from "../components/LabPanels.jsx";
 import { BrowserFrame, BuildBadge, CaseVisual, Reveal } from "../components/Visuals.jsx";
 import { CATEGORY_LABELS, cases } from "../data/cases.js";
@@ -18,9 +19,16 @@ function Section({ number, title, children }) {
   );
 }
 
+// 数字を読み込んで作る文（AI Product Lab の結果など）
+function NumbersText({ make }) {
+  return <p>{make(useLabNumbers())}</p>;
+}
+
 function Paragraphs({ items }) {
-  return items.map((item) =>
-    typeof item === "string" ? (
+  return items.map((item, i) =>
+    typeof item === "function" ? (
+      <NumbersText make={item} key={i} />
+    ) : typeof item === "string" ? (
       <p key={item}>{item}</p>
     ) : (
       <div className="thinking-group" key={item.title}>

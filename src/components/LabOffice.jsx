@@ -1,11 +1,18 @@
-import { LAB_AS_OF, labScreens, labStaff } from "../data/cases.js";
+import { labScreens, labStaff } from "../data/cases.js";
+import { labStaffScore, useLabNumbers } from "../data/labNumbers.js";
 import { BrowserFrame } from "./Visuals.jsx";
 
+// 社員の id（cases.js の key）と、数字の入口の id
+const STAFF_ID = { claude: "anthropic", gpt: "openai", gemini: "google" };
+
 export function LabStaff() {
+  const n = useLabNumbers();
   return (
     <div className="lab-staff">
       <ul>
-        {labStaff.map((member) => (
+        {labStaff.map((member) => {
+          const score = labStaffScore(n, STAFF_ID[member.key]);
+          return (
           <li className={`staff-card staff-card--${member.key}`} key={member.key}>
             <img src={member.robot} alt="" width="60" height="88" loading="lazy" />
             <div>
@@ -14,16 +21,19 @@ export function LabStaff() {
                 <small>{member.company}</small>
               </p>
               <p className="staff-card__job">{member.job}</p>
-              <p className="staff-card__score">
-                選ばれた案 <strong>{member.picked}</strong>
-                <span>{member.bias}</span>
-              </p>
+              {score ? (
+                <p className="staff-card__score">
+                  選ばれた案 <strong>{score.picked}</strong>
+                  <span>{score.bias}</span>
+                </p>
+              ) : null}
             </div>
           </li>
-        ))}
+          );
+        })}
       </ul>
       <p className="lab-staff__note">
-        アイデアは作者を伏せて3社全員で採点します。「選ばれた案」と、自分の案に甘いか辛いかは {LAB_AS_OF} 時点の実験の概要ページの値です。
+        アイデアは作者を伏せて3社全員で採点します。「選ばれた案」と、自分の案に甘いか辛いかは {n.asOf} 時点の実験の概要ページの値です。
       </p>
     </div>
   );
