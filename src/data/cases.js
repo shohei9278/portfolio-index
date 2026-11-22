@@ -1,6 +1,10 @@
 // 掲載する内容は、公開ページ、公開リポジトリ、本人の説明で確かめられる事実だけにする。
 // 作品の画像は2026年11月10日に撮影した実際の画面。AI Product Lab のオフィスの動画と画面は2026年11月13日に本番を来訪者（閲覧のみ）として開いて撮った。
-// AI Product Lab の数字は手で写したものなので、更新するときは LAB_AS_OF と一緒に、labStats、labStaff、結果の欄の「人が手を入れた回数」も直す。
+// AI Product Lab の数字は、ダッシュボードの /api/showcase/numbers から読む（src/data/labNumbers.js）。読めないときに出す手写しの数字も、そこにまとめてある。
+
+import { LAB_AS_OF, labNum, opCount } from "./labNumbers.js";
+
+export { LAB_AS_OF };
 
 export const profile = {
   name: "中原 翔平",
@@ -16,18 +20,7 @@ const LAB_REPO = "https://github.com/shohei9278/ai-lab-dashboard";
 const JOB_REPO = "https://github.com/shohei9278/ai-job-dashboard";
 const TECHSCOPE_REPO = "https://github.com/shohei9278/techscope-ai";
 
-export const LAB_AS_OF = "2026年11月22日";
-
-export const labStats = [
-  ["AIが出したアイデア", "204", "件"],
-  ["進めた案件", "40", "件"],
-  ["公開した案件", "24", "件"],
-  ["訪問（累計）", "293", "人"],
-  ["登録・利用（累計）", "14", "件"],
-  ["AI費用（累計）", "22,566", "円", "成果1件 1,104円"],
-];
-
-// 実験の概要ページの「社員」の欄から写した。数字は LAB_AS_OF 時点
+// 社員の紹介。「選ばれた案」と、自分の案に甘いか辛いかは、labNumbers.js から読む
 export const labStaff = [
   {
     key: "claude",
@@ -35,8 +28,6 @@ export const labStaff = [
     company: "Anthropic",
     robot: "/works/robots/anthropic.png",
     job: "LP・ツールを作る担当。SNS投稿の下書き、チェックの評価、LPのチェックもよくしている",
-    picked: "20/54",
-    bias: "自分の案に辛め",
   },
   {
     key: "gpt",
@@ -44,8 +35,6 @@ export const labStaff = [
     company: "OpenAI",
     robot: "/works/robots/openai.png",
     job: "チェックの評価、アイデアの採点、アイデア出しをよくしている",
-    picked: "17/54",
-    bias: "自分の案に甘め",
   },
   {
     key: "gemini",
@@ -53,8 +42,6 @@ export const labStaff = [
     company: "Google",
     robot: "/works/robots/google.png",
     job: "チェックの評価、アイデアの採点、アイデア出しをよくしている",
-    picked: "1/54",
-    bias: "自他の案をほぼ同じに採点",
   },
 ];
 
@@ -416,11 +403,11 @@ export const cases = [
     ],
     showStats: true,
     result: [
-      "公開24件に対して、登録・利用は合わせて14件です。訪問も少なく、案件ごとの差は偶然の可能性が高い段階です。",
-      "公開した24件のうち13件は、人の承認なしでAIが公開しました。人があとから見て「出すべきでなかった」としたものは、確かめた6件のうち0件です。",
-      "案件のために使った費用を登録・利用の数で割ると、成果1件あたり1,104円です（会議など、案件に付かないAIの費用は含めていません）。",
+      (n) => `公開${labNum(n.totals.published)}件に対して、登録・利用は合わせて${labNum(n.totals.conversions)}件です。訪問も少なく、案件ごとの差は偶然の可能性が高い段階です。`,
+      (n) => `公開した${labNum(n.totals.published)}件のうち${labNum(n.autoPublish.published)}件は、人の承認なしでAIが公開しました。人があとから見て「出すべきでなかった」としたものは、確かめた${labNum(n.autoPublish.reviewed)}件のうち${labNum(n.autoPublish.bad)}件です。`,
+      (n) => n.totals.perConversionJpy === null ? "まだ登録・利用がないため、成果1件あたりの費用は出せていません。" : `案件のために使った費用を登録・利用の数で割ると、成果1件あたり${labNum(n.totals.perConversionJpy)}円です（会議など、案件に付かないAIの費用は含めていません）。`,
       "費用の無駄は減らせたものもあります。ツール改善の失敗では、AIに渡す内容を絞り、同じ処理の費用が約59円から約9円になりました。",
-      `人が手を入れた回数は（${LAB_AS_OF}時点）、AIの提案の承認・却下が35回、修正やデザインの指示が27回、案件の保留が16回、公開後の評価が6回、SNSへの手での投稿・返信が6回で、公開を止めた回数は0回です。`,
+      (n) => `人が手を入れた回数は（${n.asOf}時点）、AIの提案の承認・却下が${opCount(n, "AIの提案を承認・却下")}回、修正やデザインの指示が${opCount(n, "修正やデザインを指示")}回、案件の保留が${opCount(n, "案件を保留にした")}回、公開後の評価が${opCount(n, "公開後に評価")}回、SNSへの手での投稿・返信が${opCount(n, "SNSに手で投稿・返信")}回で、公開を止めた回数は${opCount(n, "公開を止めた")}回です。`,
     ],
     next: [
       "いちばんのネックは「届かない」ことです。どの題材とSNSの組み合わせが効くのかは、まだ分かっていません。",

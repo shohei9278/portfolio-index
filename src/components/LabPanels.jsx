@@ -1,11 +1,13 @@
-import { LAB_AS_OF, QUALITY_AS_OF, labCheckEval, labCycle, labFlow, labHandoffs, labLinks, labQuality, labRoutines, labStats } from "../data/cases.js";
+import { QUALITY_AS_OF, labCheckEval, labCycle, labFlow, labHandoffs, labLinks, labQuality, labRoutines } from "../data/cases.js";
+import { labNum, labStatTiles, useLabNumbers } from "../data/labNumbers.js";
 import { ExternalLink } from "./ExternalLink.jsx";
 
 export function LabStats() {
+  const n = useLabNumbers();
   return (
     <figure className="stats">
       <dl className="stats__grid">
-        {labStats.map(([label, value, unit, sub]) => (
+        {labStatTiles(n).map(([label, value, unit, sub]) => (
           <div key={label}>
             <dt>{label}</dt>
             <dd>
@@ -17,8 +19,8 @@ export function LabStats() {
         ))}
       </dl>
       <figcaption>
-        {LAB_AS_OF}
-        時点。公開した案件は、AIが作って公開した事前登録ページと小さなツールの数です。登録・利用は、事前登録とツールの利用を合わせた数です。成果1件は、案件のために使った費用を登録・利用の数で割った値です。最新の数字は実験の概要ページで確かめられます。
+        {n.asOf}
+        時点{n.live ? "（実験の記録から自動で読み込んだ数字）" : ""}。公開した案件は、AIが作って公開した事前登録ページと小さなツールの数です。登録・利用は、事前登録とツールの利用を合わせた数です。成果1件は、案件のために使った費用を登録・利用の数で割った値です。最新の数字は実験の概要ページで確かめられます。
       </figcaption>
     </figure>
   );
@@ -135,6 +137,7 @@ export function LabRoutines() {
 }
 
 export function LabHandoffs() {
+  const n = useLabNumbers();
   return (
     <div className="handoffs">
       <h3>人の手を、仕組みに置き換えてきた</h3>
@@ -156,7 +159,7 @@ export function LabHandoffs() {
         ))}
       </ol>
       <p className="routines__note">
-        それでも、改善の記録では、人が見つけた・決めた改善が99件、AIの社員の提案で入った改善が32件です（{LAB_AS_OF}時点）。まだ人が見つけるほうが多い段階です。
+        それでも、改善の記録では、人が見つけた・決めた改善が{labNum(n.improvements.human)}件、AIの社員の提案で入った改善が{labNum(n.improvements.aiDone)}件です（{n.asOf}時点）。{n.improvements.human > n.improvements.aiDone ? "まだ人が見つけるほうが多い段階です。" : ""}
       </p>
     </div>
   );
