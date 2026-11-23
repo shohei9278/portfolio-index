@@ -24,6 +24,10 @@ function NumbersText({ make }) {
   return <p>{make(useLabNumbers())}</p>;
 }
 
+function LiveLine({ make }) {
+  return make(useLabNumbers());
+}
+
 function Paragraphs({ items }) {
   return items.map((item, i) =>
     typeof item === "function" ? (
@@ -69,6 +73,85 @@ function Decision({ decision, index, slug }) {
   );
 }
 
+// AI Product Lab の大きな区切り（結果 → AIの動き → 人の判断 → 技術の詳しいところ。採用で読む人が、前半で判断と結果を見られるように）
+function Part({ number, title, id, lead, children }) {
+  return (
+    <section className="case-part" id={id} aria-labelledby={`${id}-title`}>
+      <h2 className="case-part__title" id={`${id}-title`}>
+        <span aria-hidden="true">{number}</span>
+        {title}
+      </h2>
+      {lead ? <p className="case-part__lead">{lead}</p> : null}
+      {children}
+    </section>
+  );
+}
+
+function Feature({ id, title, lead, children }) {
+  return (
+    <div className="case-features" id={id}>
+      <h3 className="case-features__title">{title}</h3>
+      {lead ? <p className="case-features__lead">{lead}</p> : null}
+      {children}
+    </div>
+  );
+}
+
+function LabStory({ item }) {
+  return (
+    <>
+      <Part number="01" title="結果と、いまの課題" id="results">
+        <LabStats />
+        <div className="case-part__text">
+          <Paragraphs items={item.result} />
+          <h3 className="case-subhead">いまの課題</h3>
+          <Paragraphs items={item.next} />
+        </div>
+      </Part>
+
+      <Part number="02" title="AIが実際にどう動いたか" id="ai" lead="人が指示しなくても、AIが毎日の計画を立てて実行し、仕組みの改善も自分で直してマージまで進めています。">
+        <Feature id="cycle" title="毎日、自分で回す" lead="毎朝、担当のAIが前の日の結果を振り返り、その日の手を決めて、自分で実行します。">
+          <LabCycle />
+        </Feature>
+        <Feature id="routines" title="自分で直して、自分で作る" lead="ダッシュボードが、クラウドの Claude Code（ルーティン）に仕事を頼みます。直すものを選ぶのも、レビューとマージも自動です。">
+          <LabRoutines />
+        </Feature>
+        <Feature id="office" title="オフィスの中">
+          <LabShowcase />
+        </Feature>
+      </Part>
+
+      <Part number="03" title="自分が判断したこと" id="decisions" lead="AIにどこまで任せ、どんなときに人が判断するかを決め、本番で起きた失敗を次の仕組みに直しています。人が見つけたこと・決めたことは、PR ごとに改善の記録として公開しています。">
+        <div className="decisions case-part__decisions">
+          {item.decisions.map((decision, decisionIndex) => (
+            <Decision decision={decision} index={decisionIndex} slug={item.slug} key={decision.title} />
+          ))}
+        </div>
+        <Feature id="autonomy" title="任せる範囲と、人に残す線" lead="人の手が要った場面を見つけるたびに、次はAIが自分でできる仕組みに置き換えています。ただし、予算・安全の仕組み・AIへの指示は、あえて人に残しています。">
+          <LabAutonomy />
+          <LabHandoffs />
+        </Feature>
+      </Part>
+
+      <Part number="04" title="技術の詳しいところ" id="tech">
+        <Feature id="practices" title="AI開発の言葉で見ると" lead="Evals・ハルシネーション対策・ガードレールなど、AIを使った開発でよく話題になることを、この実験では実際にどう形にしているかの一覧です。どれも、コードや PR、公開しているページで確かめられます。">
+          <LabPractices />
+        </Feature>
+        <Feature id="quality" title="テストとCI/CD" lead="コードはAIが書くので、壊れたものが本番に出ないことを仕組みで守っています。マージする前と、本番に出たあとの両方で自動で確かめます。">
+          <h4 className="lab-block__title">変更が本番に出るまで</h4>
+          <LabFlow />
+          <LabQuality />
+        </Feature>
+        <Feature id="thinking" title="考えたこと">
+          <div className="case-part__text">
+            <Paragraphs items={item.thinking} />
+          </div>
+        </Feature>
+      </Part>
+    </>
+  );
+}
+
 export function CasePage({ item }) {
   // 「/work/ai-product-lab#quality」のように来たときは、描画のあとでその位置へ移動する
   useEffect(() => {
@@ -96,6 +179,7 @@ export function CasePage({ item }) {
           </p>
           <h1>{item.title}</h1>
           <p className="case-hero__lead">{item.lead}</p>
+          {item.leadNumbers ? <p className="case-hero__numbers"><LiveLine make={item.leadNumbers} /></p> : null}
           <div className="case-hero__visual">
             <CaseVisual item={item} eager zoomable />
           </div>
@@ -104,7 +188,20 @@ export function CasePage({ item }) {
 
       <div className="wrap case-body">
         <div className="case-facts">
-          {item.build ? (
+          {item.designed ? (
+            <div className="build-note">
+              <p className="build-note__title">自分が設計・判断したこと</p>
+              <div>
+                <BuildBadge build={item.build} />
+                <ul className="build-note__list">
+                  {item.designed.map((text) => (
+                    <li key={text}>{text}</li>
+                  ))}
+                </ul>
+                <p>{item.designedNote}</p>
+              </div>
+            </div>
+          ) : item.build ? (
             <div className="build-note">
               <p className="build-note__title">コードの書き方</p>
               <div>
@@ -114,7 +211,7 @@ export function CasePage({ item }) {
             </div>
           ) : null}
           <dl className="case-meta">
-            {item.role ? (
+            {item.role && !item.designed ? (
               <div>
                 <dt>役割</dt>
                 <dd>{item.role}</dd>
@@ -162,14 +259,16 @@ export function CasePage({ item }) {
           ) : null}
         </div>
 
-        {item.showOffice ? (
+        {item.labStory ? <LabStory item={item} /> : null}
+
+        {!item.labStory && item.showOffice ? (
           <section className="case-features">
             <h2>オフィスの中</h2>
             <LabShowcase />
           </section>
         ) : null}
 
-        {item.showAutonomy ? (
+        {!item.labStory && item.showAutonomy ? (
           <section className="case-features" id="autonomy">
             <h2>人の手を、どこまで手放せるか</h2>
             <p className="case-features__lead">
@@ -179,7 +278,7 @@ export function CasePage({ item }) {
           </section>
         ) : null}
 
-        {item.showPractices ? (
+        {!item.labStory && item.showPractices ? (
           <section className="case-features" id="practices">
             <h2>AI開発の言葉で見ると</h2>
             <p className="case-features__lead">
@@ -189,7 +288,7 @@ export function CasePage({ item }) {
           </section>
         ) : null}
 
-        {item.showCycle ? (
+        {!item.labStory && item.showCycle ? (
           <section className="case-features" id="cycle">
             <h2>毎日、自分で回す</h2>
             <p className="case-features__lead">
@@ -199,7 +298,7 @@ export function CasePage({ item }) {
           </section>
         ) : null}
 
-        {item.showRoutines ? (
+        {!item.labStory && item.showRoutines ? (
           <section className="case-features" id="routines">
             <h2>自分で直して、自分で作る</h2>
             <p className="case-features__lead">
@@ -210,7 +309,7 @@ export function CasePage({ item }) {
           </section>
         ) : null}
 
-        {item.showQuality ? (
+        {!item.labStory && item.showQuality ? (
           <section className="case-features" id="quality">
             <h2>テストとCI/CD</h2>
             <p className="case-features__lead">
@@ -220,7 +319,7 @@ export function CasePage({ item }) {
           </section>
         ) : null}
 
-        {item.sections ? (
+        {item.labStory ? null : item.sections ? (
           item.sections.map((section, index) => (
             <Section number={String(index + 1).padStart(2, "0")} title={section.title} key={section.title}>
               {section.paragraphs ? <Paragraphs items={section.paragraphs} /> : null}
