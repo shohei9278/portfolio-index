@@ -203,7 +203,7 @@ export function CasePage({ item }) {
           <section className="case-features" id="routines">
             <h2>自分で直して、自分で作る</h2>
             <p className="case-features__lead">
-              ダッシュボードが、クラウドの Claude Code（ルーティン）に仕事を頼みます。人が入るのは、主に、AIの社員の提案から直すものを選ぶことと、自動では進めない変更・止まったものの判断です。
+              ダッシュボードが、クラウドの Claude Code（ルーティン）に仕事を頼みます。直すものを選ぶのも、レビューとマージも自動です。人が入るのは、自動では進めない変更（安全の仕組み・AIへの指示）と、自動で直しきれずに止まったものの判断です。
             </p>
             <LabRoutines />
             <LabHandoffs />
@@ -214,7 +214,7 @@ export function CasePage({ item }) {
           <section className="case-features" id="quality">
             <h2>テストとCI/CD</h2>
             <p className="case-features__lead">
-              コードはAIが書くので、壊れたものが本番に出ないことを仕組みで守っています。人がマージする前と、本番に出たあとの両方で自動で確かめます。
+              コードはAIが書くので、壊れたものが本番に出ないことを仕組みで守っています。マージする前と、本番に出たあとの両方で自動で確かめます。
             </p>
             <LabQuality />
           </section>

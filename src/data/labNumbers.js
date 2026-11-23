@@ -6,32 +6,35 @@ import { useEffect, useState } from "react";
 const NUMBERS_URL = import.meta.env.VITE_LAB_NUMBERS_URL || "https://ai-lab-dashboard-production-fc9e.up.railway.app/api/showcase/numbers";
 
 // 手で写した数字の日付。手で写した数字を直すときは、ここも直す
-export const LAB_AS_OF = "2026年11月22日";
+export const LAB_AS_OF = "2026年11月23日";
 
 // 手で写した数字（LAB_AS_OF 時点）。入口と同じ形にしておく
 const FALLBACK = {
   asOf: LAB_AS_OF,
   live: false,
-  totals: { ideas: 204, projects: 40, published: 24, visits: 293, conversions: 14, aiCostJpy: 22566, perConversionJpy: 1104 },
-  autoPublish: { published: 13, reviewed: 6, bad: 0 },
+  totals: { ideas: 204, projects: 40, published: 27, visits: 324, conversions: 19, aiCostJpy: 24276, perConversionJpy: 886 },
+  autoPublish: { published: 16, reviewed: 7, bad: 0 },
   staff: [
     { id: "anthropic", candidates: 54, selected: 20, lean: "strict" },
     { id: "openai", candidates: 54, selected: 17, lean: "self" },
     { id: "google", candidates: 54, selected: 1, lean: "even" },
   ],
-  improvements: { human: 99, aiDone: 32 },
+  improvements: { human: 120, aiDone: 40 },
   operations: [
     { label: "AIの提案を承認・却下", n: 35 },
-    { label: "公開後に評価", n: 6 },
+    { label: "公開後に評価", n: 7 },
     { label: "公開を止めた", n: 0 },
-    { label: "修正やデザインを指示", n: 27 },
+    { label: "修正やデザインを指示", n: 28 },
     { label: "案件を保留にした", n: 16 },
-    { label: "SNSに手で投稿・返信", n: 6 },
+    { label: "SNSに手で投稿・返信", n: 7 },
   ],
+  // クラウドの Claude Code（ルーティン）の実績（ダッシュボードの src/lib/showcase.ts の showcaseRoutineStats）
+  routines: { tools: 7, published: 4, autoPublished: 4, asked: 11, merged: 11, reviewed: 5, reviewAsked: 5, reviewMerged: 5 },
 };
 
 const isCount = (v) => Number.isFinite(v) && v >= 0;
 const LEANS = ["self", "strict", "even", null];
+const ROUTINE_KEYS = ["tools", "published", "autoPublished", "asked", "merged", "reviewed", "reviewAsked", "reviewMerged"];
 
 // 入口の答えの形を確かめ、使う形にそろえる。おかしいところがあれば null（手で写した数字を出す）
 function normalize(raw) {
@@ -44,11 +47,14 @@ function normalize(raw) {
   const i = raw.improvements ?? {};
   const improvements = isCount(i.human) && isCount(i.aiDone) ? i : null;
   const operations = Array.isArray(raw.operations) && raw.operations.every((o) => typeof o?.label === "string" && isCount(o.n)) ? raw.operations : null;
+  // ルーティンの実績は、あとから足した数字。形が違っても、ほかの数字は使い、ここだけ手で写した数字にする
+  const r = raw.routines ?? {};
+  const routines = ROUTINE_KEYS.every((k) => isCount(r[k])) ? r : FALLBACK.routines;
   const at = new Date(raw.at);
   if (!totals || !autoPublish || !staff || !improvements || !operations || Number.isNaN(at.getTime())) return null;
   if (!(totals.perConversionJpy === null || isCount(totals.perConversionJpy))) return null;
   const asOf = new Intl.DateTimeFormat("ja-JP", { timeZone: "Asia/Tokyo", year: "numeric", month: "long", day: "numeric" }).format(at);
-  return { asOf, live: true, totals, autoPublish, staff, improvements, operations };
+  return { asOf, live: true, totals, autoPublish, staff, improvements, operations, routines };
 }
 
 let pending = null;
