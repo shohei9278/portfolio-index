@@ -103,6 +103,9 @@ export function AboutSection() {
             <ExternalLink href={profile.github} label="about-github">
               GitHub
             </ExternalLink>
+            <ExternalLink href={profile.zenn} label="about-zenn">
+              Zenn
+            </ExternalLink>
           </div>
         </div>
 
