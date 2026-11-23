@@ -1,4 +1,4 @@
-import { QUALITY_AS_OF, labAutonomy, labCheckEval, labCycle, labFlow, labHandoffs, labLinks, labQuality, labRoutines } from "../data/cases.js";
+import { QUALITY_AS_OF, labAutonomy, labCheckEval, labCycle, labFlow, labHandoffs, labLinks, labPractices, labQuality, labRoutines } from "../data/cases.js";
 import { labNum, labStatTiles, useLabNumbers } from "../data/labNumbers.js";
 import { ExternalLink } from "./ExternalLink.jsx";
 
@@ -275,3 +275,46 @@ export function LabAutonomy() {
   );
 }
 
+
+// AI開発でよく使う言葉で見ると: 言葉ごとに、この実験でしていることと、確かめられる所（コード・PR・ページ）を並べる
+export function LabPractices() {
+  const n = useLabNumbers();
+  const live = {
+    human: `人が見つけた・決めた記録 ${labNum(n.improvements.human)}件（${n.asOf}）`,
+    cost: `AIの費用 これまで ${labNum(n.totals.aiCostJpy)}円（${n.asOf}）`,
+  };
+  return (
+    <div className="practices">
+      {labPractices.map((g) => (
+        <div className="practices__group" key={g.group}>
+          <h3>{g.group}</h3>
+          <ul className="practices__cards">
+            {g.items.map((x) => (
+              <li className="practices__card" key={x.term}>
+                <p className="practices__term">
+                  <strong>{x.term}</strong>
+                  <span>{x.ja}</span>
+                </p>
+                <p>{x.body}</p>
+                {x.fact || x.live ? <p className="practices__fact">{x.fact ?? live[x.live]}</p> : null}
+                <p className="practices__links">
+                  {x.links.map(([label, href]) =>
+                    href.startsWith("#") ? (
+                      <a href={href} key={href}>
+                        {label}
+                      </a>
+                    ) : (
+                      <ExternalLink href={href} label={`practices-${x.term}-${label}`} key={href}>
+                        {label}
+                      </ExternalLink>
+                    ),
+                  )}
+                </p>
+              </li>
+            ))}
+          </ul>
+        </div>
+      ))}
+    </div>
+  );
+}

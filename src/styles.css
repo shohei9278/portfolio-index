@@ -2993,3 +2993,81 @@ button {
 .nowrap {
   white-space: nowrap;
 }
+
+/* AI開発の言葉で見ると */
+.practices {
+  display: grid;
+  gap: 24px;
+}
+
+.practices__group {
+  display: grid;
+  gap: 10px;
+}
+
+.practices__group h3 {
+  font-size: 17px;
+  line-height: 1.4;
+}
+
+.practices__cards {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+  list-style: none;
+}
+
+.practices__card {
+  display: grid;
+  align-content: start;
+  gap: 8px;
+  padding: 18px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: var(--surface);
+}
+
+.practices__term {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 4px 8px;
+}
+
+.practices__term strong {
+  color: var(--ai);
+  font-family: var(--mono);
+  font-size: 16px;
+}
+
+.practices__term span {
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.practices__card > p:not([class]) {
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.7;
+}
+
+.practices__fact {
+  padding: 8px 10px;
+  border-radius: 8px;
+  background: var(--ai-soft);
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+.practices__links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 14px;
+  font-size: 13px;
+}
+
+@media (max-width: 900px) {
+  .practices__cards {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}

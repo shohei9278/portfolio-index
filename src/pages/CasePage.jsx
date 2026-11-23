@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { ExternalLink } from "../components/ExternalLink.jsx";
 import { LabShowcase } from "../components/LabOffice.jsx";
 import { useLabNumbers } from "../data/labNumbers.js";
-import { LabAutonomy, LabCycle, LabFlow, LabHandoffs, LabQuality, LabRoutines, LabStats } from "../components/LabPanels.jsx";
+import { LabAutonomy, LabCycle, LabFlow, LabHandoffs, LabPractices, LabQuality, LabRoutines, LabStats } from "../components/LabPanels.jsx";
 import { BrowserFrame, BuildBadge, CaseVisual, Reveal } from "../components/Visuals.jsx";
 import { CATEGORY_LABELS, cases } from "../data/cases.js";
 import { Link } from "../router.jsx";
@@ -176,6 +176,16 @@ export function CasePage({ item }) {
               目標は、人が寝ていても回り、壊れても自分で戻り、AIが自分のコードを育てていく会社です。人の手が要った場面を見つけるたびに、次はAIが自分でできる仕組みに置き換えています。
             </p>
             <LabAutonomy />
+          </section>
+        ) : null}
+
+        {item.showPractices ? (
+          <section className="case-features" id="practices">
+            <h2>AI開発の言葉で見ると</h2>
+            <p className="case-features__lead">
+              Evals・ハルシネーション対策・ガードレールなど、AIを使った開発でよく話題になることを、この実験では実際にどう形にしているかの一覧です。どれも、コードや PR、公開しているページで確かめられます。
+            </p>
+            <LabPractices />
           </section>
         ) : null}
 
