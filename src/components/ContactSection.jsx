@@ -53,6 +53,9 @@ export function ContactSection({ compact = false }) {
             <ExternalLink href={profile.github} label="footer-github">
               GitHub
             </ExternalLink>
+            <ExternalLink href={profile.zenn} label="footer-zenn">
+              Zenn
+            </ExternalLink>
             <ExternalLink href={profile.note} label="footer-note">
               note
             </ExternalLink>

@@ -10,6 +10,7 @@ export const profile = {
   name: "中原 翔平",
   nameEn: "Shohei Nakahara",
   note: "https://note.com/shon9278",
+  zenn: "https://zenn.dev/shon9278",
   email: "sn920708@gmail.com",
   github: "https://github.com/shohei9278",
 };
@@ -436,6 +437,7 @@ export const cases = [
     ],
     social: [
       ["note", "https://note.com/shon9278"],
+      ["Zenn（技術記事）", "https://zenn.dev/shon9278"],
       ["X（開発者の記録）", "https://x.com/ShoN9278"],
       ["X（運用）", "https://x.com/hitoride_app"],
       ["Threads（運用）", "https://www.threads.com/@hitoride1030"],
