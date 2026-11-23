@@ -123,8 +123,8 @@ export function HomePage() {
               運用の設計と判断を読む
             </Link>
             <p className="featured__quality">
-              AIの社員が出した仕組みの改善は、クラウドの Claude Code が PR にし、人はマージを判断します。人が手でやっていたことを、順に仕組みに置き換えています。
-              <Link to={`/work/${featuredCase.slug}#routines`}>自分で直して、自分で作る仕組みを見る →</Link>
+              壊れたら自分で前の版に戻し、予算を見て自分で絞り、AIが作った PR は2社のAIのレビューを通ったら自分でマージします。AIが自分のコードを育て、人の手をどこまで手放せるかを試しています。
+              <Link to={`/work/${featuredCase.slug}#autonomy`}>人の手をどこまで手放したかを見る →</Link>
             </p>
             <p className="featured__quality">
               AIが書いたコードは、PRのたびに単体テストとE2E（Playwright）を通してから本番に出し、本番も30分ごとに自動で確かめています。

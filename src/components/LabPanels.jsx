@@ -1,4 +1,4 @@
-import { QUALITY_AS_OF, labCheckEval, labCycle, labFlow, labHandoffs, labLinks, labQuality, labRoutines } from "../data/cases.js";
+import { QUALITY_AS_OF, labAutonomy, labCheckEval, labCycle, labFlow, labHandoffs, labLinks, labQuality, labRoutines } from "../data/cases.js";
 import { labNum, labStatTiles, useLabNumbers } from "../data/labNumbers.js";
 import { ExternalLink } from "./ExternalLink.jsx";
 
@@ -233,3 +233,45 @@ function Meter({ label, value, total }) {
     </div>
   );
 }
+
+// 人の手を、どこまで手放したか: 目を引く見出しのカードと、仕事ごとにAIか人かを並べた地図
+export function LabAutonomy() {
+  const n = useLabNumbers();
+  const live = {
+    autoPublish: `人の承認なし ${labNum(n.autoPublish.published)}/${labNum(n.totals.published)}件`,
+  };
+  return (
+    <div className="autonomy">
+      <ul className="autonomy__headlines">
+        {labAutonomy.headlines.map((h) => (
+          <li className="autonomy__card" key={h.title}>
+            <span className="autonomy__kicker">{h.kicker}</span>
+            <h3>{h.title}</h3>
+            <p>{h.body}</p>
+          </li>
+        ))}
+      </ul>
+      <div className="autonomy__map">
+        <h3>どこまで任せているか</h3>
+        <ul aria-label="仕事ごとに、AIが自分でするか、人が決めるか">
+          {labAutonomy.map.map((m) => (
+            <li className={`autonomy__chip autonomy__chip--${m.who}`} key={m.label}>
+              <span>{m.who === "human" ? "人" : "AI"}</span>
+              {m.label}
+              {m.live ? <small>{live[m.live]}</small> : null}
+            </li>
+          ))}
+        </ul>
+      </div>
+      <div className="autonomy__kept">
+        <h3>あえて人に残しているもの</h3>
+        <ul>
+          {labAutonomy.kept.map((k) => (
+            <li key={k}>{k}</li>
+          ))}
+        </ul>
+      </div>
+    </div>
+  );
+}
+
