@@ -93,7 +93,7 @@ export function labStatTiles(n) {
     ["公開した案件", num(t.published), "件"],
     ["訪問（累計）", num(t.visits), "人"],
     ["登録・利用（累計）", num(t.conversions), "件"],
-    ["AI費用（累計）", num(t.aiCostJpy), "円", t.perConversionJpy === null ? null : `成果1件 ${num(t.perConversionJpy)}円`],
+    ["AI費用（累計）", num(t.aiCostJpy), "円", t.perConversionJpy === null ? null : `登録・利用1件あたり ${num(t.perConversionJpy)}円（案件の費用。共通の費用は除く）`],
   ];
 }
 

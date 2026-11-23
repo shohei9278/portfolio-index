@@ -416,6 +416,7 @@ button {
 
 .stats__grid .stats__sub {
   margin-top: 8px;
+  white-space: normal;
   font-family: inherit;
   font-size: 12px;
   font-weight: 400;
@@ -3070,4 +3071,77 @@ button {
   .practices__cards {
     grid-template-columns: minmax(0, 1fr);
   }
+}
+
+/* AI Product Lab の事例: 結果 → AIの動き → 人の判断 → 技術の詳しいところ の大きな区切り */
+.case-hero__numbers {
+  max-width: 40em;
+  margin-top: 10px;
+  font-size: 15px;
+  font-weight: 700;
+}
+
+.build-note__list {
+  display: grid;
+  gap: 4px;
+  padding-left: 1.2em;
+}
+
+.case-part {
+  margin-top: clamp(56px, 8vw, 96px);
+  padding-top: clamp(24px, 4vw, 36px);
+  border-top: 2px solid var(--ink);
+}
+
+.case-part__title {
+  display: flex;
+  align-items: baseline;
+  gap: 14px;
+  font-size: clamp(24px, 3vw, 34px);
+  line-height: 1.35;
+}
+
+.case-part__title span {
+  color: var(--accent);
+  font-family: var(--mono);
+  font-size: 0.9em;
+  letter-spacing: -0.05em;
+}
+
+.case-part__lead {
+  max-width: 46em;
+  margin-top: 12px;
+  color: var(--muted);
+}
+
+.case-part > .stats {
+  margin-top: 24px;
+}
+
+.case-part__text {
+  display: grid;
+  gap: 14px;
+  max-width: 46em;
+  margin-top: 24px;
+}
+
+.case-part__decisions {
+  margin-top: 24px;
+}
+
+.case-features__title {
+  margin-bottom: 14px;
+  font-size: clamp(20px, 2.2vw, 26px);
+  line-height: 1.4;
+}
+
+.handoffs__more summary {
+  cursor: pointer;
+  color: var(--accent);
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.handoffs__more[open] summary {
+  margin-bottom: 8px;
 }

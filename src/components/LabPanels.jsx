@@ -1,4 +1,4 @@
-import { QUALITY_AS_OF, labAutonomy, labCheckEval, labCycle, labFlow, labHandoffs, labLinks, labPractices, labQuality, labRoutines } from "../data/cases.js";
+import { LAB_HANDOFF_TOP, QUALITY_AS_OF, labAutonomy, labCheckEval, labCycle, labFlow, labHandoffs, labLinks, labPractices, labQuality, labRoutines } from "../data/cases.js";
 import { labNum, labStatTiles, useLabNumbers } from "../data/labNumbers.js";
 import { ExternalLink } from "./ExternalLink.jsx";
 
@@ -20,7 +20,7 @@ export function LabStats() {
       </dl>
       <figcaption>
         {n.asOf}
-        時点{n.live ? "（実験の記録から自動で読み込んだ数字）" : ""}。公開した案件は、AIが作って公開した事前登録ページと小さなツールの数です。登録・利用は、事前登録とツールの利用を合わせた数です。成果1件は、案件のために使った費用を登録・利用の数で割った値です。最新の数字は実験の概要ページで確かめられます。
+        時点{n.live ? "（実験の記録から自動で読み込んだ数字）" : ""}。公開した案件は、AIが作って公開した事前登録ページと小さなツールの数です。登録・利用は、事前登録とツールの利用を合わせた数です。登録・利用1件あたりの費用は、案件のために使った費用だけを登録・利用の数で割った値で、会議やアイデア出しなど案件に付かない共通の費用は含めていません。最新の数字は実験の概要ページで確かめられます。
       </figcaption>
     </figure>
   );
@@ -144,28 +144,43 @@ export function LabRoutines() {
   );
 }
 
+function HandoffList({ items, start = 1 }) {
+  return (
+    <ol className="handoffs__list" start={start}>
+      {items.map(([before, after]) => (
+        <li key={before}>
+          <p className="handoffs__before">
+            <span>前</span>
+            {before}
+          </p>
+          <span className="handoffs__arrow" aria-hidden="true">
+            →
+          </span>
+          <p className="handoffs__after">
+            <span>いま</span>
+            {after}
+          </p>
+        </li>
+      ))}
+    </ol>
+  );
+}
+
+// 主な4件を見せ、残りは開いて見る（ページが長くなりすぎないように）
 export function LabHandoffs() {
   const n = useLabNumbers();
+  const top = labHandoffs.slice(0, LAB_HANDOFF_TOP);
+  const rest = labHandoffs.slice(LAB_HANDOFF_TOP);
   return (
     <div className="handoffs">
       <h3>人の手を、仕組みに置き換えてきた</h3>
-      <ol className="handoffs__list">
-        {labHandoffs.map(([before, after]) => (
-          <li key={before}>
-            <p className="handoffs__before">
-              <span>前</span>
-              {before}
-            </p>
-            <span className="handoffs__arrow" aria-hidden="true">
-              →
-            </span>
-            <p className="handoffs__after">
-              <span>いま</span>
-              {after}
-            </p>
-          </li>
-        ))}
-      </ol>
+      <HandoffList items={top} />
+      {rest.length ? (
+        <details className="handoffs__more">
+          <summary>ほかの置き換え（{rest.length}件）を見る</summary>
+          <HandoffList items={rest} start={top.length + 1} />
+        </details>
+      ) : null}
       <p className="routines__note">
         それでも、改善の記録では、人が見つけた・決めた改善が{labNum(n.improvements.human)}件、AIの社員の提案で入った改善が{labNum(n.improvements.aiDone)}件です（{n.asOf}時点）。{n.improvements.human > n.improvements.aiDone ? "まだ人が見つけるほうが多い段階です。" : ""}
       </p>

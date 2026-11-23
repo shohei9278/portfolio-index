@@ -4,11 +4,17 @@ import { CodeTerminal } from "../components/CodeTerminal.jsx";
 import { ExternalLink } from "../components/ExternalLink.jsx";
 import { LabShowcase } from "../components/LabOffice.jsx";
 import { LabStats } from "../components/LabPanels.jsx";
+import { useLabNumbers } from "../data/labNumbers.js";
 import { BuildBadge, CaseVisual, OfficeVideo, Reveal } from "../components/Visuals.jsx";
 import { cases, featuredCase, labLinks, personalCases, profile, workCases } from "../data/cases.js";
 import { Link } from "../router.jsx";
 
 const READING_STEPS = ["課題", "考えたこと", "判断", "結果", "まだできていないこと"];
+
+// 本番の数字から作る文（AI Product Lab の結果）
+function LiveText({ make }) {
+  return make(useLabNumbers());
+}
 
 function Summary({ summary }) {
   return (
@@ -20,7 +26,7 @@ function Summary({ summary }) {
       ].map(([label, text]) => (
         <div key={label}>
           <dt>{label}</dt>
-          <dd>{text}</dd>
+          <dd>{typeof text === "function" ? <LiveText make={text} /> : text}</dd>
         </div>
       ))}
     </dl>
@@ -219,7 +225,7 @@ export function HomePage() {
                         <BuildBadge build={item.build} />
                       </p>
                       <h4>{item.title}</h4>
-                      <p className="compact-card__text">{item.summary.result}</p>
+                      <p className="compact-card__text">{typeof item.summary.result === "function" ? <LiveText make={item.summary.result} /> : item.summary.result}</p>
                       <ul className="compact-card__stack">
                         {item.stack.slice(0, 5).map((tech) => (
                           <li key={tech}>{tech}</li>
