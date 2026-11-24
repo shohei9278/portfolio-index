@@ -70,11 +70,15 @@ export function HomePage() {
                 <span className="nowrap">Webエンジニア（業務の自動化・AI）</span>
               </span>
             </p>
-            <h1>作って終わりにせず、動かした結果まで見ています。</h1>
+            <h1>
+              <span className="nowrap">AIに書かせて、</span>
+              <span className="nowrap">AIに直させる。</span>
+              <br />
+              <span className="nowrap">仕組みと判断は、</span>
+              <span className="nowrap">私がつくる。</span>
+            </h1>
             <p className="hero__lead">
-              業務のルールを整理して、Webツール、データ処理、AIを使った自動化まで実装します。
-              個人開発と業務ツールの開発で、何を課題と考え、何を判断し、どうなったかをまとめました。
-              AIにコードを任せた作品と、自分で書いた作品があり、うまくいっていない結果もそのまま載せています。
+              Claude・GPT・Gemini を社員にした会社を、自分で設計して動かしています。業務のルールを整理して、Webツール・データ処理・AIの自動化まで実装します。
             </p>
             <div className="hero__actions">
               <a href="#personal-title" className="button button--light">
@@ -97,7 +101,11 @@ export function HomePage() {
       <AboutSection />
 
       <section className="guide wrap" aria-label="作品の読み方">
-        <p>すべての作品を、この順番で書いています。</p>
+        <p>
+          すべての作品を、この順番で書いています。
+          <br />
+          うまくいっていない結果も、そのまま載せています。
+        </p>
         <ol>
           {READING_STEPS.map((step, index) => (
             <li key={step}>
