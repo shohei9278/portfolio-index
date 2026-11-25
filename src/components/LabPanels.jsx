@@ -115,8 +115,8 @@ export function LabRoutines() {
   const n = useLabNumbers();
   const r = n.routines;
   const live = {
-    fix: `頼んだ ${labNum(r.asked)}件 → マージ ${labNum(r.merged)}件（${n.asOf}時点）`,
-    review: `見直しで出した提案 ${labNum(r.reviewed)}件 → PR にしてマージ ${labNum(r.reviewMerged)}件（${n.asOf}時点）`,
+    fix: `ルーティンに頼んだ ${labNum(r.asked)}件のうち、マージ済み ${labNum(r.merged)}件（人が手でマージしたものを含む。${n.asOf}時点）`,
+    review: `見直しで出した提案 ${labNum(r.reviewed)}件のうち、PR にしてマージ済み ${labNum(r.reviewMerged)}件（人が手でマージしたものを含む。${n.asOf}時点）`,
     tools: `作ったツール ${labNum(r.tools)}件・公開 ${labNum(r.published)}件（うち人の承認なし ${labNum(r.autoPublished)}件。${n.asOf}時点）`,
   };
   return (
