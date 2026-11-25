@@ -698,31 +698,6 @@ button {
   gap: 14px;
 }
 
-.about__wish div {
-  display: flex;
-  gap: 12px;
-  align-items: baseline;
-  font-size: 14px;
-}
-
-.about__wish dt {
-  color: var(--accent);
-  font-size: 13px;
-  font-weight: 700;
-}
-
-.about__wish dd {
-  font-weight: 700;
-}
-
-.about__next {
-  display: grid;
-  gap: 8px;
-  padding: 16px 18px;
-  border-left: 3px solid var(--accent);
-  background: var(--surface);
-}
-
 .about__label {
   color: var(--accent);
   font-size: 13px;
