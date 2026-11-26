@@ -1,7 +1,7 @@
 import { track as vercelTrack } from "@vercel/analytics/react";
 
 // GA4 は本番のURLで開いたときだけ読み込む。PRごとのプレビューや手元の確認では送らない
-const GA_ID = "G-Q9KV78SQY7";
+const GA_ID = "G-GVM64X4VLH";
 const PRODUCTION_HOST = "portfolio-index-ten.vercel.app";
 
 const gaEnabled = typeof window !== "undefined" && window.location.hostname === PRODUCTION_HOST;
