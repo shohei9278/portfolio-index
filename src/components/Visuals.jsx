@@ -251,13 +251,23 @@ export function CrmFlow() {
 
 const POWER_LANES = [
   {
-    title: "QAアプリ",
+    title: "QAアプリ（FAQ を育てる形）",
     steps: [
       ["Power Apps", "質問を入力"],
       ["SharePoint", "FAQを検索"],
       ["Power Automate", "見つからなければ"],
       ["OpenAI API", "回答を生成・要約"],
       ["Teams", "未回答を管理者へ通知"],
+    ],
+  },
+  {
+    title: "QAアプリ（RAG 構成）",
+    steps: [
+      ["Power Automate", "質問を受け取る"],
+      ["Dataverse", "過去のデータを検索"],
+      ["Power Automate", "関係するものを抽出"],
+      ["Prompt Builder", "LLM に渡す"],
+      ["回答", "要約して返す"],
     ],
   },
   {
@@ -284,7 +294,7 @@ const POWER_LANES = [
 
 export function PowerFlow() {
   return (
-    <figure className="power-flow" aria-label="QAアプリ、承認アプリ、音声入力アプリの処理の流れの図">
+    <figure className="power-flow" aria-label="2つのQAアプリ、承認アプリ、音声入力アプリの処理の流れの図">
       {POWER_LANES.map((lane) => (
         <div className="power-flow__lane" key={lane.title}>
           <p className="crm-flow__label">{lane.title}</p>

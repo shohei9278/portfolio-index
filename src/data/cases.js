@@ -1075,22 +1075,29 @@ export const cases = [
     figure: "power-flow",
     title: "Power Apps の業務アプリ開発",
     kicker: "Power Platform の実務（概要のみ）",
-    lead: "Power Apps と Power Automate で、社内の問い合わせに答えるQAアプリ、申請・承認のアプリ、話した内容を文字にする音声入力アプリを作っていました。実案件は載せられないため、構成と仕組みだけを紹介します。",
+    lead: "Power Apps と Power Automate で、社内の問い合わせに答えるQAアプリ（FAQ を育てる形と、RAG 構成の2つ）、申請・承認のアプリ、話した内容を文字にする音声入力アプリを作っていました。実案件は載せられないため、構成と仕組みだけを紹介します。",
     summary: {
       problem: "社内の問い合わせ対応や申請・承認、入力の手間を、Microsoft 365 の中で減らしたい。",
-      decision: "FAQで答えられない質問は、AIで回答を作りつつ未回答として管理者に回す。音声は Azure OpenAI で文字にする。",
-      result: "QAアプリ、承認アプリ、音声入力アプリを、Power Platform で設計・実装しました。",
+      decision: "FAQで答えられない質問は、AIで回答を作りつつ未回答として管理者に回す。過去のデータを使う質問は、Dataverse から関係するものを探して LLM に渡す。音声は Azure OpenAI で文字にする。",
+      result: "QAアプリ（2つ）、承認アプリ、音声入力アプリを、Power Platform で設計・実装しました。",
     },
     role: "設計・実装",
-    stack: ["Power Apps", "Power Automate", "SharePoint Online", "Microsoft Teams", "OpenAI API", "Azure OpenAI Service（Whisper）"],
+    stack: ["Power Apps", "Power Automate", "SharePoint Online", "Dataverse", "AI Builder（Prompt Builder）", "Microsoft Teams", "OpenAI API", "Azure OpenAI Service（Whisper）"],
     links: [],
     sections: [
       {
-        title: "QAアプリ",
+        title: "QAアプリ（FAQ を育てる形）",
         paragraphs: [
           "社員が質問を入力すると、SharePoint の FAQ リストからキーワードで回答を探して表示します。",
           "FAQで見つからない質問は、Power Automate から OpenAI API を呼び出して回答を自動で生成・要約します。あわせて未回答のリストに自動で保存し、Teams で管理者に通知します。",
           "管理者が未回答の質問に回答を付けて FAQ に登録すると、次からは FAQ で答えられるようになります。",
+        ],
+      },
+      {
+        title: "QAアプリ（RAG 構成）",
+        paragraphs: [
+          "質問を受け取ると、Power Automate で Dataverse の過去のデータから関係するものを検索・抽出し、Prompt Builder のプロンプトに渡して LLM に答えさせる RAG 構成です。",
+          "似た過去の事例や FAQ をもとに、要約した回答を自動で作ります。",
         ],
       },
       {
