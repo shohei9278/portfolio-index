@@ -3,32 +3,45 @@ import { track } from "../analytics.js";
 import { profile } from "../data/cases.js";
 import { ExternalLink } from "./ExternalLink.jsx";
 
-function composeMail(event) {
-  event.preventDefault();
-  const form = new FormData(event.currentTarget);
-  const name = form.get("name");
-  const company = form.get("company");
-  const lines = [`お名前: ${name}`];
-  if (company) lines.push(`会社名: ${company}`);
-  lines.push("", form.get("message"));
+// フォームの送り先（Formspree）。https://formspree.io/f/<ID> の <ID>（公開しても困らない値）
+// 前はメールアプリを開いていたが、メールアプリを設定していないパソコンでは Outlook の初期設定が開いてしまうため、
+// サイトからそのまま送る形にした（運営者が決めた）
+const FORMSPREE_ID = "mjywlzny";
 
-  const subject = encodeURIComponent(`ポートフォリオからのお問い合わせ（${name}）`);
-  const body = encodeURIComponent(lines.join("\n"));
-  track("Portfolio Action", { action: "contact_compose" });
-  window.location.href = `mailto:${profile.email}?subject=${subject}&body=${body}`;
+async function sendForm(form) {
+  form.set("_subject", `ポートフォリオからのお問い合わせ（${form.get("name")}）`);
+  const res = await fetch(`https://formspree.io/f/${FORMSPREE_ID}`, {
+    method: "POST",
+    body: form,
+    headers: { Accept: "application/json" },
+  });
+  if (!res.ok) throw new Error(`送信に失敗しました（${res.status}）`);
 }
 
 // トップでは問い合わせフォームまで出し、作品やデモのページでは連絡先だけの短い形にする
+// メールアドレスは載せず、連絡はフォームからにする（送れなかったときだけ、案内の文にアドレスを出す。運営者が決めた）
 export function ContactSection({ compact = false }) {
-  const [copied, setCopied] = useState(false);
+  // idle / sending / sent / error
+  const [status, setStatus] = useState("idle");
 
-  async function copyAddress() {
+  async function onSubmit(event) {
+    event.preventDefault();
+    const el = event.currentTarget;
+    const form = new FormData(el);
+    // 人には見えない欄に入力があれば、いたずらの送信とみなして送らない（送れたように見せる）
+    if (form.get("_gotcha")) {
+      setStatus("sent");
+      return;
+    }
+    setStatus("sending");
     try {
-      await navigator.clipboard.writeText(profile.email);
-      setCopied(true);
-      window.setTimeout(() => setCopied(false), 2000);
+      await sendForm(form);
+      track("Portfolio Action", { action: "contact_send" });
+      el.reset();
+      setStatus("sent");
     } catch {
-      setCopied(false);
+      track("Portfolio Action", { action: "contact_send_error" });
+      setStatus("error");
     }
   }
 
@@ -41,14 +54,8 @@ export function ContactSection({ compact = false }) {
           </p>
           <h2>連絡先</h2>
           <p>
-            {profile.name}（{profile.nameEn}）へのご連絡は、フォームかメールでお願いします。
+            {profile.name}（{profile.nameEn}）へのご連絡は、フォームからお願いします。
           </p>
-          <div className="contact__mail">
-            <a href={`mailto:${profile.email}`}>{profile.email}</a>
-            <button type="button" onClick={copyAddress}>
-              {copied ? "コピーしました" : "コピー"}
-            </button>
-          </div>
           <div className="contact__links">
             <ExternalLink href={profile.github} label="footer-github">
               GitHub
@@ -67,7 +74,7 @@ export function ContactSection({ compact = false }) {
             フォームで連絡する
           </a>
         ) : (
-        <form className="contact-form" onSubmit={composeMail}>
+        <form className="contact-form" onSubmit={onSubmit}>
           <label>
             <span>お名前</span>
             <input name="name" autoComplete="name" required />
@@ -79,13 +86,31 @@ export function ContactSection({ compact = false }) {
             <input name="company" autoComplete="organization" />
           </label>
           <label>
+            <span>メールアドレス</span>
+            <input name="email" type="email" autoComplete="email" required />
+          </label>
+          <label>
             <span>内容</span>
             <textarea name="message" rows="5" required />
           </label>
-          <button type="submit" className="button button--light">
-            メールを作成する
+          {/* いたずらの送信よけ。人には見えず、読み上げもされない欄 */}
+          <div className="contact-form__trap" aria-hidden="true">
+            <label>
+              <span>この欄は空のままにしてください</span>
+              <input name="_gotcha" tabIndex={-1} autoComplete="off" />
+            </label>
+          </div>
+          <button type="submit" className="button button--light" disabled={status === "sending"}>
+            {status === "sending" ? "送信しています…" : "送信する"}
           </button>
-          <p>お使いのメールアプリが開きます。入力した内容はこのサイトに保存されません。</p>
+          <p className="contact-form__status" role="status" aria-live="polite">
+            {status === "sent"
+              ? "送信しました。ありがとうございます。返信は、入力いただいたメールアドレスにお送りします。"
+              : status === "error"
+                ? `送信できませんでした。お手数ですが、${profile.email} に直接お送りください。`
+                : ""}
+          </p>
+          <p>送信した内容は、フォームの送信サービス（Formspree）を通して、メールで届きます。このサイトには保存されません。</p>
         </form>
         )}
 
